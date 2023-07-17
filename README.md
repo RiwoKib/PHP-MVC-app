@@ -1,1 +1,1 @@
-# Simple APP using PHP MVC
+# Simple inventory management APP using PHP MVC
