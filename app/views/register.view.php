@@ -52,7 +52,7 @@
                     
                     <button type="reset" name="resetBtn" class="btn btn-danger">Cancel</button>
                     <div class="form-text">
-                        Already have an account? <a href="login.php">Login</a>
+                        Already have an account? <a href="<?=ROOT?>/login">Login</a>
                     </div>
                 </form>
             </div>
