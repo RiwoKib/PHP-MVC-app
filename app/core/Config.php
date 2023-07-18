@@ -1,6 +1,6 @@
 <?php  
 
-define('ROOT', 'http://localhost/PHP-MVC/public/');
+define('ROOT', 'http://localhost/PHP-MVC/public');
 define('ASSETS', 'http://localhost/PHP-MVC/assets');
 
 define("DB_HOST", 'localhost');  
