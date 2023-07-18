@@ -2,5 +2,5 @@
     define("DB_HOST", 'localhost');  
     define("DB_USER", 'root');  
     define("DB_PASSWORD", '');  
-    define("DB_DATABSE", 'ooplogin');  
+    define("DB_NAME", 'ooplogin');  
 ?>
