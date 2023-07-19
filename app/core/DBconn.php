@@ -24,38 +24,43 @@ class DBConnection
         }
     }
 
-    public function query($query, $data = array(), $data_type = "object")
-    {
-        $stmt = $this->connection->prepare($query);
-
-        if ($stmt) {
-            if (!empty($data)) {
-                $types = str_repeat('s', count($data));
-                $stmt->bind_param($types, ...$data);
-            }
-
-            if ($stmt->execute()) {
-                $result = $stmt->get_result();
-
-                if ($data_type === "object") {
-                    $data = array();
-                    while ($row = $result->fetch_object()) {
-                        $data[] = $row;
-                    }
-                } else {
-                    $data = $result->fetch_all(MYSQLI_ASSOC);
-                }
-
-                $stmt->close();
-
-                if (is_array($data) && count($data) > 0) {
-                    return $data;
-                }
-            } else {
-                $stmt->close();
-            }
-        }
-
-        return false;
+    
+    public function __destruct(){
+        $this->connection->close();
     }
+
+    // public function query($query, $data = array(), $data_type = "object")
+    // {
+    //     $stmt = $this->connection->prepare($query);
+
+    //     if ($stmt) {
+    //         if (!empty($data)) {
+    //             $types = str_repeat('s', count($data));
+    //             $stmt->bind_param($types, ...$data);
+    //         }
+
+    //         if ($stmt->execute()) {
+    //             $result = $stmt->get_result();
+
+    //             if ($data_type === "object") {
+    //                 $data = array();
+    //                 while ($row = $result->fetch_object()) {
+    //                     $data[] = $row;
+    //                 }
+    //             } else {
+    //                 $data = $result->fetch_all(MYSQLI_ASSOC);
+    //             }
+
+    //             $stmt->close();
+
+    //             if (is_array($data) && count($data) > 0) {
+    //                 return $data;
+    //             }
+    //         } else {
+    //             $stmt->close();
+    //         }
+    //     }
+
+    //     return false;
+    // }
 }
