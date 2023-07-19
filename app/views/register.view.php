@@ -8,29 +8,23 @@
                 <h4>Sign Up</h4>
             </div>
             <div class="card-body">
-                <form action=""  method="post">
+                <form action="<?=ROOT?>/Register"  method="post">
                 <div class="mb-3"> 
-                        <input type="text" required name="firstname" class="form-control" placeholder='enter firstname'>
+                        <input type="text"   name="firstname" class="form-control" placeholder='firstname'>
                         
                     </div>
                 <div class="mb-3"> 
-                        <input type="text" required name="lastname" class="form-control" placeholder='enter lastname'>
+                        <input type="text"   name="lastname" class="form-control" placeholder='lastname'>
                         
                     </div>
                     <div class="mb-3"> 
-                        <input type="email" required name="email" class="form-control" placeholder='enter email'>
+                        <input type="email"   name="email" class="form-control" placeholder='info@bilkens.co.ke'>
                         
-                    </div>
+                    </div> 
                     <div class="mb-3"> 
-                      
-                      <select name="gender" class="form-control">
-                        <option value="">--Select Gender--</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                      </select>
-                  
+                        <input type="tel"   name="phone" class="form-control" placeholder='+254 700 000 000'>
                         
-                    </div>
+                    </div> 
                     <div class="mb-3"> 
                       
                       <select name="rank"  class="form-control">
@@ -42,10 +36,10 @@
                         
                     </div>
                     <div class="mb-3"> 
-                        <input type="password" required name="password" class="form-control" placeholder='enter password'>
+                        <input type="password"   name="password" class="form-control" placeholder='password'>
                     </div>
                     <div class="mb-3"> 
-                        <input type="password" required name="confirm" class="form-control" placeholder='confirm password'>
+                        <input type="password"   name="confirm" class="form-control" placeholder='confirm password'>
                     </div>
                     
                     <button type="submit" name="registerBtn" class="btn btn-primary">Sign up</button>

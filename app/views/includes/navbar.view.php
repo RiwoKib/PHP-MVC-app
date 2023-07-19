@@ -1,9 +1,10 @@
+
 <div class="main-wrapper">
 
   <div class="header">
 
     <div class="header-left active">
-      <a href="index.html" class="logo">
+      <a href="<?=ROOT?>/dashboard" class="logo">
         <img src="<?=ASSETS?>/img/logo.png" alt="">
       </a>
     <a href="index.html" class="logo-small">
@@ -174,10 +175,10 @@
             </div>
           </div>
           <hr class="m-0">
-          <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My Profile</a>
-          <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>
+          <a class="dropdown-item" href="<?=ROOT?>/profile"> <i class="me-2" data-feather="user"></i> My Profile</a>
+          <a class="dropdown-item" href="<?=ROOT?>/settings"><i class="me-2" data-feather="settings"></i>Settings</a>
           <hr class="m-0">
-          <a class="dropdown-item logout pb-0" href="signin.html"><img src="<?=ASSETS?>/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
+          <a class="dropdown-item logout pb-0" href="<?=ROOT?>/login"><img src="<?=ASSETS?>/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
         </div>
       </div>
     </li>
@@ -187,9 +188,9 @@
   <div class="dropdown mobile-user-menu">
     <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
     <div class="dropdown-menu dropdown-menu-right">
-      <a class="dropdown-item" href="profile.html">My Profile</a>
-      <a class="dropdown-item" href="generalsettings.html">Settings</a>
-      <a class="dropdown-item" href="signin.html">Logout</a>
+      <a class="dropdown-item" href="">My Profile</a>
+      <a class="dropdown-item" href="">Settings</a>
+      <a class="dropdown-item" href="">Logout</a>
     </div>
   </div>
 

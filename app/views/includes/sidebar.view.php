@@ -12,10 +12,10 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a href=" ">Product List</a></li>
+                        <li><a href="<?=ROOT?>/products">Product List</a></li>
                         <li><a href=" ">Add Product</a></li>
-                        <li><a href=" ">Category List</a></li>
-                        <li><a href=" ">Add Category</a></li>
+                        <li><a href="<?=ROOT?>/categories">Category List</a></li>
+                        <li><a href="<?=ROOT?>/categoryAdd">Add Category</a></li>
                         <li><a href=" ">Sub Category List</a></li>
                         <li><a href=" ">Add Sub Category</a></li>
                         <li><a href=" ">Brand List</a></li>
@@ -161,4 +161,4 @@
             </ul>
         </div>
     </div>
-</div>
+</div> 

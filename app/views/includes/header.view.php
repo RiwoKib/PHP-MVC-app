@@ -9,6 +9,7 @@
     <!--Bootstrap template css links-->
     
     <link rel="shortcut icon" type="image/x-icon" href="<?=ASSETS?>/img/favicon.jpg"> 
+    
     <link rel="stylesheet" href="<?=ASSETS?>/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="<?=ASSETS?>/css/animate.css"> 
     <link rel="stylesheet" href="<?=ASSETS?>/plugins/select2/css/select2.min.css"> 
