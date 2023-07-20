@@ -7,22 +7,36 @@
             <div class="card-header">
                 <h4>Sign Up</h4>
             </div>
+
+            <?php if(count($errors) > 0):?>
+              <div class="alert alert-warning alert-dismissible fade show p-1 mx-2" role="alert">
+                <strong class="text-danger">Error!</strong>
+                  <?php foreach($errors as $error):?>
+                  <br><?=$error?>
+                <?php endforeach;?>
+                <span  type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </span>
+              </div>
+            <?php endif;?>
+
+
             <div class="card-body">
                 <form action="<?=ROOT?>/Register"  method="post">
                 <div class="mb-3"> 
-                        <input type="text"   name="firstname" class="form-control" placeholder='firstname'>
+                        <input type="text" required  name="firstname" class="form-control" placeholder='firstname'>
                         
                     </div>
                 <div class="mb-3"> 
-                        <input type="text"   name="lastname" class="form-control" placeholder='lastname'>
+                        <input type="text" required  name="lastname" class="form-control" placeholder='lastname'>
                         
                     </div>
                     <div class="mb-3"> 
-                        <input type="email"   name="email" class="form-control" placeholder='info@bilkens.co.ke'>
+                        <input type="email" required  name="email" class="form-control" placeholder='info@bilkens.co.ke'>
                         
                     </div> 
                     <div class="mb-3"> 
-                        <input type="tel"   name="phone" class="form-control" placeholder='+254 700 000 000'>
+                        <input type="tel" required  name="phone" class="form-control" placeholder='+254 700 000 000'>
                         
                     </div> 
                     <div class="mb-3"> 
@@ -36,10 +50,10 @@
                         
                     </div>
                     <div class="mb-3"> 
-                        <input type="password"   name="password" class="form-control" placeholder='password'>
+                        <input type="password" required  name="password" class="form-control" placeholder='password'>
                     </div>
                     <div class="mb-3"> 
-                        <input type="password"   name="confirm" class="form-control" placeholder='confirm password'>
+                        <input type="password" required  name="confirm" class="form-control" placeholder='confirm password'>
                     </div>
                     
                     <button type="submit" name="registerBtn" class="btn btn-primary">Sign up</button>
