@@ -3,121 +3,80 @@
 /**
  * main model
  */
-
 class Model extends DBConnection
-{
+{   
+    private $conn;
+    protected $table;
 	public $errors = array();
 
-	public function __construct()
-	{ 
-		if(!property_exists($this, 'table'))
-		{
-			$this->table = strtolower($this::class) . "s";
-		}
+	public function __construct($table)
+	{   
+        $this->conn = new DBConnection();
+		$this->table  = $table;
+
 	}
 
+    public function where($column, $value)
+    {
+    $column = addslashes($column);
+    $query = "SELECT * FROM $this->table WHERE $column = ?";
+    $data = $this->conn->query($query, [$value]);
 
-	public function where($column,$value)
+    return $data;
+    }
+
+
+
+	public function findAll($orderby = 'desc')
 	{
 
-		$column = addslashes($column);
-		$query = "select * from $this->table where $column = :value";
-		$data = $this->query($query,[
-			'value'=>$value
-		]);
-
-		//run functions after select
-		if(is_array($data)){
-			if(property_exists($this, 'afterSelect'))
-			{
-				foreach($this->afterSelect as $func)
-				{
-					$data = $this->$func($data);
-				}
-			}
-		}
-
-		return $data;
-	}
-
-	public function findAll()
-	{
-
-		$query = "select * from $this->table ";
-		$data = $this->query($query);
-
-		//run functions after select
-		if(is_array($data)){
-			if(property_exists($this, 'afterSelect'))
-			{
-				foreach($this->afterSelect as $func)
-				{
-					$data = $this->$func($data);
-				}
-			}
-		}
+		$query = "SELECT * FROM $this->table ORDER BY id $orderby";
+		$data = $this->conn->query($query);
 
 		return $data;
 
 	}
 
 	public function insert($data)
-	{
+    {
+        $columns = implode(', ', array_keys($data));
+        $values = implode(', ', array_fill(0, count($data), '?'));
 
-		//remove unwanted columns
-		if(property_exists($this, 'allowedColumns'))
-		{
-			foreach($data as $key => $column)
-			{
-				if(!in_array($key, $this->allowedColumns))
-				{
-					unset($data[$key]);
-				}
-			}
+        $query = "INSERT INTO $this->table ($columns) VALUES ($values)";
+        $insertValues = array_values($data);
 
-		}
+        return $this->conn->query($query, $insertValues);
+    }
 
-		//run functions before insert
-		if(property_exists($this, 'beforeInsert'))
-		{
-			foreach($this->beforeInsert as $func)
-			{
-				$data = $this->$func($data);
-			}
-		}
+    public function update($id, $data)
+    {
+        if (!is_array($data)) {
+            // Single-column update
+            $column = $data;
+            $value = func_get_arg(2);
+            $query = "UPDATE $this->table SET $column = ? WHERE id = ?";
+            $values = array($value, $id);
+        } else {
+            // Multi-column update
+            $updateValues = array();
+            foreach ($data as $column => $value) {
+                $updateValues[] = "$column = ?";
+            }
+            $updateValues = implode(', ', $updateValues);
 
-		$keys = array_keys($data);
-		$columns = implode(',', $keys);
-		$values = implode(',:', $keys);
+            $query = "UPDATE $this->table SET $updateValues WHERE id = ?";
+            $values = array_merge(array_values($data), array($id));
+        }
 
-		$query = "insert into $this->table ($columns) values (:$values)";
+        return $this->conn->query($query, $values);
+    }
 
-		return $this->query($query,$data);
-	}
+    public function delete($id)
+    {
+        $query = "DELETE FROM $this->table WHERE id = ?";
+        $values = array($id);
 
-	public function update($id,$data)
-	{
-
-		$str = "";
-		foreach ($data as $key => $value) {
-			// code...
-			$str .= $key. "=:". $key.",";
-		}
-
-		$str = trim($str,",");
- 
-		$data['id'] = $id;
-		$query = "update $this->table set $str where id = :id";
-
-		return $this->query($query,$data);
-	}
-
-	public function delete($id)
-	{
-
-		$query = "delete from $this->table where id = :id";
-		$data['id'] = $id;
-		return $this->query($query,$data);
-	}
+        return $this->conn->query($query, $values);
+    }
 	
 }
