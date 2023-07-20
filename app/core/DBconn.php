@@ -8,7 +8,7 @@ require_once 'Config.php';
 
 class DBConnection
 {
-    private $connection;
+    private $conn;
 
     public function __construct()
     {
@@ -17,50 +17,66 @@ class DBConnection
 
     private function connect()
     {
-        $this->connection = new mysqli(DB_HOST, DB_USER, DBPASSWORD, DB_NAME);
+        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-        if ($this->connection->connect_error) {
-            die("Could not connect to the database: " . $this->connection->connect_error);
+        if ($this->conn->connect_error) {
+            die("Could not connect to the database: " . $this->conn->connect_error);
         }
-    }
 
+        // echo "Connection Successfully";
+        return $this->conn;
+    }
     
-    public function __destruct(){
-        $this->connection->close();
+
+    public function query($query, $data = array(), $data_type = "object")
+    {
+        $stmt = $this->conn->prepare($query);
+
+        if ($stmt) {
+            if (!empty($data)) {
+                $types = str_repeat('s', count($data));
+                $params = array();
+                $params[] = &$types;
+                foreach ($data as $key => $value) {
+                    $params[] = &$data[$key];
+                }
+                call_user_func_array(array($stmt, 'bind_param'), $params);
+            }
+
+            if ($stmt->execute()) {
+                if (stripos($query, 'INSERT') === 0 || stripos($query, 'DELETE') === 0 || stripos($query, 'UPDATE') === 0) {
+                    // return the number of affected rows
+                    $affectedRows = $stmt->affected_rows;
+                    $stmt->close();
+                    return $affectedRows;
+                } else {
+                    $result = $stmt->get_result();
+
+                    if ($data_type === "object") {
+                        $data = array();
+                        while ($row = $result->fetch_object()) {
+                            $data[] = $row;
+                        }
+                    } else {
+                        $data = $result->fetch_all(MYSQLI_ASSOC);
+                    }
+
+                    $stmt->close();
+
+                    if (is_array($data) && count($data) > 0) {
+                        return $data;
+                    }
+                }
+            } else {
+                $stmt->close();
+            }
+        }
+        
+
+        return false;
     }
 
-    // public function query($query, $data = array(), $data_type = "object")
-    // {
-    //     $stmt = $this->connection->prepare($query);
 
-    //     if ($stmt) {
-    //         if (!empty($data)) {
-    //             $types = str_repeat('s', count($data));
-    //             $stmt->bind_param($types, ...$data);
-    //         }
 
-    //         if ($stmt->execute()) {
-    //             $result = $stmt->get_result();
-
-    //             if ($data_type === "object") {
-    //                 $data = array();
-    //                 while ($row = $result->fetch_object()) {
-    //                     $data[] = $row;
-    //                 }
-    //             } else {
-    //                 $data = $result->fetch_all(MYSQLI_ASSOC);
-    //             }
-
-    //             $stmt->close();
-
-    //             if (is_array($data) && count($data) > 0) {
-    //                 return $data;
-    //             }
-    //         } else {
-    //             $stmt->close();
-    //         }
-    //     }
-
-    //     return false;
-    // }
+ 
 }
