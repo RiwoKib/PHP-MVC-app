@@ -8,8 +8,7 @@ class Controller
 	
 	public function view($view,$data = array())
 	{
-		extract($data);
-		// code...
+		extract($data); 
 
 		if(file_exists("../app/views/" . $view . ".view.php"))
 		{
