@@ -8,27 +8,32 @@ class Login extends Controller
 	
 	function index()
 	{ 
+
 		$errors = array();
 
-		if(count($_POST) > 0)
- 		{
+		if(isset($_POST['loginBtn'])){ 
 
- 			$user = new User();
- 			if($row = $user->where('email',$_POST['email']))
- 			{
- 				$row = $row[0];
- 				if(password_verify($_POST['password'], $row->password))
- 				{
- 					Auth::authenticate($row);
- 					$this->redirect('/home');	
- 				}
-  			
- 			}
-  			
-  			$errors['email'] = "Wrong email or password";
 
- 		}
+			$user = new User();
 
+			if($userData = $user->where('email',$_POST['email']))
+			
+			{  
+				
+				$userData = $userData[0];
+				if($_POST['password'] == $userData->password)
+				{
+					
+					Authenticate::auth($userData); 
+					$this->redirect('home');	
+ 					
+				} 
+			}
+
+			$errors['email'] = "Wrong email or password";
+
+		}
+ 
 		$this->view('login',[
 			'errors'=>$errors,
 		]);
