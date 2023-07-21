@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * home controller
  */
@@ -7,7 +8,17 @@ class Home extends Controller
 {
 	
 	function index()
-	{
-		echo $this->view('home');
+	{	
+
+		if(!Authenticate::logged_in())
+		{
+			$this->redirect('login');
+		}
+
+		$users = new User();
+
+		$data = $users->findAll();
+
+		$this->view('home', ['rows' => $data]);
 	}
 }
