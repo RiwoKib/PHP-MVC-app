@@ -19,6 +19,11 @@ class User extends Model
         return $userId;
     }
     
+    // public function hash_password($data)
+    // {
+    //     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    //     return $data;
+    // }
 
     public function validate($DATA)
     {
