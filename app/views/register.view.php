@@ -24,19 +24,19 @@
             <div class="card-body">
                 <form action="<?=ROOT?>/Register"  method="post">
                 <div class="mb-3"> 
-                        <input type="text" required  name="firstname" class="form-control" placeholder='firstname'>
+                        <input type="text" required value="<?=get_val('firstname')?>" name="firstname" class="form-control" placeholder='firstname'>
                         
                     </div>
                 <div class="mb-3"> 
-                        <input type="text" required  name="lastname" class="form-control" placeholder='lastname'>
+                        <input type="text" required  value="<?=get_val('lastname')?>" name="lastname" class="form-control" placeholder='lastname'>
                         
                     </div>
                     <div class="mb-3"> 
-                        <input type="email" required  name="email" class="form-control" placeholder='info@bilkens.co.ke'>
+                        <input type="email" required  value="<?=get_val('email')?>" name="email" class="form-control" placeholder='info@bilkens.co.ke'>
                         
                     </div> 
                     <div class="mb-3"> 
-                        <input type="tel" required  name="phone" class="form-control" placeholder='+254 700 000 000'>
+                        <input type="tel" required  value="<?=get_val('phone')?>" name="phone" class="form-control" placeholder='+254 700 000 000'>
                         
                     </div> 
                     <div class="mb-3"> 
@@ -44,16 +44,16 @@
                       <select name="rank"  class="form-control">
                         <option value="">--Select Rank--</option>
                         <option value="admin">Admin</option>
-                        <option value="user">User</option>
+                        <option value="user" selected>User</option>
                       </select>
                   
                         
                     </div>
                     <div class="mb-3"> 
-                        <input type="password" required  name="password" class="form-control" placeholder='password'>
+                        <input type="password" required  value="<?=get_val('password')?>" name="password" class="form-control" placeholder='password'>
                     </div>
                     <div class="mb-3"> 
-                        <input type="password" required  name="confirm" class="form-control" placeholder='confirm password'>
+                        <input type="password" required  value="<?=get_val('confirm')?>" name="confirm" class="form-control" placeholder='confirm password'>
                     </div>
                     
                     <button type="submit" name="registerBtn" class="btn btn-primary">Sign up</button>

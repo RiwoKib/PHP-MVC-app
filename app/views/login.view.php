@@ -26,12 +26,12 @@
                 <form action=""  method="post"> 
                     <div class="mb-3">
                         <label  class="form-label">Email address</label>
-                        <input type="email" required name="email" class="form-control">
+                        <input type="email" value="<?=get_val('email')?>" required name="email" class="form-control">
                         
                     </div>
                     <div class="mb-3">
                         <label  class="form-label">Password</label>
-                        <input type="password" required name="password" class="form-control" >
+                        <input type="password" value="<?=get_val('password')?>" required name="password" class="form-control" >
                     </div> 
                     
                     <button type="submit" name="loginBtn" class="btn btn-primary col-12 rounded-pill">Login</button>
