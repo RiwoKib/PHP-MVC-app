@@ -1,13 +1,13 @@
-
 <?php
+session_start();
 
 /**
  * Authentication class
  */
-class Auth
+class Authenticate
 {
 	
-	public static function authenticate($user)
+	public static function auth($user)
 	{ 
 		$_SESSION['USER'] = $user;
 	}
@@ -51,5 +51,4 @@ class Auth
 
 		return 'Unknown';
 	}
-
 }
