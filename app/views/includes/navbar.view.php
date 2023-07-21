@@ -170,7 +170,7 @@
             <span class="user-img"><img src="<?=ASSETS?>/img/profiles/avator1.jpg" alt="">
             <span class="status online"></span></span>
             <div class="profilesets">
-              <h6>John Doe</h6>
+              <h6><?=Authenticate::user()?></h6>
               <h5>Admin</h5>
             </div>
           </div>
@@ -178,7 +178,7 @@
           <a class="dropdown-item" href="<?=ROOT?>/profile"> <i class="me-2" data-feather="user"></i> My Profile</a>
           <a class="dropdown-item" href="<?=ROOT?>/settings"><i class="me-2" data-feather="settings"></i>Settings</a>
           <hr class="m-0">
-          <a class="dropdown-item logout pb-0" href="<?=ROOT?>/login"><img src="<?=ASSETS?>/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
+          <a class="dropdown-item logout pb-0" href="<?=ROOT?>/logout"><img src="<?=ASSETS?>/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
         </div>
       </div>
     </li>
