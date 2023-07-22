@@ -37,8 +37,12 @@ class DBConnection
                 $types = str_repeat('s', count($data));
                 $params = array();
                 $params[] = &$types;
-                foreach ($data as $key => $value) {
-                    $params[] = &$data[$key];
+                foreach ($data as $key => $value) { 
+                    if (is_resource($value)) {
+                        $params[] = $value;
+                    } else {
+                        $params[] = &$data[$key];
+                    }
                 }
                 call_user_func_array(array($stmt, 'bind_param'), $params);
             }
