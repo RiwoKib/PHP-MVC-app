@@ -10,7 +10,7 @@
                 <h6>Manage your products</h6>
             </div>
             <div class="page-btn">
-                <a href="addproduct.html" class="btn btn-added"><img src="<?=ASSETS?>/img/icons/plus.svg" alt="img" class="me-1">Add New Product</a>
+                <a href="<?=ROOT?>/products/add" class="btn btn-added"><img src="<?=ASSETS?>/img/icons/plus.svg" alt="img" class="me-1">Add New Product</a>
             </div>
         </div>
 
@@ -116,282 +116,46 @@
                                 <th>Brand</th>
                                 <th>price</th>
                                 <th>Unit</th>
-                                <th>Qty</th>
-                                <th>Created By</th>
+                                <th>Qty</th> 
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php foreach ($rows as $row) {?>
 
-                            
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
-            
-                            
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
-            
-                            
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
-            
-                            
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
-            
-            
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
-            
-            
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
-            
-                            
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td class="productimgname">
-                                    <a href="javascript:void(0);" class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
-                                </td>
-                                <td>PT001</td>
-                                <td>Computers</td>
-                                <td>N/D</td>
-                                <td>1500.00</td>
-                                <td>pc</td>
-                                <td>100.00</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="product-details.html">
-                                        <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkboxs">
+                                            <input type="checkbox">
+                                            <span class="checkmarks"></span>
+                                        </label>
+                                    </td>
+                                    <td class="productimgname">
+                                        <a href="javascript:void(0);" class="product-img">
+                                            <img src="<?=UPLOADED?>/<?=$row->image?>" alt="product">
+                                        </a>
+                                        <a href="javascript:void(0);"><?=$row->product_name?></a>
+                                    </td>
+                                    <td><?=$row->sku?></td>
+                                    <td><?=$row->category_ID?></td>
+                                    <td><?=$row->brand?></td>
+                                    <td><?=$row->price?></td>
+                                    <td><?=$row->unit?></td>
+                                    <td><?=$row->product_quantity?></td> 
+                                    <td>
+                                        <a class="me-3" href="product-details.html">
+                                            <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
+                                        </a>
+                                        <a class="me-3" href="editproduct.html">
+                                            <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
+                                        </a>
+                                        <a class="confirm-text" href="javascript:void(0);">
+                                            <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            <?php }?>
             
                         </tbody>
                     </table>
