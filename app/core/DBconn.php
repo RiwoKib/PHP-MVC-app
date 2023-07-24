@@ -9,6 +9,7 @@ require_once 'Config.php';
 class DBConnection
 {
     private $conn;
+    private $errorMessage;
 
     public function __construct()
     {
@@ -72,8 +73,11 @@ class DBConnection
                     }
                 }
             } else {
+                $this->errorMessage = "Query execution error: " . $stmt->error;
                 $stmt->close();
             }
+        }else {
+            $this->errorMessage = "Query preparation error: " . $this->conn->error;
         }
         
 
@@ -81,6 +85,10 @@ class DBConnection
     }
 
 
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
+    }
 
  
 }
