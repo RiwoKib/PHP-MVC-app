@@ -111,7 +111,7 @@
                                     <td><?=$row->sku?></td>
                                     <td><?=$row->description?></td> 
                                     <td>
-                                        <a class="me-3" href="editcategory.html">
+                                        <a class="me-3" href="<?=ROOT?>/categories/edit/<?=$row->id?>">
                                             <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
                                         </a>
                                         <a class="me-3 confirm-text" href="javascript:void(0);">

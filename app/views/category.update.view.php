@@ -30,19 +30,19 @@
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Category Name</label>
-                                <input value="<?=get_val('name')?>" name="name" type="text">  
+                                <input  value="<?=esc($row[0]->category_name); ?>" name="name" type="text">  
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Category SKU</label>
-                                <input value="<?=get_val('sku')?>" name="sku" type="text"> 
+                                <input  value="<?=esc($row[0]->sku); ?>"name="sku" type="text"> 
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="desc" class="form-control"><?=get_val('desc')?></textarea>  
+                                <textarea name="desc" class="form-control"><?=esc($row[0]->description)?></textarea>  
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <button type="submit" name="addCategory" class="btn btn-submit me-2">Add Category</button>
+                            <button type="submit" name="updateCategory" class="btn btn-submit me-2">Update Category</button>
                             <a href="<?=ROOT?>/categories" class="btn btn-cancel">Cancel</a>
                         </div>
                     </div>
