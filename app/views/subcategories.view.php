@@ -11,9 +11,9 @@
                 <h6>View/Search product Category</h6>
             </div>
             <div class="page-btn">
-                <a href="subaddcategory.html" class="btn btn-added"><img src="<?=ASSETS?>/img/icons/plus.svg" class="me-2" alt="img"> Add Sub Category</a>
+                <a href="<?=ROOT?>/subcategories/add" class="btn btn-added"><img src="<?=ASSETS?>/img/icons/plus.svg" class="me-2" alt="img"> Add Sub Category</a>
             </div>
-        </div>
+        </div> 
 
         <div class="card">
             <div class="card-body">
@@ -44,27 +44,33 @@
                             <div class="col-lg-2 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="select">
-                                        <option>Choose Category</option>
-                                        <option>Computers</option>
+                                    <select name="parent" class="select">
+                                        <option value="">Choose Category</option>
+                                        <?php foreach ($rows as $row) {?>
+                                            <option value="<?=get_val('parent')?>"><?=$row->parent_category?></option>
+                                        <?php }?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Sub Category</label>
-                                    <select class="select">
-                                        <option>Choose Sub Category</option>
-                                        <option>Fruits</option>
+                                    <select name="subcategory" class="select">
+                                        <option value="">Choose Sub Category</option>
+                                        <?php foreach ($rows as $row) {?>
+                                            <option value="<?=get_val('subcategory')?>"><?=$row->category_name?></option>
+                                        <?php }?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Category Code</label>
-                                    <select class="select">
-                                        <option>CT001</option>
-                                        <option>CT002</option>
+                                    <select name="subsku" class="select">
+                                        <option value="">e.g ct001</option>
+                                        <?php foreach ($rows as $row) {?>
+                                            <option value="<?=get_val('subsku')?>"><?=$row->sku?></option>
+                                        <?php }?>
                                     </select>
                                 </div>
                             </div>
@@ -87,43 +93,42 @@
                                     <input type="checkbox" id="select-all">
                                     <span class="checkmarks"></span>
                                     </label>
-                                </th>
-                                <th>Image</th>
+                                </th> 
                                 <th>Category</th>
                                 <th>Parent category</th>
                                 <th>Category Code</th>
-                                <th>Description</th>
-                                <th>Created By</th>
+                                <th>Description</th> 
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <a class="product-img">
-                                        <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
-                                    </a>
-                                </td>
-                                <td>Computers</td>
-                                <td>Computers</td>
-                                <td>CT001</td>
-                                <td>Computers Description</td>
-                                <td>Admin</td>
-                                <td>
-                                    <a class="me-3" href="editsubcategory.html">
-                                        <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                    </a>
-                                    <a class="me-3 confirm-text" href="javascript:void(0);">
-                                        <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                    </a>
-                                </td>
-                            </tr>  
+                            <?php foreach ($rows as $row) {?>
+                                <tr>
+                                    <td>
+                                        <label class="checkboxs">
+                                            <input type="checkbox">
+                                            <span class="checkmarks"></span>
+                                        </label>
+                                    <!-- </td>
+                                    <td>
+                                        <a class="product-img">
+                                            <img src="<?=ASSETS?>/img/product/product1.jpg" alt="product">
+                                        </a>
+                                    </td> -->
+                                    <td><?=$row->category_name?></td>
+                                    <td><?=$row->parent_category?></td>
+                                    <td><?=$row->sku?></td>
+                                    <td><?=$row->description?></td> 
+                                    <td>
+                                        <a class="me-3" href="<?=ROOT?>/subcategories/edit/<?=$row->id?>">
+                                            <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
+                                        </a>
+                                        <button class="me-3 confirm-text" style="border: none; background:none" value="<?=$row->id?>">
+                                            <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
+                                        </button>
+                                    </td>
+                                </tr>  
+                            <?php }?>
                         </tbody>
                     </table>
                 </div>
