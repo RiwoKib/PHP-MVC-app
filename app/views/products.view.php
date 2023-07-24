@@ -146,10 +146,10 @@
                                         <a class="me-3" href="product-details.html">
                                             <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
                                         </a>
-                                        <a class="me-3" href="editproduct.html">
+                                        <a class="me-3" href="<?=ROOT?>/products/edit/<?=$row->id?>">
                                             <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
                                         </a>
-                                        <a class="confirm-text" href="javascript:void(0);">
+                                        <a class="confirm-text">
                                             <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
                                         </a>
                                     </td>

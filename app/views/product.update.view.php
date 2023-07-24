@@ -30,7 +30,7 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Product Name</label>
-                                <input value="<?=get_val('name')?>" name="name" type="text">
+                                <input  value="<?=esc($row[0]->product_name); ?>" name="name" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
@@ -72,7 +72,7 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>SKU</label>
-                                <input value="<?=get_val('sku')?>" name="sku" type="text">
+                                <input  value="<?=esc($row[0]->sku); ?>" name="sku" type="text">
                             </div>
                         </div>
                         
@@ -80,13 +80,13 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Quantity</label>
-                                <input value="<?=get_val('qty')?>" name="qty" type="text">
+                                <input  value="<?=esc($row[0]->product_quantity); ?>" name="qty" type="text">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="desc" class="form-control"><?=get_val('desc')?></textarea>
+                                <textarea name="desc" class="form-control"><?=esc($row[0]->description); ?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
@@ -111,7 +111,7 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Price</label>
-                                <input value="<?=get_val('price')?>" name="price" type="text">
+                                <input  value="<?=esc($row[0]->price); ?>" name="price" type="text">
                             </div>
                         </div>
                         
@@ -139,8 +139,8 @@
                         </div>
                         
                         <div class="col-lg-12">
-                            <button type="submit" name="addProduct" class="btn btn-submit me-2">Add Product</button>
-                            <a href="productlist.html" class="btn btn-cancel">Cancel</a>
+                            <button type="submit" name="updateProduct" class="btn btn-submit me-2">Update Product</button>
+                            <a href="<?=ROOT?>/products" class="btn btn-cancel">Cancel</a>
                         </div>
 
                     </div>
