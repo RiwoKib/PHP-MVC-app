@@ -6,10 +6,10 @@ class Profile extends Controller
 
     function index()
 	{ 
-		// if(!Authenticate::logged_in())
-		// {
-		// 	$this->redirect('login');
-		// }
+		if(!Authenticate::logged_in())
+		{
+			$this->redirect('login');
+		}
 
 		$user = new User();
 
@@ -18,40 +18,45 @@ class Profile extends Controller
 		$this->view('profile', ['row' => $data]);
 	}
 
-	// function updateUser()
-	// {		
-	// 	$errors = array();
+	function edit($id = null)
+	{			
+		$errors = array();
 		
-	// 	if(isset($_POST['updateProfile']))
-	// 	{
-	// 		$data = array(
-	// 			'firstname' => $_POST['fname'],
-	// 			'lastname' => $_POST['lname'],
-	// 			'email' => $_POST['email'],
-	// 			'phone_number' => $_POST['phone'],
-	// 			'password' => $_POST['password'],
-	// 			'user_id' => $_POST['username'],  
-	// 		);
-
-	// 		$update = new USer();		
+		$profile = new User();	 
+		$data = $profile->where('firstname',Authenticate::User());	 
+		
+		if(isset($_POST['updateProfile']))
+		{
+			$data = array(
+				'firstname' => $_POST['fname'],
+				'lastname' => $_POST['lname'],
+				'email' => $_POST['email'],
+				'phone_number' => $_POST['phone'],
+				'password' => $_POST['password'],
+				'user_id' => $_POST['username'],  
+			);			  	 
 			
-	// 		if($update->validate($data))
-	// 		{
-	// 			$imagePath = handleImageUpload();
+			if($profile->validateUpdate($data))
+			{
+				$imagePath = handleImageUpload();
 
-	// 			$data['image'] = $imagePath;
+				$data['image'] = $imagePath;
 
-	// 			if($update->update($data))
-	// 			{
-	// 				$this->redirect('profile');
-	// 			}else{
-	// 				echo "Unable to update user". $update->insert->error;
-	// 			}
-	// 			}else{
-	// 			$errors = $update->errors;
-	// 		}
-	// 	}
+				if($profile->update($id, $data))
+				{
+					$this->redirect('profile');
+				}else{
+					echo "Unable to update user". $profile->getErrorMessage();
+				}
+				}else{
+				$errors = $profile->errors;
+			}
 
-	// 	$this->view('profile', ['errors' => $errors]);
-	// }
+			
+		}
+		
+		$this->view('profile.update', [	'row' => $data,	
+		'errors' => $errors]);
+
+	}
 }
