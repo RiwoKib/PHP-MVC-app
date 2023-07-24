@@ -18,7 +18,7 @@
                     <div class="profile-top">
                         <div class="profile-content">
                             <div class="profile-contentimg">
-                                <img src="<?=ASSETS?>/img/customer/customer5.jpg" alt="img" id="blah">
+                                <img src="<?=UPLOADED?>/<?=$row[0]->image?>" alt="profile image" class="img-fluid" id="blah">
                                 <div class="profileupload">
                                     <input type="file" id="imgInp">
                                     <a href="javascript:void(0);"><img src="<?=ASSETS?>/img/icons/edit-set.svg" alt="img"></a>
@@ -31,9 +31,9 @@
                             </div>
                         </div>
 
-                        <div class="ms-auto">
-                            <a href="javascript:void(0);" class="btn btn-submit me-2">Save</a>
-                            <a href="javascript:void(0);" class="btn btn-cancel">Cancel</a>
+                        <div class="ms-auto"> 
+                            <a href="<?=ROOT?>/dashboard" class="btn btn-cancel">Dashboard</a>
+                            <a href="<?=ROOT?>/profile/edit/<?=$row[0]->id?>" class="btn btn-submit">Update Profile</a>
                         </div>
                     </div>
                 </div>
