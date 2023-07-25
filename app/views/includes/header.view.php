@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?=ASSETS?>/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="<?=ASSETS?>/css/animate.css"> 
     <link rel="stylesheet" href="<?=ASSETS?>/plugins/select2/css/select2.min.css"> 
+    <link rel="stylesheet" href="<?=ASSETS?>/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="<?=ASSETS?>/plugins/owlcarousel/owl.carousel.min.css"> 
     <link rel="stylesheet" href="<?=ASSETS?>/css/dataTables.bootstrap4.min.css"> 
     <link rel="stylesheet" href="<?=ASSETS?>/plugins/fontawesome/css/fontawesome.min.css">

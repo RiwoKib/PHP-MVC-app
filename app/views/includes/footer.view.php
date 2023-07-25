@@ -10,6 +10,8 @@
 <script src="<?=ASSETS?>/js/jquery.dataTables.min.js"></script>
 <script src="<?=ASSETS?>/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?=ASSETS?>/js/bootstrap.bundle.min.js"></script> 
+<script src="<?=ASSETS?>/js/moment.min.js"></script>
+<script src="<?=ASSETS?>/js/bootstrap-datetimepicker.min.js"></script>
 <script src="<?=ASSETS?>/plugins/owlcarousel/owl.carousel.min.js"></script> 
 <script src="<?=ASSETS?>/plugins/select2/js/select2.min.js"></script> 
 <script src="<?=ASSETS?>/plugins/sweetalert/sweetalert2.all.min.js"></script>
