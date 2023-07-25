@@ -13,15 +13,15 @@
                     </a>
                     <ul>
                         <li><a href="<?=ROOT?>/products">Product List</a></li>
-                        <li><a href=" ">Add Product</a></li>
+                        <li><a href="<?=ROOT?>/products/add ">Add Product</a></li>
                         <li><a href="<?=ROOT?>/categories">Category List</a></li>
-                        <li><a href="<?=ROOT?>/categoryAdd">Add Category</a></li>
-                        <li><a href=" ">Sub Category List</a></li>
-                        <li><a href=" ">Add Sub Category</a></li>
-                        <li><a href=" ">Brand List</a></li>
-                        <li><a href=" ">Add Brand</a></li>
-                        <li><a href=" ">Import Products</a></li>
-                        <li><a href="" class="active">Print Barcode</a></li>
+                        <li><a href="<?=ROOT?>/categories/add">Add Category</a></li>
+                        <li><a href="<?=ROOT?>/subcategories">Sub Category List</a></li>
+                        <li><a href="<?=ROOT?>/subcategories/add">Add Sub Category</a></li>
+                        <li><a href="<?=ROOT?>/brands ">Brand List</a></li>
+                        <li><a href="<?=ROOT?>/brands/add">Add Brand</a></li>
+                        <li><a href="<?=ROOT?>/products/import">Import Products</a></li>
+                        <li><a href="<?=ROOT?>/products/barcode" class="active">Print Barcode</a></li>
                     </ul>
                 </li>
 
@@ -31,11 +31,11 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a href="">Sales List</a></li>
-                        <li><a href="">POS</a></li>
-                        <li><a href="">New Sales</a></li>
-                        <li><a href="">Sales Return List</a></li>
-                        <li><a href="">New Sales Return</a></li>
+                        <li><a href="<?=ROOT?>/sales">Sales List</a></li>
+                        <li><a href="<?=ROOT?>/pos">POS</a></li>
+                        <li><a href="<?=ROOT?>/sales/add">New Sales</a></li>
+                        <li><a href="<?=ROOT?>/salesreturn">Sales Return List</a></li>
+                        <li><a href="<?=ROOT?>/salesreturn/add">New Sales Return</a></li>
                     </ul>
                 </li>
 
@@ -45,9 +45,9 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul>
-                    <li><a href="">Purchase List</a></li>
-                    <li><a href="">Add Purchase</a></li>
-                    <li><a href="">Import Purchase</a></li>
+                    <li><a href="<?=ROOT?>/purchases">Purchase List</a></li>
+                    <li><a href="<?=ROOT?>/purchases/add">Add Purchase</a></li>
+                    <li><a href="<?=ROOT?>/purchases/import">Import Purchase</a></li>
                 </ul>
                 </li>
 
@@ -57,9 +57,9 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul>
-                    <li><a href="">Expense List</a></li>
-                    <li><a href="">Add Expense</a></li>
-                    <li><a href="">Expense Category</a></li>
+                    <li><a href="<?=ROOT?>/expenses">Expense List</a></li>
+                    <li><a href="<?=ROOT?>/expenses/add">Add Expense</a></li>
+                    <li><a href="<?=ROOT?>/expenses/category">Expense Category</a></li>
                 </ul>
                 </li>
 
@@ -69,8 +69,8 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul>
-                    <li><a href="">Quotation List</a></li>
-                    <li><a href="">Add Quotation</a></li>
+                    <li><a href="<?=ROOT?>/quotations">Quotation List</a></li>
+                    <li><a href="<?=ROOT?>/quotations/add">Add Quotation</a></li>
                 </ul>
                 </li>
 
@@ -80,9 +80,9 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul>
-                    <li><a href="">Transfer List</a></li>
-                    <li><a href="">Add Transfer </a></li>
-                    <li><a href="">Import Transfer </a></li>
+                    <li><a href="<?=ROOT?>/transfers">Transfer List</a></li>
+                    <li><a href="<?=ROOT?>/transfers/add">Add Transfer </a></li>
+                    <li><a href="<?=ROOT?>/transfers/import">Import Transfer </a></li>
                 </ul>
                 </li>
 
@@ -140,7 +140,7 @@
                         <span> Users</span> <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li><a href="">New User </a></li>
+                        <li><a href="<?=ROOT?>/register">New User </a></li> 
                         <li><a href="">Users List</a></li>
                     </ul>
                 </li>
