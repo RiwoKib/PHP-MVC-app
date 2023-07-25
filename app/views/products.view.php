@@ -139,7 +139,7 @@
                                     <td><?=$row->sku?></td>
                                     <td><?=$row->category_ID?></td>
                                     <td><?=$row->brand?></td>
-                                    <td><?=$row->price?></td>
+                                    <td><?=$row->selling_price?></td>
                                     <td><?=$row->unit?></td>
                                     <td><?=$row->product_quantity?></td> 
                                     <td>

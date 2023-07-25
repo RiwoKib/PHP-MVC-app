@@ -42,7 +42,7 @@ class Products extends Controller
                 'category_ID' => $_POST['cat'], 
                 'product_quantity' => $_POST['qty'],
                 'discount' => $_POST['discount'], 
-                'price' => $_POST['price'],
+                'selling_price' => $_POST['price'],
                 'brand' => $_POST['brand'],
                 'description' => $_POST['desc'],
             );
@@ -53,7 +53,7 @@ class Products extends Controller
 			{
 
 				$data['product_quantity'] = intval($_POST['qty']);
-				$data['price'] = intval($_POST['price']);
+				$data['selling_price'] = intval($_POST['price']);
 				$data['tax'] = floatval($_POST['tax']) / 100;
 				$data['discount'] = floatval($_POST['discount']) / 100;
 
@@ -133,8 +133,40 @@ class Products extends Controller
 		} 
 		
 		$this->view('product.update', [	'row' => $data, 	
-											'errors' => $errors]);
+										'errors' => $errors]);
 
+	}
+
+
+	function import()
+	{
+		$errors = array();
+
+		if(!Authenticate::logged_in())
+		{
+			$this->redirect('login');
+		}
+
+		if(isset($_POST['addBulk']))
+		{
+			$file = $_FILES['products_import']['tmp_name'];
+
+			$data = extractDataFromExcel($file);
+
+			$product = new Product();
+
+			foreach ($data as $row)
+			{
+				if($product->insert($row))
+				{
+					$this->redirect('products');
+				}else{
+					echo $product->getErrorMessage();
+				}
+			} 
+		}
+
+		$this->view('products.import', ['errors' => $errors]);
 	}
  
 }
