@@ -43,6 +43,7 @@ class Products extends Controller
                 'product_quantity' => $_POST['qty'],
                 'discount' => $_POST['discount'], 
                 'selling_price' => $_POST['price'],
+                'buying_price' => $_POST['bp'],
                 'brand' => $_POST['brand'],
                 'description' => $_POST['desc'],
             );
@@ -54,6 +55,7 @@ class Products extends Controller
 
 				$data['product_quantity'] = intval($_POST['qty']);
 				$data['selling_price'] = intval($_POST['price']);
+				$data['buying_price'] = intval($_POST['bp']);
 				$data['tax'] = floatval($_POST['tax']) / 100;
 				$data['discount'] = floatval($_POST['discount']) / 100;
 
@@ -65,7 +67,7 @@ class Products extends Controller
 				{
 					$this->redirect('products');
 				}else{
-					echo "Unable to add product". $add->insert->error;
+					echo "Unable to add product". $add->getErrorMessage();
 				}
 			}else{
 				$errors = $add->errors;
@@ -73,8 +75,21 @@ class Products extends Controller
 		}
 		
 
+		$category = new Category();
+		$subcat = new SubCategory();
+		$brand = new Brand();
+		$unit = new Unit();
 
-		$this->view('product.add', ['errors' => $errors]);
+		$categories = $category->findAll();
+		$subcategories = $subcat->findAll();
+		$brands = $brand->findAll();
+		$units = $unit->findAll(); 
+
+		$this->view('product.add', ['errors' => $errors,
+									'categories' => $categories,
+									'subcategories' => $subcategories,
+									'brands' => $brands,
+									'units' => $units]);
 	}
 
 	function edit($id = null)
@@ -101,7 +116,8 @@ class Products extends Controller
                 'category_ID' => $_POST['cat'], 
                 'product_quantity' => $_POST['qty'],
                 'discount' => $_POST['discount'], 
-                'price' => $_POST['price'],
+                'selling_price' => $_POST['price'],
+                'buying_price' => $_POST['bp'],
                 'brand' => $_POST['brand'],
                 'description' => $_POST['desc'],
             ); 	 
@@ -111,7 +127,8 @@ class Products extends Controller
 				
 
 				$data['product_quantity'] = intval($_POST['qty']);
-				$data['price'] = intval($_POST['price']);
+				$data['selling_price'] = intval($_POST['price']);
+				$data['buying_price'] = intval($_POST['bp']);
 				$data['tax'] = floatval($_POST['tax']) / 100;
 				$data['discount'] = floatval($_POST['discount']) / 100;
 				
@@ -131,9 +148,23 @@ class Products extends Controller
 
 			
 		} 
-		
-		$this->view('product.update', [	'row' => $data, 	
-										'errors' => $errors]);
+
+		$category = new Category();
+		$subcat = new SubCategory();
+		$brand = new Brand();
+		$unit = new Unit();
+
+		$categories = $category->findAll();
+		$subcategories = $subcat->findAll();
+		$brands = $brand->findAll();
+		$units = $unit->findAll(); 
+
+		$this->view('product.update',['row' =>$data,
+									'errors' => $errors,
+									'categories' => $categories,
+									'subcategories' => $subcategories,
+									'brands' => $brands,
+									'units' => $units]); 
 
 	}
 
@@ -168,5 +199,10 @@ class Products extends Controller
 
 		$this->view('products.import', ['errors' => $errors]);
 	}
- 
+	
+
+	function barcode()
+	{
+		$this->view('products.barcode');
+	}
 }

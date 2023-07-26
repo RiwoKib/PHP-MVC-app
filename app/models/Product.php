@@ -19,7 +19,7 @@
         $this->errors = array();    
 
         //check input fields 
-        if(empty($DATA['tax']) || empty($DATA['status']) || empty($DATA['sub_category']) || empty($DATA['unit']) || empty($DATA['brand']) || empty($DATA['product_name']) || empty($DATA['category_ID']) || empty($DATA['product_quantity']) || empty($DATA['discount']) || empty($DATA['price']) || empty($DATA['sku']) || empty($DATA['description']))
+        if(empty($DATA['tax']) || empty($DATA['status']) || empty($DATA['sub_category']) || empty($DATA['unit']) || empty($DATA['brand']) || empty($DATA['product_name']) || empty($DATA['category_ID']) || empty($DATA['product_quantity']) || empty($DATA['discount']) || empty($DATA['selling_price']) || empty($DATA['buying_price']) || empty($DATA['sku']) || empty($DATA['description']))
         {
             $this->errors['fields'] = "ALL field must be filled!!!";
         }

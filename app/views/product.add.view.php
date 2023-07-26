@@ -38,7 +38,9 @@
                                 <label>Category</label>
                                 <select name="cat" class="select">
                                     <option>Choose Category</option>
-                                    <option value="GPS">GPS</option>
+                                    <?php foreach ($categories as $category){?>
+                                        <option value="<?=$category->category_name?>"><?=$category->category_name?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                         </div>
@@ -47,7 +49,9 @@
                                 <label>Sub Category</label>
                                 <select name="sub" class="select">
                                     <option>Choose Sub Category</option>
-                                    <option value="Handheld">Handheld</option>
+                                    <?php foreach ($subcategories as $category){?>
+                                        <option value="<?=$category->category_name?>"><?=$category->category_name?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                         </div>
@@ -56,7 +60,9 @@
                                 <label>Brand</label>
                                 <select name="brand" class="select">
                                     <option>Choose Brand</option>
-                                    <option value="Garmin">Garmin</option>
+                                    <?php foreach ($brands as $brand){?>
+                                        <option value="<?=$brand->brand_name?>"><?=$brand->brand_name?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                         </div>
@@ -65,7 +71,9 @@
                                 <label>Unit</label>
                                 <select name="unit" class="select">
                                     <option value="">Choose Unit</option>
-                                    <option value="pc">PC</option>
+                                    <?php foreach ($units as $unit){?>
+                                        <option value="<?=$unit->unit_name?>"><?=$unit->unit_name?></option>
+                                    <?php }?>
                                 </select>
                             </div>
                         </div>
@@ -110,7 +118,13 @@
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
-                                <label>Price</label>
+                                <label>Buying Price</label>
+                                <input value="<?=get_val('bp')?>" name="bp" type="text">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Selling Price</label>
                                 <input value="<?=get_val('price')?>" name="price" type="text">
                             </div>
                         </div>
