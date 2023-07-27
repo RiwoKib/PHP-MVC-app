@@ -32,14 +32,14 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Expense Category</label>
-                                <input type="text" name="name">
+                                <input  value="<?=get_val('category_name',$row[0]->category_name)?>" type="text" name="name">
                             </div>
                         </div> 
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Start Date </label>
                                 <div class="input-groupicon">
-                                    <input name="start" type="text"  value="<?=get_val('start')?>" placeholder="Choose Date" class="datetimepicker">
+                                    <input name="start" type="text"  value="<?=$row[0]->start_date?>" placeholder="Choose Date" class="datetimepicker">
                                     <div class="addonset">
                                         <img src="<?=ASSETS?>/img/icons/calendars.svg" alt="img">
                                     </div>
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label>Expiry Date </label>
                                 <div class="input-groupicon">
-                                    <input name="end" type="text" value="<?=get_val('end')?>" placeholder="Choose Date" class="datetimepicker">
+                                    <input name="end" type="text" value="<?=$row[0]->expiry_date?>" placeholder="Choose Date" class="datetimepicker">
                                     <div class="addonset">
                                         <img src="<?=ASSETS?>/img/icons/calendars.svg" alt="img">
                                     </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label>Amount</label>
                                 <div class="input-groupicon">
-                                    <input name="amount" type="text">
+                                    <input name="amount" value="<?=$row[0]->amount?>" type="text">
                                     <div class="addonset">
                                         <img src="<?=ASSETS?>/img/icons/dollar.svg" alt="img">
                                     </div>
@@ -71,7 +71,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="desc" class="form-control"></textarea>
+                                <textarea name="desc" class="form-control"><?=$row[0]->description?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <button type="submit" name="addExpense" class="btn btn-submit me-2">Submit</button>
+                            <button type="submit" name="updateExpense" class="btn btn-submit me-2">Update Expense</button>
                             <a href="<?=ROOT?>/expenses" class="btn btn-cancel">Cancel</a>
                         </div>
                     </div>
