@@ -8,7 +8,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Customer Management</h4>
-                <h6>Add Customer</h6>
+                <h6>Update Customer</h6>
             </div>
         </div>
 
@@ -31,31 +31,31 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input name="fname" value="<?=get_val('fname')?>" type="text">
+                                <input name="fname" value="<?=$row[0]->firstname?>" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input name="lname" value="<?=get_val('lname')?>" type="text">
+                                <input name="lname" value="<?=$row[0]->lastname?>" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input name="email" value="<?=get_val('email')?>" type="text">
+                                <input name="email" value="<?=$row[0]->email?>" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input name="phone" value="<?=get_val('phone')?>" type="text">
+                                <input name="phone" value="<?=$row[0]->phone_number?>" type="text">
                             </div>
                         </div> 
                         <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label>Address</label>
-                                <textarea name="address" class="form-control"><?=get_val('address')?></textarea>
+                                <textarea name="address" class="form-control"><?=$row[0]->address?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
@@ -70,7 +70,7 @@
                             </div>
                         </div> 
                         <div class="col-lg-12">
-                            <button type="submit" name="addCustomer" class="btn btn-submit me-2">Add Customer</button>
+                            <button type="submit" name="updateCustomer" class="btn btn-submit me-2">Update Customer</button>
                             <a href="<?=ROOT?>/customers" class="btn btn-cancel">Cancel</a>
                         </div>
                     </div>
