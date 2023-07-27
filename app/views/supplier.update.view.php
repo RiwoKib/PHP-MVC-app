@@ -30,19 +30,19 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Supplier Name</label>
-                                <input name="name" value="<?=get_val('name')?>" type="text">
+                                <input name="name" value="<?=$row[0]->supplier_name?>" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input value="<?=get_val('email')?>" name="email" type="text">
+                                <input value="<?=$row[0]->email?>" name="email" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input value="<?=get_val('phone')?>" name="phone" type="text">
+                                <input value="<?=$row[0]->phone_number?>" name="phone" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
@@ -59,7 +59,7 @@
                         <div class="col-lg-6 col-12">
                             <div class="form-group">
                                 <label>Address</label>
-                                <textarea name="address" class="form-control"><?=get_val('address')?></textarea>
+                                <textarea name="address" class="form-control"><?=$row[0]->address?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
@@ -76,11 +76,11 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="desc" class="form-control"><?=get_val('desc')?></textarea>
+                                <textarea name="desc" class="form-control"><?=$row[0]->description?></textarea>
                             </div>
                         </div> 
                         <div class="col-lg-12">
-                            <button type="submit" name="addSupplier" class="btn btn-submit me-2">Add Supplier</button>
+                            <button type="submit" name="updateSupplier" class="btn btn-submit me-2">Update Supplier</button>
                             <a href="<?=ROOT?>/suppliers" class="btn btn-cancel">Cancel</a>
                         </div>
                     </div>
