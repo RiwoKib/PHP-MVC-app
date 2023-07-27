@@ -1,5 +1,8 @@
 <?php
 
+require '../vendor/autoload.php';
+
+
 function get_val($key,$default = "")
 {
 
@@ -11,11 +14,47 @@ function get_val($key,$default = "")
 	return $default;
 }
 
+function get_selected($key,$value)
+{
+	if(isset($_POST[$key]))
+	{
+		if($_POST[$key] == $value)
+		{
+			return "selected";
+		}
+	}
+
+	return "";
+}
+
 function esc($var)
 {
 	return htmlspecialchars($var);
 }
 
+function get_date($date)
+{
+
+	return date("Y-m-d", strtotime($date));
+}
+
+function makeReferenceCode($table)
+    {	
+		switch($table)
+		{
+			case 'suppliers':
+				return "SUPL_".rand(0001,9999);
+				break;
+			case 'customers':
+				return "CTM_".rand(001,999);
+				break;
+			case 'expenses':
+				return "EXP_".rand(0001,9999);
+				break;
+			default:
+				return false;
+		} 	
+    }
 
 function handleImageUpload()
     {
@@ -49,4 +88,25 @@ function handleImageUpload()
 			echo "Error uploading the image.";
 			return null;
 		}
+    }
+
+
+function extractDataFromExcel($file)
+    {
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $spreadsheet = $reader->load($file);
+       	// Get the active sheet
+		$worksheet = $spreadsheet->getActiveSheet();
+
+		// Get the highest row number with data
+		$highestRow = $worksheet->getHighestRow();
+
+		// Assuming the header is in the first row (row 1)
+		$data = [];
+		for ($row = 2; $row <= $highestRow; ++$row) {
+			$rowData = $worksheet->rangeToArray('A' . $row . ':' . $worksheet->getHighestColumn() . $row, null, true, false);
+			$data[] = $rowData[0];
+		} 
+
+        return $data;
     }
