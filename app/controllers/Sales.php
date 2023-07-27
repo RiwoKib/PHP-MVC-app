@@ -26,4 +26,15 @@ class Sales extends Controller
     {
         $this->view('sales.add');
     }
+
+
+	function report()
+	{
+		$this->view('salesreport');
+	}
+
+	function invoice()
+	{
+		$this->view('invoicereport');
+	}
 }

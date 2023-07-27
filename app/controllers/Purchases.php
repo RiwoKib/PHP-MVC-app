@@ -31,4 +31,9 @@ class Purchases extends Controller
     {
         $this->view('purchases.import');
     }
+
+	function report()
+	{
+		$this->view('purchasereport');
+	}
 }
