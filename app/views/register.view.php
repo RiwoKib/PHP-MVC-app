@@ -60,7 +60,7 @@
                     
                     <button type="reset" name="resetBtn" class="btn btn-danger">Cancel</button>
                     <div class="form-text">
-                        Already have an account? <a href="<?=ROOT?>/login">Login</a>
+                        Go back >> <a href="<?=ROOT?>/dashboard">Dashboard</a>
                     </div>
                 </form>
             </div>
