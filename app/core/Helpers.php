@@ -38,7 +38,7 @@ function get_date($date)
 	return date("Y-m-d", strtotime($date));
 }
 
-function makeReferenceCode($table)
+function makeCode($table)
     {	
 		switch($table)
 		{
@@ -110,3 +110,6 @@ function extractDataFromExcel($file)
 
         return $data;
     }
+
+
+	
