@@ -49,7 +49,7 @@ class Suppliers extends Controller
 			{ 	
 				// 	$data['phone_number'] = intval($_POST['phone']);  
 
-				$data['supplier_code'] = makeReferenceCode('suppliers'); 
+				$data['supplier_code'] = makeCode('suppliers'); 
 
 				if($add->insert($data))
 				{
