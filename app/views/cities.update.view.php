@@ -8,7 +8,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Places Management</h4>
-                <h6>Add Places</h6>
+                <h6>Update Places</h6>
             </div>
         </div>
 
@@ -32,14 +32,14 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>City Name</label>
-                                <input name="name" type="text">
+                                <input name="name" value="<?=$row[0]->city_name?>" type="text">
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Country Region</label>
                                 <select name="region" class="select">
-                                    <option>Choose County</option>
+                                    <option value="">Choose County</option>
                                     <option value="nairobi">Nairobi</option>
                                     <option value="kisii">Kisii</option>
                                     <option value="kiambu">Kiambu</option>
@@ -51,21 +51,21 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="desc" class="form-control"></textarea>
+                                <textarea name="desc" class="form-control"><?=$row[0]->description?></textarea>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Status</label>
                                 <select name="status" class="select">
-                                    <option>Choose Status</option>
+                                    <option value="">Choose Status</option>
                                     <option value="1">Operational</option>
                                     <option value="0">Not Operational</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <button name="addCity" type="submit" class="btn btn-submit me-2">Add City</button>
+                            <button name="updateCity" type="submit" class="btn btn-submit me-2">Update City</button>
                             <a href="<?=ROOT?>/cities" class="btn btn-cancel">Cancel</a>
                         </div>
                     </div>
