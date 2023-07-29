@@ -2,7 +2,7 @@
 
 
 /**
- * home controller
+ * Home controller
  */
 class Home extends Controller
 {
