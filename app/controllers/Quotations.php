@@ -24,6 +24,17 @@ class Quotations extends Controller
 
     function add()
     {
-        $this->view('quotations.add');
+		$errors = array();
+
+		if(!Authenticate::logged_in())
+		{
+			$this->redirect('login');
+		}
+		
+
+		$customer = new Customer();
+		$customers = $customer->findAll();
+
+        $this->view('quotations.add', ['customers' => $customers]);
     }
 }
