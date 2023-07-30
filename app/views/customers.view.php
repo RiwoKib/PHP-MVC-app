@@ -81,7 +81,7 @@
                                     </label>
                                 </th>
                                 <th>Customer Name</th>
-                                <th>code</th> 
+                                <th>Reference Code</th> 
                                 <th>Phone</th>
                                 <th>email</th>
                                 <th>City</th>
