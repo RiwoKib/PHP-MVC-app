@@ -5,7 +5,7 @@
  */
 class App
 {
-	protected $controller = "dashboard";
+	protected $controller = "pos";
 	protected $method = "index";
 	protected $params = array();
 
