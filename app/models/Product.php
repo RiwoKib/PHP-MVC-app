@@ -26,6 +26,36 @@
         if (!preg_match('/^[a-zA-Z0-9 ]+$/', $DATA['product_name'])) {
             $this->errors['name'] = "Only letters/numbers are allowed in product name";
         }
+
+        
+        // if(!preg_match('/^[a-zA-Z0-9]+$/', $DATA['sku']))
+        // {
+        //     $this->errors['sku'] = "Letters followed by numbers in sku";
+        // } 
+
+        
+         
+ 
+        if(count($this->errors) == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function validateImported($DATA)
+    {
+        $this->errors = array();    
+
+        //check input fields 
+        if(empty($DATA['product_name']) || empty($DATA['category_ID']) || empty($DATA['selling_price']) || empty($DATA['buying_price']))
+        {
+            $this->errors['fields'] = "Crosscheck the excel table with the required fields";
+        }
+        // if (!preg_match('/^[a-zA-Z0-9 ]+$/', $DATA['product_name'])) {
+        //     $this->errors['name'] = "Only letters/numbers are allowed in product name";
+        // }
         // if(!preg_match('/^[a-zA-Z0-9]+$/', $DATA['sku']))
         // {
         //     $this->errors['sku'] = "Letters followed by numbers in sku";
