@@ -1,6 +1,6 @@
-<?php // $this->view('includes/header'); ?>
-<?php // $this->view('includes/navbar'); ?>
-<?php //$this->view('includes/sidebar'); ?>
+<?php $this->view('includes/header'); ?>
+<?php $this->view('includes/navbar'); ?>
+<?php $this->view('includes/sidebar'); ?>
 
 
 <div class="page-wrapper">
@@ -11,6 +11,18 @@
                 <h6>Bulk upload your products</h6>
             </div>
         </div>
+
+        <?php if(count($errors) > 0):?>
+            <div class="alert alert-warning alert-dismissible fade show p-1 mx-2" role="alert">
+            <strong class="text-danger">Error!</strong>
+                <?php foreach($errors as $error):?>
+                <br><?=$error?>
+            <?php endforeach;?>
+            <span  type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </span>
+            </div>
+        <?php endif;?>
 
         <div class="card">
             <div class="card-body">
@@ -46,11 +58,7 @@
                                     <li>
                                         <h4>Category</h4>
                                         <h6 class="manitorygreen">This Field is required</h6>
-                                    </li>
-                                    <li>
-                                        <h4>SKU code</h4>
-                                        <h6 class="manitorygreen">This Field is required</h6>
-                                    </li>
+                                    </li> 
                                     <li>
                                         <h4>Product Cost</h4>
                                         <h6 class="manitorygreen">This Field is required</h6>
