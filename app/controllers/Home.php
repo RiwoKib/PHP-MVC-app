@@ -19,6 +19,6 @@ class Home extends Controller
 
 		$data = $users->findAll();
 
-		$this->view('home', ['rows' => $data]);
+		$this->view('pos', ['rows' => $data]);
 	}
 }
