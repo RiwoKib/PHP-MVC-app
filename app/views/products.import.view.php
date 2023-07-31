@@ -56,6 +56,10 @@
                                         <h6 class="manitorygreen">This Field is required</h6>
                                     </li>
                                     <li>
+                                        <h4>Product Image</h4>
+                                        <h6 class="manitorygreen">This Field is required</h6>
+                                    </li>
+                                    <li>
                                         <h4>Category</h4>
                                         <h6 class="manitorygreen">This Field is required</h6>
                                     </li> 
@@ -69,7 +73,7 @@
                                     </li>
                                     <li>
                                         <h4>Product Unit</h4>
-                                        <h6 class="manitorygreen">This Field is required</h6>
+                                        <h6 class="manitoryblue">Field optional</h6>
                                     </li>
                                     <li>
                                         <h4>Description</h4>
@@ -86,6 +90,10 @@
                                         <h6 class="manitoryblue">Field optional</h6>
                                     </li>
                                     <li>
+                                        <h4>Sub Category</h4>
+                                        <h6 class="manitoryblue">Field optional</h6>
+                                    </li>
+                                    <li>
                                         <h4>Tax</h4>
                                         <h6 class="manitoryblue">Field optional</h6>
                                     </li>
@@ -97,6 +105,10 @@
                                         <h4>Brand</h4>
                                         <h6 class="manitoryblue">Field optional</h6>
                                     </li> 
+                                    <li>
+                                        <h4>Status</h4>
+                                        <h6 class="manitoryblue">Field optional</h6>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
