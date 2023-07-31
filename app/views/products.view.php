@@ -111,7 +111,7 @@
                                     </label>
                                 </th>
                                 <th>Product Name</th>
-                                <th>SKU</th>
+                                <th>Product ID</th>
                                 <th>Category </th>
                                 <th>Brand</th>
                                 <th>price</th>
@@ -136,7 +136,7 @@
                                         </a>
                                         <a href="javascript:void(0);"><?=$row->product_name?></a>
                                     </td>
-                                    <td><?=$row->sku?></td>
+                                    <td><?=$row->product_ID?></td>
                                     <td><?=$row->category_ID?></td>
                                     <td><?=$row->brand?></td>
                                     <td><?=$row->selling_price?></td>

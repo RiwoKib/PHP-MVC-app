@@ -51,6 +51,9 @@ function makeCode($table)
 			case 'expenses':
 				return "EXP_".rand(0001,9999);
 				break;
+			case 'products':
+				return "PD_".rand(0001,9999);
+				break;
 			default:
 				return false;
 		} 	
