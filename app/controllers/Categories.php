@@ -33,8 +33,7 @@ class Categories extends Controller
 		if(isset($_POST['addCategory']))
 		{
 			$data = array(
-                'category_name' => $_POST['name'], 
-                'sku' => $_POST['sku'],
+                'category_name' => $_POST['name'],  
                 'description' => $_POST['desc'], 
             );
 
@@ -42,6 +41,8 @@ class Categories extends Controller
 		
 			if($add->validate($data))
 			{
+
+				$data['category_ID'] = makeCode('categories');
 				$imagePath = handleImageUpload();
  
                $data['image'] = $imagePath;
@@ -78,7 +79,7 @@ class Categories extends Controller
 		{
 			$data = array(
                 'category_name' => $_POST['name'], 
-                'sku' => $_POST['sku'],
+                'category_ID' => $_POST['sku'],
                 'description' => $_POST['desc'], 
             );	  	 
 			
