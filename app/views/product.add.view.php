@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <label>Tax</label>
                                 <select name="tax" class="select">
-                                    <option>Choose Tax</option>
+                                    <option value="">Choose Tax</option>
                                     <option value="2">2%</option>
                                 </select>
                             </div>
@@ -103,7 +103,7 @@
                             <div class="form-group">
                                 <label>Discount Type</label>
                                 <select name="discount" class="select">
-                                    <option>Percentage</option>
+                                    <option value="">Percentage</option>
                                     <option value="10">10%</option>
                                     <option value="20">20%</option>
                                 </select>
@@ -126,8 +126,9 @@
                             <div class="form-group">
                                 <label> Status</label>
                                 <select name="status" class="select">
-                                    <option>Closed</option>
-                                    <option>Open</option>
+                                    <option value="">Choose Status</option>
+                                    <option value="0">Closed</option>
+                                    <option value="1">Open</option>
                                 </select>
                             </div>
                         </div>
