@@ -32,13 +32,7 @@
                                 <label>Category Name</label>
                                 <input value="<?=get_val('name')?>" name="name" type="text">  
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Category SKU</label>
-                                <input value="<?=get_val('sku')?>" name="sku" type="text"> 
-                            </div>
-                        </div>
+                        </div> 
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label>Description</label>

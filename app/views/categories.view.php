@@ -108,7 +108,7 @@
                                         </a>
                                         <a href="javascript:void(0);"><?=$row->category_name?></a>
                                     </td>
-                                    <td><?=$row->sku?></td>
+                                    <td><?=$row->category_ID?></td>
                                     <td><?=$row->description?></td> 
                                     <td>
                                         <a class="me-3" href="<?=ROOT?>/categories/edit/<?=$row->id?>">

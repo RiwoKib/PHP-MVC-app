@@ -36,7 +36,7 @@
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Category SKU</label>
-                                <input  value="<?=esc($row[0]->sku); ?>"name="sku" type="text"> 
+                                <input  value="<?=esc($row[0]->category_ID); ?>"name="sku" type="text"> 
                             </div>
                         </div>
                         <div class="col-lg-12">
