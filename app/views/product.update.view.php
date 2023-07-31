@@ -79,7 +79,7 @@
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>SKU</label>
-                                <input  value="<?=esc($row[0]->sku); ?>" name="sku" type="text">
+                                <input  value="<?=esc($row[0]->product_ID); ?>" name="sku" type="text">
                             </div>
                         </div>
                         
