@@ -8,7 +8,7 @@ require_once 'Config.php';
 
 class DBConnection
 {
-    private $conn;
+    protected $conn;
     private $errorMessage;
 
     public function __construct()
