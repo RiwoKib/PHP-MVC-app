@@ -15,7 +15,7 @@ class Register extends Controller
                 'phone_number' => $_POST['phone'],
                 'password' => $_POST['password'],
                 'confirm' => $_POST['confirm'], 
-                'rank' => $_POST['rank'],
+                'user_role' => $_POST['rank'],
             );
 		
 		
