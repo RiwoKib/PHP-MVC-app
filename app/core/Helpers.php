@@ -32,6 +32,13 @@ function esc($var)
 	return htmlspecialchars($var);
 }
 
+function show($data)
+{
+	echo "<pre>";
+	print_r($data);
+	echo "</pre>";
+}
+
 function get_date($date)
 {
 
