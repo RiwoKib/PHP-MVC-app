@@ -5,7 +5,7 @@
  */
 class Model extends DBConnection
 {   
-    private $conn;
+    public $conn;
     protected $table;
 	public $errors = array();
 
