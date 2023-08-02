@@ -4,6 +4,7 @@
 <!--Js links-->
 
 <script src="<?=ASSETS?>/js/jquery-3.6.0.min.js"></script> 
+<script src="<?=ASSETS?>/js/script.js"></script>
 <script src="<?=ASSETS?>/js/feather.min.js"></script> 
 <script src="<?=ASSETS?>/js/jquery.slimscroll.min.js"></script> 
 
@@ -16,7 +17,6 @@
 <script src="<?=ASSETS?>/plugins/select2/js/select2.min.js"></script> 
 <script src="<?=ASSETS?>/plugins/sweetalert/sweetalert2.all.min.js"></script>
 <script src="<?=ASSETS?>/plugins/sweetalert/sweetalerts.min.js"></script>
-<script src="<?=ASSETS?>/js/script.js"></script>
 
 
 <!-- Js Bootstrap cdn
