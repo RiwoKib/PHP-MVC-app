@@ -110,7 +110,7 @@
                                     <td>0<?=$user->phone_number?></td>
                                     <td><a href="" class="__cf_email__" data-cfemail="fb8f9394969a88bb9e839a968b979ed5989496">[email&#160;protected]</a> </td>
                                     <td>
-                                        <?php $user_role = $user->rank == 'admin' ? 'Admin' : 'User' ?>
+                                        <?php $user_role = $user->user_role == 'admin' ? 'Admin' : 'User' ?>
                                         <?=$user_role?>
                                     </td>
                                     <td><?=$user->created_at?></td>
