@@ -43,13 +43,12 @@ class Sales extends Controller
 			$sale = new Sale();
 
 			$searchData = '%'.trim($_POST['searchData']).'%';
-
-			// echo "{$searchData}";
+ 
 			$query = "SELECT * FROM products WHERE product_name LIKE ? OR category_ID LIKE ?";
-			$results = $sale->conn->query($query, [$searchData,$searchData]);
-
-			// $results = count($results);
+			$results = $sale->conn->query($query, [$searchData,$searchData]); 
 		}
+
+		
 
 		$customer = new Customer();
 		$customers = $customer->findAll();
