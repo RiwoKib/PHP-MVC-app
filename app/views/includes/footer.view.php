@@ -4,6 +4,7 @@
 <!--Js links-->
 
 <script src="<?=ASSETS?>/js/jquery-3.6.0.min.js"></script> 
+<script src="<?=ASSETS?>/js/app.js"></script>
 <script src="<?=ASSETS?>/js/script.js"></script>
 <script src="<?=ASSETS?>/js/feather.min.js"></script> 
 <script src="<?=ASSETS?>/js/jquery.slimscroll.min.js"></script> 
