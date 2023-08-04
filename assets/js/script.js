@@ -228,8 +228,8 @@ $(document).ready(function() {
     };
   
     function init() {
-      var $this = Sidemenu;
-      $('#sidebar-menu a').on('click', function(e) {
+      var $this =new Sidemenu;
+      $this.$menuItem.on('click', function(e) {
         if ($(this).parent().hasClass('submenu')) {
           e.preventDefault();
         }
