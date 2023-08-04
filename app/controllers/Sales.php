@@ -38,14 +38,21 @@ class Sales extends Controller
 		}
 
 		
-		if(isset($_POST['searchData']))
+		if(isset($_POST['searchProduct']))
 		{	
 			$sale = new Sale();
 
-			$searchData = '%'.trim($_POST['searchData']).'%';
+			if($_POST['searchData'] != "")
+			{
+				$searchData = '%'.trim($_POST['searchData']).'%';
  
-			$query = "SELECT * FROM products WHERE product_name LIKE ? OR category_ID LIKE ?";
-			$results = $sale->conn->query($query, [$searchData,$searchData]); 
+				$query = "SELECT * FROM products WHERE product_name LIKE ? OR category_ID LIKE ?";
+				$results = $sale->conn->query($query, [$searchData,$searchData]); 
+		
+			}else{
+				$errors[] = 'Type something to search';
+			}
+
 		}
 
 		
