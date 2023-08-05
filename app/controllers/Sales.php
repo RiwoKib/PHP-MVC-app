@@ -1,16 +1,12 @@
-<?php 
+<?php
+
+use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Arabic;
 
 /**
  * sales controller
  */
 class Sales extends Controller
 {
-	// private $conn;
-
-	// public function __construct()
-	// {	
-	// 	$this->conn = new DBConnection();
-	// }
 
 	function index()
 	{	
@@ -31,6 +27,7 @@ class Sales extends Controller
     {	
 		$errors = array();
 		$results = false;
+		$insertData = array();
 
 		if(!Authenticate::logged_in())
 		{
@@ -55,6 +52,33 @@ class Sales extends Controller
 
 		}
 
+		if(isset($_POST['save_selected']))
+		{	 
+
+			$product = new Product();
+			$checked = $_POST['selected'];  	 
+
+			foreach ($checked as $prodID)
+			{	
+				$productRow = $product->where('product_ID', $prodID);
+
+				$grabPrice = array(
+					'id' => $productRow[0]->product_ID,
+					'price' => $productRow[0]->selling_price,  
+					'product_name' => $productRow[0]->product_name,
+					'image'=> $productRow[0]->image,
+					'tax' => $productRow[0]->tax,
+					'discount' => $productRow[0]->discount,
+					'unit' => $productRow[0]->unit
+				); 
+
+				$InsertData[] = $grabPrice;
+				// show($insertData);
+			}
+
+			
+		}
+
 		
 
 		$customer = new Customer();
@@ -62,7 +86,8 @@ class Sales extends Controller
 
         $this->view('sales.add', [	'errors' => $errors, 
 									'results' => $results,
-								  	'customers' => $customers,	]);
+								  	'customers' => $customers,
+									'selected' => $InsertData]);
     }
 
 
