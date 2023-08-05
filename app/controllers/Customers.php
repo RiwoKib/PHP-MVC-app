@@ -48,7 +48,7 @@ class Customers extends Controller
 			{ 	
 				// 	$data['phone_number'] = intval($_POST['phone']);  
 
-				$data['customer_code'] = $add->makeReferenceCode(); 
+				$data['customer_code'] = makeCode('customers'); 
 
 				if($add->insert($data))
 				{
