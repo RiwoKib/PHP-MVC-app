@@ -8,7 +8,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Create Sales Return</h4>
-                <h6>Add/Update Sales Return</h6>
+                <h6>Add Sales Return</h6>
             </div>
         </div>
 
@@ -82,11 +82,11 @@
                                         </label> -->
                                     </th> 
                                     <th>Product Name</th>
-                                    <th>Net Unit Price($)</th> 
-                                    <th>QTY	</th>
-                                    <th>Discount(KES)	</th>
-                                    <th>Tax % </th>
-                                    <th>Subtotal (KES)	</th>
+                                    <th class="text-center">Net Unit Price($)</th> 
+                                    <th>Quantity	</th>
+                                    <th class="text-center">Discount(KES)	</th>
+                                    <th class="text-center">Tax % </th>
+                                    <th class="text-center">Subtotal (KES)	</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -109,11 +109,21 @@
                                                 </a>
                                                 <a href="javascript:void(0);"><?=$product->product_name?></a>
                                             </td> 
-                                            <td><?=$product->selling_price?></td>
-                                            <td><?=$product->product_quantity?></td>
-                                            <td><?=$product->discount?></td>
-                                            <td><?=$product->tax?></td>
-                                            <td><?=$subtotal?></td>
+                                            <td class="text-center"><?=$product->selling_price?></td> 
+                                            <td>
+                                                <div class="input-group form-group mb-0">
+                                                    <a class="scanner-set input-group-text">
+                                                        <img src="<?=ASSETS?>/img/icons/plus1.svg" alt="img">
+                                                    </a>
+                                                    <input disabled type="text" value="1" class="calc-no">
+                                                    <a class="scanner-set input-group-text">
+                                                        <img src="<?=ASSETS?>/img/icons/minus.svg" alt="img">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><?=$product->discount?></td>
+                                            <td class="text-center"><?=$product->tax?></td>
+                                            <td class="text-center"><?=$subtotal?></td>
                                             <td>
                                                 <a class="delete-set"><img src="<?=ASSETS?>/img/icons/delete.svg" alt="svg"></a>
                                             </td>
@@ -191,7 +201,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
+                        <a href="javascript:void(0);" class="btn btn-submit me-2">Add Return</a>
                         <a href="salesreturnlist.html" class="btn btn-cancel">Cancel</a>
                     </div>
                 </div>
@@ -200,25 +210,4 @@
     </div>
 </div>
 
-<?php $this->view('includes/footer'); ?>
- 
-<script> 
-
-    const saveSelectedBtn = document.getElementById('saveSelectedBtn');
-    const checkboxes = document.querySelectorAll('.product-checkbox');
-
-    // Add a change event listener to each checkbox
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            // Check if at least one checkbox is checked
-            const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-            
-            if (atLeastOneChecked) {
-                saveSelectedBtn.style.display = 'block';
-            } else {
-                saveSelectedBtn.style.display = 'none';
-            }
-        });
-    });
-</script>
+<?php $this->view('includes/footer'); ?> 
