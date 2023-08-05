@@ -11,13 +11,7 @@
     {   
         parent::__construct('customers');
     }
-
-
-    public static function makeReferenceCode()
-    {
-        $refCode = "CTM".rand(001,999);
-        return $refCode;
-    }
+ 
 
     public function validate($DATA)
     {
