@@ -64,6 +64,9 @@ function makeCode($table)
 			case 'categories':
 				return "CT_".rand(001,555);
 				break;
+			case 'purchases':
+				return "PT_".rand(001,555);
+				break;
 			default:
 				return false;
 		} 	
