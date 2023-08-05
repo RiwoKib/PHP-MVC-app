@@ -11,6 +11,24 @@
             </div>
         </div>
 
+        <form action="" method="post">
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Search Product Name</label>
+                    <div class="input-groupicon">
+                        <input type="text" id="searchInput" name="searchData" placeholder="Please type product name/category code and select...">
+                        <div class="addonset">
+                            <button style="background:none; border:none" name="searchProduct"><img src="<?=ASSETS?>/img/icons/search.svg" alt=""></button>
+                        </div> 
+                    </div>
+                    <?php if(count($errors) > 0){?>
+                        <span class="text-danger"><?=$errors[0]?></span>
+                    <?php }?>
+                </div> 
+            </div> 
+            
+        </form>
+
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -44,59 +62,83 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Reference No.</label>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Product Name</label>
-                            <div class="input-groupicon">
-                                <input type="text" placeholder="Scan/Search Product by code and select...">
-                                <div class="addonset">
-                                    <img src="<?=ASSETS?>/img/icons/scanners.svg" alt="img">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
                 </div>
 
                 <div class="row">
+                    <div id="saveSelectedBtn" style="display: none;">
+                        <button type="submit" name="save_selected" class="btn btn-sm btn-outline-warning">Save Selected</button>
+                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Net Unit Price($)	</th>
-                                    <th>Stock</th>
-                                    <th>Qty</th>
-                                    <th>Discount($)	</th>
-                                    <th>Tax %	</th>
-                                    <th class="text-end">Subtotal ($)</th>
+                                    <th>
+                                    <!-- <label class="checkboxs">
+                                    <input type="checkbox" id="select-all">
+                                    <span class="checkmarks"></span>
+                                    </label> -->
+                                    </th> 
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th class="text-center">Purchase Price(KES)	</th>
+                                    <th class="text-center">Discount(KES)	</th>
+                                    <th class="text-center">Tax %</th>
+                                    <th class="text-center">Tax Amount(KES)</th>
+                                    <th class="text-end text-center">Unit Cost(KES)</th>
+                                    <th class="text-end text-center">Total Cost (KES)	</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="productimgname">
-                                        <a class="product-img">
-                                            <img src="<?=ASSETS?>/img/product/product7.jpg" alt="product">
-                                        </a>
-                                        <a href="javascript:void(0);">Apple Earpods</a>
-                                    </td>
-                                    <td>150</td>
-                                    <td>500</td>
-                                    <td>500</td>
-                                    <td>100</td>
-                                    <td>250</td>
-                                    <td class="text-end">500</td>
-                                    <td>
-                                        <a href="javascript:void(0);" class="delete-set"><img src="<?=ASSETS?>/img/icons/delete.svg" alt="svg"></a>
-                                    </td>
-                                </tr>
+                                <?php
+                                    if(isset($results) && $results){?>
+                                    <?php
+                                        $unitCost = 0;
+                                        $totalCost = 0; 
+                                        $taxAmount = 0;
+                                        foreach ($results as $product){?>
+                                        <tr>
+                                            <td>
+                                                <label class="checkboxs">
+                                                    <input type="checkbox" name="selected" class="product-checkbox" value="<?=$product->product_ID?>">
+                                                    <span class="checkmarks"></span>
+                                                </label>
+                                            </td>   
+                                            <td class="productimgname">
+                                                <a class="product-img">
+                                                    <img src="<?=UPLOADED?>/<?=$product->image?>" alt="product">
+                                                </a>
+                                                <a href="javascript:void(0);"><?=$product->product_name?></a>
+                                            </td> 
+                                            <td>
+                                                <div class="input-group form-group mb-0">
+                                                    <a class="scanner-set input-group-text">
+                                                        <img src="<?=ASSETS?>/img/icons/plus1.svg" alt="img">
+                                                    </a>
+                                                    <input disabled type="text" value="1" class="calc-no">
+                                                    <a class="scanner-set input-group-text">
+                                                        <img src="<?=ASSETS?>/img/icons/minus.svg" alt="img">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><?=$product->buying_price?></td>
+                                            <td class="text-center"><?=$product->discount?></td>
+                                            <td class="text-center"><?=$product->tax * 100?></td>
+                                            <td class="text-center"><?=$taxAmount?></td>
+                                            <td class="text-center"><?=$unitCost?></td>
+                                            <td class="text-center"><?=$totalCost?></td>
+                                            <td>
+                                                <a class="delete-set"><img src="<?=ASSETS?>/img/icons/delete.svg" alt="svg"></a>
+                                            </td>
+                                        </tr>
+                                    <?php }?>
+                                <?php }else{?>
+                                    <div>
+                                        <p class="text-info">** Search for Products Above **</p>
+                                    </div>
+                                <?php }?>
+                            
                             </tbody>
                         </table>
                     </div>
@@ -163,7 +205,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
+                        <a href="javascript:void(0);" class="btn btn-submit me-2">Add Quotation</a>
                         <a href="<?=ROOT?>/quotations" class="btn btn-cancel">Cancel</a>
                     </div>
                 </div>
