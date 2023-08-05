@@ -67,8 +67,8 @@
                                         <h6 class="manitorygreen">This Field is required</h6>
                                     </li>
                                     <li>
-                                        <h4>Description</h4>
-                                        <h6 class="manitoryblue">Field optional</h6>
+                                        <h4>Status</h4>
+                                        <h6 class="manitorygreen">This Field is required</h6>
                                     </li>
                                 </ul>
                             </div>
@@ -78,10 +78,10 @@
                                 <ul class="product-bar"> 
                                     <li>
                                         <h4>Payment Status</h4>
-                                        <h6 class="manitoryblue">Field optional</h6>
+                                        <h6 class="manitorygreen">This Field is required</h6>
                                     </li>
                                     <li>
-                                        <h4>Status</h4>
+                                        <h4>Description</h4>
                                         <h6 class="manitoryblue">Field optional</h6>
                                     </li>
                                     <li>
