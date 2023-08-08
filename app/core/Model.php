@@ -16,6 +16,16 @@ class Model extends DBConnection
 
 	}
 
+    public function searchProducts($searchData)
+    {
+
+        $searchData = '%'.$searchData.'%';
+        $query = "SELECT * FROM products WHERE product_name LIKE ? OR category_ID LIKE ?";
+		$results = $this->conn->query($query, [$searchData, $searchData]);
+
+        return $results;
+    }
+
     public function where($column, $value)
     {
     $column = addslashes($column);
