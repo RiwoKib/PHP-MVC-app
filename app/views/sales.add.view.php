@@ -19,49 +19,47 @@
         </div>   
 
         <div class="card">
-            <div class="card-body">
-                <form id="saveSelected" method="post"> 
-                    <div class="row "> 
-                        <div id="saveSelectedBtn" style="display: none;">
-                            <button class="btn btn-sm btn-outline-warning">Save Selected</button>
+            <div class="card-body"> 
+                <div class="row "> 
+                    <div id="saveSelectedBtn" style="display: none;">
+                        <button class="btn btn-sm btn-outline-warning">Save Selected</button>
+                    </div>
+
+                    <div style="display: none;" id="sendSelectedBtn" class="col-lg-12">
+                        <div>
+                            <button class="btn btn-sm btn-outline-success">Confirm Saved</button>
                         </div>
 
-                        <div style="display: none;" id="sendSelectedBtn" class="col-lg-12">
-                            <div>
-                                <button class="btn btn-sm btn-outline-success">Confirm Saved</button>
-                            </div>
-
-                            <div class="">
-                                <span class="text-danger" style="font-size: 12px">Only confirm after you have finished searching for products</span>
-                                <span class="text-info" style="font-size: 12px">Otherwise Continue Searching...</span>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive mb-3">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <!-- <label class="checkboxs">
-                                            <input type="checkbox" id="select-all">
-                                            <span class="checkmarks"></span>
-                                            </label> -->
-                                        </th> 
-                                        <th>Product Name</th> 
-                                        <th>Quantity</th> 
-                                        <th class="me-10">Price</th>
-                                        <th class="text-center">Discount %</th>
-                                        <th class="text-center">Tax %</th> 
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="searchProductsResults"> 
-
-                                </tbody>
-                            </table>
+                        <div class="">
+                            <span class="text-danger" style="font-size: 12px">Only confirm after you have finished searching for products</span>
+                            <span class="text-info" style="font-size: 12px">Otherwise Continue Searching...</span>
                         </div>
                     </div>
-                </form>
+
+                    <div class="table-responsive mb-3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <!-- <label class="checkboxs">
+                                        <input type="checkbox" id="select-all">
+                                        <span class="checkmarks"></span>
+                                        </label> -->
+                                    </th> 
+                                    <th>Product Name</th> 
+                                    <th>Quantity</th> 
+                                    <th class="me-10">Price</th>
+                                    <th class="text-center">Discount %</th>
+                                    <th class="text-center">Tax %</th> 
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchProductsResults"> 
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
             </div>
         </div>
 
