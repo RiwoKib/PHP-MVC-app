@@ -154,31 +154,8 @@
                     </div>
 
                     <div class="row "> 
-                        <div class="col-lg-12 float-md-right">
-                            <div class="total-order ">
-                                <ul>
-                                    <li>
-                                        <h4>Order Tax</h4>
-                                        <h5 id="orderTax" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
-                                    </li>
-                                    <li>
-                                        <h4>Discount	</h4>
-                                        <h5 id="discountF" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
-                                    </li>
-                                    <li>
-                                        <h4>Shipping</h4>
-                                        <h5 id="shippingCost" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
-                                    </li>
-                                    <li class="total">
-                                        <h4>Grand Total</h4>
-                                        <h5 id="grandTotal" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
                         <div class="col-lg-12">
-                            <button id="addSale" class="btn btn-submit me-2">Add Sale</button>
+                            <a id="addSale" class="btn btn-submit me-2">Add Sale</a>
                             <a href="<?=ROOT?>/sales" class="btn btn-cancel">Cancel</a>
                         </div>
                         
@@ -207,10 +184,6 @@
     const tableSeacrhBody = document.querySelector("#searchProductsResults")  
     const tableSelectedBody = document.querySelector('#selectedResults') 
     const addSaleBtn = document.querySelector('#addSale')
-    const orderTax = document.getElementById('orderTax');
-    const discountF = document.getElementById('discountF');
-    const shippingCost = document.querySelector("#shippingCost")
-    const grandTotal = document.querySelector("#grandTotal")
     const selectedData = []  
 
     function selected_data(data = {}, data2 = {}){
@@ -234,8 +207,10 @@
     }
 
     function handle_new_sale(result){
-        if(result != ""){
+        if(result != "" && Array.isArray(result)){
             successMessage.style.display = "block";
+        }else{
+            alert('error!! something went wrong')
         }
     }
 
@@ -365,6 +340,7 @@
                         shipping_cost: saleshipping,
                         status: salestatus
                     }
+
 
                     let products = selected_data(obj.selected, input)
                 }
