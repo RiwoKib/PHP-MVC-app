@@ -26,9 +26,15 @@
                             <button class="btn btn-sm btn-outline-warning">Save Selected</button>
                         </div>
 
-                        <div id="sendSelectedBtn" style="display: none;">
-                            <button class="btn btn-sm btn-outline-success">Confirm Saved</button>
-                            <span class="text-danger" style="font-size: 12px">Only confirm after you have finished searching for products</span>
+                        <div style="display: none;" id="sendSelectedBtn" class="col-lg-12">
+                            <div>
+                                <button class="btn btn-sm btn-outline-success">Confirm Saved</button>
+                            </div>
+
+                            <div class="">
+                                <span class="text-danger" style="font-size: 12px">Only confirm after you have finished searching for products</span>
+                                <span class="text-info" style="font-size: 12px">Otherwise Continue Searching...</span>
+                            </div>
                         </div>
 
                         <div class="table-responsive mb-3">
