@@ -45,6 +45,7 @@ class AjaxRequests extends Controller
                 $subTotal = 0;
                 
                 $prepareSelected = array(
+                    'product_ID' => $row->product_ID,
                     'product_name' => $product_info[0]->product_name,
                     'image' => $product_info[0]->image,
                     'unit'=> $product_info[0]->unit,
@@ -60,11 +61,81 @@ class AjaxRequests extends Controller
             }
 
             $resultData['tbl_rows'] = $search->make_tableRows('selectedProducts',$show_selected); 
+            $resultData['selected'] = $show_selected;
 
         }else{
             echo "No Products Available";
         } 
 
         echo json_encode($resultData);
+    }
+
+    function addSale()
+    {
+        $sale = new Sale();
+
+        $data = file_get_contents("php://input");
+        $data = json_decode($data);
+
+        $customerInput = $data->input;
+        $productsSold = $data->products;
+
+        $orderTax = floatval($customerInput->tax) / 100;
+        $discount = floatval($customerInput->discount) / 100;
+
+        $Sale_ID = makeCode('sales');
+
+        if(is_array($productsSold))
+        {
+            $soldItems = new SoldItems();
+            $Grand_total_price = 0;
+
+            foreach($productsSold as $product)
+            {
+                $insertProducts = array(
+                    'sale_ID' => $Sale_ID,
+                    'product_ID' => $product->product_ID,
+                    'product_quantity' => $product->amount,
+                    'price' => $product->total_price,
+                );
+                $Grand_total_price += $product->total_price;
+
+                $productInsert[] = $insertProducts;
+            }
+        }
+
+        $insertSale = array(
+            'sale_ID' => $Sale_ID,
+            'customer_code' => $customerInput->customer_code,
+            'status' => $customerInput->status,
+            'order_tax' => $orderTax,
+            'discount' => $discount,
+            'total' => $Grand_total_price,
+            'shipping_cost' => $customerInput->shipping_cost
+        );
+
+        if($sale->insert($insertSale)){
+
+            $counter = 0;
+           foreach($productInsert as $product)
+           {
+                if($soldItems->insert($product))
+                {
+                    $counter += 1;
+                }else{
+                    echo $soldItems->getErrorMessage();
+                }
+           }
+        }else{
+            echo $sale->getErrorMessage();
+        }
+
+        if($counter > 0)
+        {
+            $dataInsert['insertSale'] = $insertSale;
+            $dataInsert['productsInsert'] = $productInsert;
+            print_r($dataInsert);
+        }
+       
     }
 }
