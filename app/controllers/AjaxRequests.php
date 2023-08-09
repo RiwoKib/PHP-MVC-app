@@ -134,13 +134,8 @@ class AjaxRequests extends Controller
         {
             $dataInsert['insertSale'] = $insertSale;
             $dataInsert['productsInsert'] = $productInsert;
-            
-            if(is_array($dataInsert))
-            {
-                print_r($dataInsert);
-            }else{
-                print_r("Error!!!");
-            }
+
+            echo json_encode($dataInsert);
             
         }
        
