@@ -3,42 +3,32 @@
 <?php $this->view('includes/sidebar'); ?>
 
 <div class="page-wrapper">
-    <div class="content">
-        <div class="page-header">
-            <div class="page-title">
-                <h4>Add Sale</h4>
-                <h6>Add your new sale</h6>
-            </div>
-        </div>
+    <div class="content"> 
 
-        
-        
-        <form action="" method="post">
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="form-group">
-                    <label>Search Product Name</label>
-                    <div class="input-groupicon">
-                        <input type="text" id="searchInput" name="searchData" placeholder="Please type product name/category code and select...">
-                        <div class="addonset">
-                            <button style="background:none; border:none" name="searchProduct"><img src="<?=ASSETS?>/img/icons/search.svg" alt=""></button>
-                        </div> 
-                    </div>
-                    <?php if(count($errors) > 0){?>
-                        <span class="text-danger"><?=$errors[0]?></span>
-                    <?php }?>
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="form-group">
+                <label>Search Product Name</label>
+                <div class="input-groupicon">
+                    <input type="text" id="searchInput" autofocus placeholder="Please type product name/category code and select...">
+                    <div class="addonset">
+                        <button style="background:none; border:none" onclick="collect_data(event)" name="searchProduct"><img src="<?=ASSETS?>/img/icons/search.svg" alt=""></button>
+                    </div> 
                 </div> 
+                    <span id="searchText" class="text-danger" style="display: none;">Type Something to search...</span> 
             </div> 
-            
-        </form>  
-    
-        <?php //show($selected) ?>
+        </div>   
 
         <div class="card">
             <div class="card-body">
                 <form id="saveSelected" method="post"> 
                     <div class="row "> 
                         <div id="saveSelectedBtn" style="display: none;">
-                            <button type="submit" name="save_selected" class="btn btn-sm btn-outline-warning">Save Selected</button>
+                            <button class="btn btn-sm btn-outline-warning">Save Selected</button>
+                        </div>
+
+                        <div id="sendSelectedBtn" style="display: none;">
+                            <button class="btn btn-sm btn-outline-success">Confirm Saved</button>
+                            <span class="text-danger" style="font-size: 12px">Only confirm after you have finished searching for products</span>
                         </div>
 
                         <div class="table-responsive mb-3">
@@ -52,43 +42,15 @@
                                             </label> -->
                                         </th> 
                                         <th>Product Name</th> 
+                                        <th>Quantity</th> 
                                         <th class="me-10">Price</th>
                                         <th class="text-center">Discount %</th>
                                         <th class="text-center">Tax %</th> 
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php  
-                                        if(isset($results) && $results){?>
-                                        <?php foreach($results as $product){?>
-                                            <tr> 
+                                <tbody id="searchProductsResults"> 
 
-                                                <td>
-                                                    <label class="checkboxs">
-                                                        <input type="checkbox" name="selected[]" class="product-checkbox" value="<?=$product->product_ID?>">
-                                                        <span class="checkmarks"></span>
-                                                    </label>
-                                                </td>   
-                                                <td class="productimgname">
-                                                    <a class="product-img">
-                                                        <img src="<?=UPLOADED?>/<?=$product->image?>" alt="product">
-                                                    </a>
-                                                    <a href="javascript:void(0);"><?=$product->product_name?></a>
-                                                </td>
-                                                <td><?=$product->selling_price?></td>
-                                                <td class="text-center"><?=$product->discount * 100?></td>
-                                                <td class="text-center"><?=$product->tax * 100?></td> 
-                                                <td>
-                                                    <a href="javascript:void(0);" class="delete-set"><img src="<?=ASSETS?>/img/icons/delete.svg" alt="svg"></a>
-                                                </td>
-                                            </tr>
-                                        <?php }?>
-                                    <?php }else{?>
-                                        <div>
-                                            <p class="text-info">** Search for Products Above **</p>
-                                        </div>
-                                    <?php }?>
                                 </tbody>
                             </table>
                         </div>
@@ -97,20 +59,26 @@
             </div>
         </div>
 
+        <div class="page-header">
+            <div class="page-title">
+                <h4>Add Sale</h4>
+                <h6>Add your new sale</h6>
+            </div>
+        </div>  
+
         <div class="card">
-            <div class="card-body">
-                <!-- <form action="" method="post"> -->
+            <div class="card-body"> 
                     <div class="row">
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Customer</label>
                                 <div class="row">
                                     <div class="col-lg-10 col-sm-10 col-10">
-                                        <select name="customer" class="select">
+                                        <select id="customersale" class="select">
                                             <option value="">Choose Customer</option>
                                             <option value="Walk-in-Customer">Walk-in-Customer</option>
                                             <?php foreach ($customers as $customer){?>
-                                                <option value="<?=$customer->firstname?> <?=$customer->lastname?>"><?=$customer->firstname?> <?=$customer->lastname?></option>
+                                                <option value="<?=$customer->customer_code?>"><?=$customer->firstname?> <?=$customer->lastname?></option>
                                             <?php }?>
                                         </select>
                                     </div> 
@@ -119,93 +87,67 @@
                         </div>  
                     </div> 
                     
-                    <!-- <form method="post">  -->
-                        <div class="row">  
-                            <div class="table-responsive mb-3">
-                                <table class="table">
-                                    <thead>
-                                        <tr> 
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                            <th class="text-center">Unit</th>
-                                            <th class="text-center">Price</th>
-                                            <th class="text-center">Discount %</th>
-                                            <th class="text-center">Tax %</th>
-                                            <th class="text-center">Subtotal</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-                                            $sub_total = 0;
-                                            if(isset($selected)){?>
-                                            <?php foreach($selected as $product){?> 
-                                                <tr>   
-                                                    <td class="productimgname">
-                                                        <a class="product-img">
-                                                            <img src="<?=UPLOADED?>/<?=$product['image']?>" alt="product">
-                                                        </a>
-                                                        <a href="javascript:void(0);"><?=$product['product_name']?></a>
-                                                    </td>
-                                                    <td class="product_data">
-                                                        <div class="input-group form-group mb-0">
-                                                            <input type="hidden" class="prod_id" value="<?=$product['id']?>">
-                                                            <a class="scanner-set incrementBtn input-group-text">
-                                                                <img src="<?=ASSETS?>/img/icons/plus1.svg" alt="img">
-                                                            </a>
-                                                            <input disabled type="text" value="1" class="calc-no input-qty">
-                                                            <a class="scanner-set decrementBtn input-group-text">
-                                                                <img src="<?=ASSETS?>/img/icons/minus.svg" alt="img">
-                                                            </a>
-                                                        </div> 
-                                                    </td>
-                                                    <td class="text-center"><?=$product['unit']?></td>
-                                                    <td class="text-center"><?=$product['price']?></td>
-                                                    <td class="text-center"><?=$product['discount'] * 100?></td>
-                                                    <td class="text-center"><?=$product['tax'] * 100?></td>
-                                                    <td class="text-center"><?=$sub_total?></td>
-                                                    <td>
-                                                        <a href="javascript:void(0);" class="delete-set"><img src="<?=ASSETS?>/img/icons/delete.svg" alt="svg"></a>
-                                                    </td>
-                                                </tr>
-                                            <?php }?>
-                                        <?php }else{?>
-                                            <div>
-                                                <p class="text-warning">** No Products Selected **</p>
-                                            </div>
-                                        <?php }?>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="row">  
+                        <div class="table-responsive mb-3">
+                            <table class="table">
+                                <thead>
+                                    <tr> 
+                                        <th>Product Name</th>
+                                        <th class="text-center">Quantity</th>
+                                        <th class="text-center">Unit</th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-center">Total</th>
+                                        <th class="text-center">Discount %</th>
+                                        <th class="text-center">Tax %</th>
+                                        <th class="text-center">Subtotal</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="selectedResults"> 
+
+                                </tbody>
+                            </table>
                         </div>
-                    <!-- </form> -->
+                    </div> 
 
                     <div class="row">
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Order Tax</label>
-                                <input type="text">
+                                <select id="saletax" class="select">
+                                    <option value="">Choose Tax</option>
+                                    <option value="2">2%</option>
+                                    <option value="0.5">0.5%</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Discount</label>
-                                <input type="text">
+                                <select id="salediscount" class="select">
+                                    <option value="">Choose Discount</option>
+                                    <option value="10">10%</option>
+                                    <option value="30">30%</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Shipping</label>
-                                <input type="text">
+                                <select id="saleshipping" class="select">
+                                    <option value="">Choose Shipping Cost</option>
+                                    <option value="150">Boda  (150/-)</option>
+                                    <option value="300">Cargo Courier  (300/-)</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Status</label>
-                                <select class="select">
-                                    <option>Choose Status</option>
-                                    <option>Completed</option>
-                                    <option>Inprogress</option>
+                                <select id="salestatus" class="select">
+                                    <option value="">Choose Status</option>
+                                    <option value="1">Completed</option>
+                                    <option value="0">Pending</option>
                                 </select>
                             </div>
                         </div>
@@ -217,35 +159,226 @@
                                 <ul>
                                     <li>
                                         <h4>Order Tax</h4>
-                                        <h5 class="text-success">KES 0.00 (0.00%)</h5>
+                                        <h5 id="orderTax" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
                                     </li>
                                     <li>
                                         <h4>Discount	</h4>
-                                        <h5 class="text-success">KES 0.00</h5>
+                                        <h5 id="discountF" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
                                     </li>
                                     <li>
                                         <h4>Shipping</h4>
-                                        <h5 class="text-success">KES 0.00</h5>
+                                        <h5 id="shippingCost" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
                                     </li>
                                     <li class="total">
                                         <h4>Grand Total</h4>
-                                        <h5 class="text-success">KES 0.00</h5>
+                                        <h5 id="grandTotal" class="text-success"><span style="font-size: 9px">KSh</span> </h5>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="col-lg-12">
-                            <button type="submit" name="addSale" class="btn btn-submit me-2">Add Sale</button>
+                            <button id="addSale" class="btn btn-submit me-2">Add Sale</button>
                             <a href="<?=ROOT?>/sales" class="btn btn-cancel">Cancel</a>
                         </div>
                         
-                    </div> 
-                <!-- </form> -->
+                    </div>  
             </div>
+        </div>
+
+        <div id="errorAlert" style="display: none" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> Confirm All Fields Blanks Detected.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div id="successMessage" style="display: none" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> New Sale Added.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
 </div>
+
+
+<script> 
+    const saveSelectedBtn = document.getElementById('saveSelectedBtn');
+    const sendSelectedBtn = document.getElementById('sendSelectedBtn');
+    const errorAlert = document.getElementById('errorAlert');
+    const successMessage = document.getElementById('successMessage');
+    const tableSeacrhBody = document.querySelector("#searchProductsResults")  
+    const tableSelectedBody = document.querySelector('#selectedResults') 
+    const addSaleBtn = document.querySelector('#addSale')
+    const orderTax = document.getElementById('orderTax');
+    const discountF = document.getElementById('discountF');
+    const shippingCost = document.querySelector("#shippingCost")
+    const grandTotal = document.querySelector("#grandTotal")
+    const selectedData = []  
+
+    function selected_data(data = {}, data2 = {}){
+        let sendObject = {
+            products: data,
+            input: data2
+        }
+
+        var ajax = new XMLHttpRequest();
+
+        ajax.addEventListener('readystatechange', function () { 
+            if(ajax.readyState == 4 && ajax.status == 200){
+                handle_new_sale(ajax.responseText);
+            }
+         }) 
+
+        ajax.open('POST', "<?=ROOT?>/AjaxRequests/addSale", true);
+        ajax.send(JSON.stringify(sendObject));
+
+        // console.log(sendObject)
+    }
+
+    function handle_new_sale(result){
+        if(result != ""){
+            successMessage.style.display = "block";
+        }
+    }
+
+    function collect_data(e){
+        var spanSearch = document.querySelector('#searchText');
+        var searchInput = document.querySelector('#searchInput');
+
+        let searchData = searchInput.value.trim();
+
+        if(searchData == ""){
+            spanSearch.style.display="block";
+        }else{
+            spanSearch.style.display="none";  
+            send_data({data : searchData})
+            searchInput.value = ""
+        } 
+
+        
+    }
+
+    function send_data(data = {}){
+        var ajax = new XMLHttpRequest();
+
+        ajax.addEventListener('readystatechange', function () { 
+            if(ajax.readyState == 4 && ajax.status == 200){
+                handle_results(ajax.responseText);
+            }
+         }) 
+
+        ajax.open('POST', "<?=ROOT?>/AjaxRequests/searchProducts", true);
+        ajax.send(JSON.stringify(data)); 
+    }
+
+    function handle_results(results){
+        
+        if(results != ""){
+
+            let obj = JSON.parse(results)  
+
+            tableSeacrhBody.innerHTML = obj.tbl_rows;
+            // console.log(obj.product_info)
+        } 
+    } 
+
+    tableSeacrhBody.addEventListener("change", function(event) {
+
+        sendSelectedBtn.style.display = "none";
+
+        const checkboxes = document.querySelectorAll('.product-checkbox'); 
+        const checkedBoxes = Array.from(checkboxes).filter(function(cb) {
+            return cb.checked;
+        });
+
+        if (checkedBoxes.length > 0) {
+            saveSelectedBtn.style.display = "block";
+        } else {
+            saveSelectedBtn.style.display = "none";
+        }
+    }); 
+
+    saveSelectedBtn.addEventListener("click", function(e) { 
+        e.preventDefault();
+
+        saveSelectedBtn.style.display = "none";
+        sendSelectedBtn.style.display = "block";
+
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                var row = checkbox.closest("tr");
+                var rowData = {
+                    product_ID: row.querySelector(".product-checkbox").value,
+                    product_quantity: row.querySelector(".input-qty").value,
+                    price: row.querySelector('.price').value * row.querySelector(".input-qty").value,
+                };
+                selectedData.push(rowData);
+            }
+        });
+
+        // console.log(selectedData)
+    });   
+
+    sendSelectedBtn.addEventListener('click', function (e) { 
+        e.preventDefault()
+
+        handle_selected(selectedData)
+        sendSelectedBtn.style.display = "none";
+        tableSeacrhBody.innerHTML = "";
+        
+    })
+
+
+    function handle_selected(data = {}){ 
+        let ajax = new XMLHttpRequest();
+
+        ajax.addEventListener('readystatechange', function () { 
+            if(ajax.readyState == 4 && ajax.status == 200){
+                show_selected(ajax.responseText);
+            }
+         }) 
+
+        ajax.open('POST', "<?=ROOT?>/AjaxRequests/saveSelected", true);
+        ajax.send(JSON.stringify(data)); 
+    }
+
+    function show_selected(results){ 
+        
+        if(results != ""){
+
+            let obj = JSON.parse(results)    
+
+            addSaleBtn.addEventListener('click', function(){
+                let customersale = document.querySelector('#customersale').value
+                let saletax = document.querySelector('#saletax').value
+                let salediscount = document.querySelector('#salediscount').value
+                let saleshipping = document.querySelector('#saleshipping').value
+                let salestatus = document.querySelector('#salestatus').value
+
+                if(customersale == "" || saletax == "" || salediscount == "" || saleshipping == "" || salestatus == ""){
+                    errorAlert.style.display = "block";
+                }else{
+                    errorAlert.style.display = "none";
+                    let input = {
+                        customer_code: customersale,
+                        tax: saletax,
+                        discount: salediscount,
+                        shipping_cost: saleshipping,
+                        status: salestatus
+                    }
+
+                    let products = selected_data(obj.selected, input)
+                }
+
+                
+            });
+
+            tableSelectedBody.innerHTML = obj.tbl_rows;
+            // console.log(obj.selected)
+        } 
+    }
+
+
+</script>
 
 <?php $this->view('includes/footer'); ?> 
  
