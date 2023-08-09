@@ -71,4 +71,55 @@
 
         return false;
     }
+
+    public function make_tableRows($searchResults)
+    {
+        $result = "";
+
+        if(is_array($searchResults))
+        {
+            // echo"hello";
+            // print_r($searchResults);
+            foreach ($searchResults as $product)
+            {
+                $result .= "<tr>";
+
+                $result .= '
+                <td>
+                    <label class="checkboxs">
+                        <input type="checkbox" name="selected[]" class="product-checkbox" value="'.$product->product_ID.'">
+                        <span class="checkmarks"></span>
+                    </label>
+                </td>   
+                <td class="productimgname">
+                    <a class="product-img">
+                        <img src="'.UPLOADED.'/'.$product->image.'" alt="product">
+                    </a>
+                    <a href="javascript:void(0);">'.$product->product_name.'</a>
+                </td>
+                <td class="product_data">
+                    <div class="input-group form-group mb-0">
+                        <a class="scanner-set incrementBtn input-group-text">
+                            <img src="'.ASSETS.'/img/icons/plus1.svg" alt="img">
+                        </a>
+                        <input disabled type="text" value="1" class="calc-no input-qty">
+                        <a class="scanner-set decrementBtn input-group-text">
+                            <img src="'.ASSETS.'/img/icons/minus.svg" alt="img">
+                        </a>
+                    </div>
+                </td>
+                <td><input type="number" class="price" disabled style="margin-right: -150px; border:none; background: none;" value="'.$product->selling_price.'"></td>
+                <td class="text-center">'.($product->discount * 100).'</td>
+                <td class="text-center">'.($product->tax * 100).'</td> 
+                <td>
+                    <a href="javascript:void(0);" class="delete-set"><img src="'.ASSETS.'/img/icons/delete.svg" alt="svg"></a>
+                </td>            
+                ';
+
+                $result .= "</tr>";
+            }
+        }
+
+        return $result;
+    }
  }
