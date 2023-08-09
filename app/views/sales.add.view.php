@@ -207,7 +207,7 @@
     }
 
     function handle_new_sale(result){
-        if(result != "" && Array.isArray(result)){
+        if(result != "" && typeof(JSON.parse(result)) == 'object'){ 
             successMessage.style.display = "block";
         }else{
             alert('error!! something went wrong')
