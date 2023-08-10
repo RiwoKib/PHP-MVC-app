@@ -316,7 +316,7 @@
             }
          }) 
 
-        ajax.open('POST', "<?=ROOT?>/AjaxRequests/saveSelected", true);
+        ajax.open('POST', "<?=ROOT?>/AjaxRequests/saveSelected/sales", true);
         ajax.send(JSON.stringify(data)); 
     }
 
