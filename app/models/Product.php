@@ -149,6 +149,33 @@
                         $result .= "</tr>";
                     }
                     break;
+                case "quoteSelected":
+                    foreach ($DATA as $product)
+                    {
+                        $result .= "<tr>";
+
+                        $result .= ' 
+                        <td class="productimgname">
+                            <a class="product-img">
+                                <img src="'.UPLOADED.'/'.$product['image'].'" alt="product">
+                            </a>
+                            <a href="javascript:void(0);">'.$product['product_name'].'</a>
+                        </td>
+                        <td class="text-center">'.($product['amount']).'</td>
+                        <td class="text-center">'.($product['quote_description']).'</td>
+                        <td class="text-center">'.($product['tax']).'</td>
+                        <td class="text-center">'.($product['unit']).'</td>
+                        <td class="text-center">'.($product['price']).'</td>
+                        <td class="text-center">'.$product['total_price'].'</td>
+                        <td>
+                            <a href="javascript:void(0);" class="delete-set"><img src="'.ASSETS.'/img/icons/delete.svg" alt="svg"></a>
+                        </td>            
+                        ';
+
+                        $result .= "</tr>";
+                    }
+                    break;
+
                 default:
                     return false;
             }
