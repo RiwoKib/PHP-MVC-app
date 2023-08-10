@@ -70,6 +70,9 @@ function makeCode($table)
 			case 'sales':
 				return "SLE_".rand(0001,4444);
 				break;
+			case 'quotation':
+				return "QT_".rand(0001,4444);
+				break;
 			default:
 				return false;
 		} 	
