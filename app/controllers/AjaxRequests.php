@@ -8,7 +8,7 @@ class AjaxRequests extends Controller
 {
 	 
 
-    function searchProducts()
+    function searchProducts($table)
     {   
 
         $search = new Product();
@@ -19,8 +19,19 @@ class AjaxRequests extends Controller
 
         if($search->findAll())
         {
-            $resultData = $search->searchProducts($searchData);
-            $resultData['tbl_rows'] = $search->make_tableRows('searchResults',$resultData); 
+            switch($table)
+            {
+                case 'regular':
+                    $resultData = $search->searchProducts($searchData);
+                    $resultData['tbl_rows'] = $search->make_tableRows('searchResults',$resultData);
+                    break;
+                case 'purchase':
+                    $resultData = $search->searchProducts($searchData);
+                    $resultData['tbl_rows'] = $search->make_tableRows('purchaseTable',$resultData);
+                    break;
+                default;
+                    return false;
+            } 
         }else{
             echo "No Products to Search";
         } 
@@ -92,6 +103,30 @@ class AjaxRequests extends Controller
                     $resultData['tbl_rows'] = $search->make_tableRows('quoteSelected',$show_selected); 
                     $resultData['selected'] = $show_selected;
                     break;
+                
+                case 'purchase':
+                    foreach($resultData['selected'] as $row)
+                    {
+                        $product_info = $search->where('product_ID', $row->product_ID);
+                        
+                        $prepareSelected = array(
+                            'product_ID' => $row->product_ID,
+                            'product_name' => $product_info[0]->product_name,
+                            'image' => $product_info[0]->image,
+                            'unit'=> $product_info[0]->unit,
+                            'quote_description' => $product_info[0]->quote_description,
+                            'total_price' => $row->total_price,
+                            'price' => $row->buying_price,
+                            'amount' => $row->product_quantity
+                        );
+
+                        $show_selected[] = $prepareSelected;
+                    }
+                    $resultData['tbl_rows'] = $search->make_tableRows('purchaseSelected',$show_selected); 
+                    $resultData['selected'] = $show_selected;
+
+                    break;
+
                 default:
                     return false;
             
@@ -114,8 +149,12 @@ class AjaxRequests extends Controller
         $customerInput = $data->input;
         $productsSold = $data->products;
 
-        $orderTax = floatval($customerInput->tax) / 100;
-        $discount = floatval($customerInput->discount) / 100;
+        if($customerInput->discount != "none")
+        {
+            $discount = floatval($customerInput->discount) / 100;
+        }else{
+            $discount = 0;
+        }
 
         $Sale_ID = makeCode('sales');
 
@@ -142,7 +181,6 @@ class AjaxRequests extends Controller
             'sale_ID' => $Sale_ID,
             'customer_code' => $customerInput->customer_code,
             'status' => $customerInput->status,
-            'order_tax' => $orderTax,
             'discount' => $discount,
             'total' => $Grand_total_price,
             'shipping_cost' => $customerInput->shipping_cost
@@ -176,7 +214,7 @@ class AjaxRequests extends Controller
     }
 
     function addQuote()
-    {
+    {   
         $quote = new Quotation();
 
         $data = file_get_contents("php://input");
@@ -185,7 +223,8 @@ class AjaxRequests extends Controller
         $quoteInput = $data->input;
         $productsQuote = $data->products;
 
-        $quoteTax = floatval($quoteInput->tax) / 100;
+        $date = get_date($quoteInput->date);
+        $expiryDate = get_expiryDate($date);
 
         $quote_ID = makeCode('quotation');
 
@@ -213,7 +252,6 @@ class AjaxRequests extends Controller
             'quote_ID' => $quote_ID,
             'company_name' => $quoteInput->company_name,
             'status' => $quoteInput->status,
-            'quote_tax' => $quoteTax,
             'total' => $Grand_total_price,
             'shipping_cost' => $quoteInput->shipping_cost,
             'firstname' => $quoteInput->firstname,
@@ -223,6 +261,8 @@ class AjaxRequests extends Controller
             'city' => $quoteInput->city,
             'address' => $quoteInput->address,
             'zipcode' => $quoteInput->zipcode,
+            'created_on' => $date,
+            'expiry_date' => $expiryDate
         );
 
         if($quote->insert($insertQuote)){
@@ -240,7 +280,7 @@ class AjaxRequests extends Controller
         }else{
             echo $quote->getErrorMessage();
         }
-
+        
         if($counter > 0)
         {
             $dataInsert['insertQuote'] = $insertQuote;
@@ -251,5 +291,80 @@ class AjaxRequests extends Controller
         }
 
         // print_r($productsQuote);
+    }
+
+    function addPurchase()
+    {
+
+		$addP = new Purchase();
+
+        $data = file_get_contents("php://input");
+        $data = json_decode($data);
+
+        $purchaseInput = $data->input;
+        $prodPurchased = $data->products;
+
+        $purchaseTax = floatval($purchaseInput->tax) / 100;
+        $discount = floatval($purchaseInput->discount) / 100;
+
+        $date = get_date($purchaseInput->date);
+
+        $P_ID = makeCode('purchases');
+
+        if(is_array($prodPurchased))
+        {
+            $Pitems = new PurchaseItems();
+            $Grand_total_price = 0;
+
+            foreach($prodPurchased as $product)
+            {
+                $insertProducts = array(
+                    'Purchase_ID' => $P_ID,
+                    'product_ID' => $product->product_ID,
+                    'product_quantity' => $product->amount,
+                    'price' => $product->total_price,
+                );
+                $Grand_total_price += $product->total_price;
+
+                $productInsert[] = $insertProducts;
+            }
+        }
+
+        $insertPurchase = array(
+            'purchase_code' => $P_ID,
+            'supplier_code' => $purchaseInput->supplier_code,
+            'status' => $purchaseInput->status,
+            'tax' => $purchaseTax,
+            'discount' => $discount,
+            'total' => $Grand_total_price,
+            'shipping_cost' => $purchaseInput->shipping_cost,
+            'created_on' => $date
+        );
+
+        if($addP->insert($insertPurchase)){
+
+        	$counter = 0;
+        foreach($productInsert as $product)
+        {
+        		if($Pitems->insert($product))
+        		{
+        			$counter += 1;
+        		}else{
+        			echo $Pitems->getErrorMessage();
+        		}
+        }
+        }else{
+        	echo $addP->getErrorMessage();
+        }
+        $counter = 1;
+
+        if($counter > 0)
+        {
+            $dataInsert['insertPurchase'] = $insertPurchase;
+            $dataInsert['productsInsert'] = $productInsert;
+
+            echo json_encode($dataInsert);
+            
+        }
     }
 }
