@@ -197,8 +197,9 @@
                             <label>Status</label>
                             <select class="select" id="status">
                                 <option value="">Choose Status</option>
-                                <option value="1">Completed</option>
-                                <option value="0">Inprogress</option>
+                                <option value="1">Send</option>
+                                <option value="2">Pending</option>
+                                <option value="0">Ordered</option>
                             </select>
                         </div>
                     </div>
@@ -343,7 +344,7 @@
 
         ajax.addEventListener('readystatechange', function () { 
             if(ajax.readyState == 4 && ajax.status == 200){
-                console.log(ajax.responseText);
+                handle_new_quote(ajax.responseText);
             }
          }) 
 
