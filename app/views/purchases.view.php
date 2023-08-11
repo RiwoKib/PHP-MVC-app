@@ -107,45 +107,52 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($rows as $purchase){?>
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox">
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                                    <td class="text-bolds"></td>
-                                    <td><?=$purchase->purchase_code?></td>
-                                    <td><?=$purchase->created_on?></td>
-                                    <td>
-                                        <?php 
-                                            $status = $purchase->status == 'received' ? 'received' : ($purchase->status == 'pending' ? 'pending' : 'ordered');
-                                            
-                                            $class = $purchase->status == 'received' ? 'bg-lightgreen' : ($purchase->status == 'pending' ? 'bg-lightred' : 'bg-lightyellow') 
-                                        ?> 
-                                        <span class="badges <?=$class?>"><?=$status?></span>
-                                    </td>
-                                    <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->total?></td>
-                                    <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->paid?></td>
-                                    <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->due?></td>
-                                    <td>
-                                        <?php 
-                                            $paymentStatus = $purchase->payment_status == 'paid' ? 'paid' : ($purchase->payment_status == 'partial' ? 'partial' : 'unpaid');
-                                            
-                                            $paymentClass = $purchase->payment_status == 'paid' ? 'bg-lightgreen' : ($purchase->payment_status == 'unpaid' ? 'bg-lightred' : 'bg-lightyellow') 
-                                        ?> 
-                                        <span class="badges <?=$paymentClass?>"><?=$paymentStatus?></span>
-                                    </td>
-                                    <td>
-                                        <a class="me-3" href="editpurchase.html">
-                                            <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
-                                        </a>
-                                        <a class="me-3 confirm-text" href="javascript:void(0);">
-                                            <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
-                                        </a>
-                                    </td>
-                                </tr>
+                            <?php if(isset($rows) && $rows){  ?>
+                                <?php   
+                                    foreach($rows as $purchase){?>
+                                        <tr>
+                                            <td>
+                                                <label class="checkboxs">
+                                                    <input type="checkbox">
+                                                    <span class="checkmarks"></span>
+                                                </label>
+                                            </td>
+                                            <td class="text-bolds"></td>
+                                            <td><?=$purchase->purchase_code?></td>
+                                            <td><?=$purchase->created_on?></td>
+                                            <td>
+                                                <?php 
+                                                    $status = $purchase->status == 1 ? 'Received' : ($purchase->status == 2 ? 'Pending' : 'Ordered');
+                                                    
+                                                    $class = $purchase->status == 1 ? 'bg-lightgreen' : ($purchase->status == 2 ? 'bg-lightyellow' : 'bg-lightred') 
+                                                ?> 
+                                                <span class="badges <?=$class?>"><?=$status?></span>
+                                            </td>
+                                            <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->total?></td>
+                                            <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->paid?></td>
+                                            <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->due?></td>
+                                            <td>
+                                                <?php 
+                                                    $paymentStatus = $purchase->payment_status == 'paid' ? 'Paid' : ($purchase->payment_status == 'partial' ? 'Partial' : 'Unpaid');
+                                                    
+                                                    $paymentClass = $purchase->payment_status == 'paid' ? 'bg-lightgreen' : ($purchase->payment_status == 'unpaid' ? 'bg-lightred' : 'bg-lightyellow') 
+                                                ?> 
+                                                <span class="badges <?=$paymentClass?>"><?=$paymentStatus?></span>
+                                            </td>
+                                            <td>
+                                                <a class="me-3" href="editpurchase.html">
+                                                    <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
+                                                </a>
+                                                <a class="me-3 confirm-text" href="javascript:void(0);">
+                                                    <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php }?>
+                            <?php }else{?>
+                                    <div>
+                                        <p class="text-info">** No Purchases Made Yet **</p>
+                                    </div>
                             <?php }?>  
                         </tbody>
                     </table>
