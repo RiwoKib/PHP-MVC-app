@@ -16,10 +16,39 @@ class Quotations extends Controller
 		}
 
 		$quotes = new Quotation();
+		$quote_items = new QuoteItems();
+		$Product = new Product();
 
+		$quoteProducts = $quote_items->findAll();
 		$data = $quotes->findAll();
 
-		$this->view('quotations', ['rows' => $data]);
+		foreach($quoteProducts as $product)
+		{
+			$quote_ID = $product->quote_ID;
+			foreach($data as $quote)
+			{
+				if($quote_ID == $quote->quote_ID)
+				{
+					$prod_ID = $product->product_ID;
+					$productInfo = $Product->where('product_ID', $prod_ID);
+
+					$prepareQuoteItems = array(
+						'product_name' => $productInfo[0]->product_name,
+						'image' => $productInfo[0]->image,
+						'quote_ID' => $product->quote_ID,
+						'total' => $quote->total,
+						'company_name' => $quote->company_name,
+						'status' => $quote->status,
+					);
+
+					$showQuoteItems[] = $prepareQuoteItems;
+				}
+			}
+		}
+
+		// print_r($showQuoteItems);
+
+		$this->view('quotations', ['rows' => $showQuoteItems]);
 	}
 
     function add()
