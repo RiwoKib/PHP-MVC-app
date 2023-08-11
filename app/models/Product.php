@@ -175,6 +175,69 @@
                         $result .= "</tr>";
                     }
                     break;
+                case 'purchaseTable':
+                    foreach ($DATA as $product)
+                    {
+                        $result .= "<tr>";
+
+                        $result .= '
+                        <td>
+                            <label class="checkboxs">
+                                <input type="checkbox" name="selected[]" class="product-checkbox" value="'.$product->product_ID.'">
+                                <span class="checkmarks"></span>
+                            </label>
+                        </td>   
+                        <td class="productimgname">
+                            <a class="product-img">
+                                <img src="'.UPLOADED.'/'.$product->image.'" alt="product">
+                            </a>
+                            <a href="javascript:void(0);">'.$product->product_name.'</a>
+                        </td>
+                        <td class="product_data">
+                            <div class="input-group form-group mb-0">
+                                <a class="scanner-set incrementBtn input-group-text">
+                                    <img src="'.ASSETS.'/img/icons/plus1.svg" alt="img">
+                                </a>
+                                <input disabled type="text" value="1" class="calc-no input-qty">
+                                <a class="scanner-set decrementBtn input-group-text">
+                                    <img src="'.ASSETS.'/img/icons/minus.svg" alt="img">
+                                </a>
+                            </div>
+                        </td>
+                        <td><input type="text" placeholder="10,000/="  class="form-control price" style="margin-right: -100px;"></td>
+                        <td>
+                            <a href="javascript:void(0);" class="delete-set"><img src="'.ASSETS.'/img/icons/delete.svg" alt="svg"></a>
+                        </td>            
+                        ';
+
+                        $result .= "</tr>";
+                    }
+                    break;
+                case 'purchaseSelected':
+                    foreach ($DATA as $product)
+                    {
+                        $result .= "<tr>";
+
+                        $result .= ' 
+                        <td class="productimgname">
+                            <a class="product-img">
+                                <img src="'.UPLOADED.'/'.$product['image'].'" alt="product">
+                            </a>
+                            <a href="javascript:void(0);">'.$product['product_name'].'</a>
+                        </td>
+                        <td class="text-center">'.($product['amount']).'</td>
+                        <td class="text-center">'.($product['quote_description']).'</td>
+                        <td class="text-center">'.($product['unit']).'</td>
+                        <td class="text-center">'.($product['price']).'</td>
+                        <td class="text-center">'.$product['total_price'].'</td>
+                        <td>
+                            <a href="javascript:void(0);" class="delete-set"><img src="'.ASSETS.'/img/icons/delete.svg" alt="svg"></a>
+                        </td>            
+                        ';
+
+                        $result .= "</tr>";
+                    }
+                    break;
 
                 default:
                     return false;
