@@ -45,6 +45,20 @@ function get_date($date)
 	return date("Y-m-d", strtotime($date));
 }
 
+function get_expiryDate($date)
+{
+	
+	$initialDate = new DateTime($date);
+
+	// Add 30 days
+	$initialDate->add(new DateInterval('P30D'));
+
+	$formattedDate = $initialDate->format('Y-m-d');
+
+	return $formattedDate; 
+
+}
+
 function makeCode($table)
     {	
 		switch($table)
