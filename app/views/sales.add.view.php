@@ -50,7 +50,7 @@
                                     <th>Quantity</th> 
                                     <th class="me-10">Price</th>
                                     <th class="text-center">Discount %</th>
-                                    <th class="text-center">Tax %</th> 
+                                    <th class="text-center">VAT %</th> 
                                     <th></th>
                                 </tr>
                             </thead>
@@ -102,7 +102,7 @@
                                         <th class="text-center">Price</th>
                                         <th class="text-center">Total</th>
                                         <th class="text-center">Discount %</th>
-                                        <th class="text-center">Tax %</th>
+                                        <th class="text-center">VAT %</th>
                                         <th class="text-center">Subtotal</th>
                                         <th></th>
                                     </tr>
@@ -117,19 +117,10 @@
                     <div class="row">
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
-                                <label>Order Tax</label>
-                                <select id="saletax" class="select">
-                                    <option value="">Choose Tax</option>
-                                    <option value="2">2%</option>
-                                    <option value="0.5">0.5%</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Discount</label>
+                                <label>Discount <span class="text-info" style="font-size: 11px;">None by Default</span></label>
                                 <select id="salediscount" class="select">
                                     <option value="">Choose Discount</option>
+                                    <option value="none" selected>None</option>
                                     <option value="10">10%</option>
                                     <option value="30">30%</option>
                                 </select>
@@ -200,7 +191,7 @@
 
         ajax.addEventListener('readystatechange', function () { 
             if(ajax.readyState == 4 && ajax.status == 200){
-                handle_new_sale(ajax.responseText);
+                console.log(ajax.responseText);
             }
          }) 
 
@@ -244,7 +235,7 @@
             }
          }) 
 
-        ajax.open('POST', "<?=ROOT?>/AjaxRequests/searchProducts", true);
+        ajax.open('POST', "<?=ROOT?>/AjaxRequests/searchProducts/regular", true);
         ajax.send(JSON.stringify(data)); 
     }
 
@@ -328,18 +319,17 @@
 
             addSaleBtn.addEventListener('click', function(){
                 let customersale = document.querySelector('#customersale').value
-                let saletax = document.querySelector('#saletax').value
                 let salediscount = document.querySelector('#salediscount').value
                 let saleshipping = document.querySelector('#saleshipping').value
                 let salestatus = document.querySelector('#salestatus').value
 
-                if(customersale == "" || saletax == "" || salediscount == "" || saleshipping == "" || salestatus == ""){
+                if(customersale == "" || salediscount == "" || saleshipping == "" || salestatus == ""){
                     errorAlert.style.display = "block";
+                    console.log("empty")
                 }else{
                     errorAlert.style.display = "none";
                     let input = {
                         customer_code: customersale,
-                        tax: saletax,
                         discount: salediscount,
                         shipping_cost: saleshipping,
                         status: salestatus
@@ -347,6 +337,11 @@
 
 
                     let products = selected_data(obj.selected, input)
+                    customersale.value = ""
+                    salediscount.value = ""
+                    saleshipping.value = ""
+                    salestatus.value = ""
+                    
                 }
 
                 
