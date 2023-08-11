@@ -51,7 +51,7 @@
                                     <th>Quantity</th> 
                                     <th class="me-10">Price</th>
                                     <th class="text-center">Discount %</th>
-                                    <th class="text-center">Tax %</th> 
+                                    <th class="text-center">VAT %</th> 
                                     <th></th>
                                 </tr>
                             </thead>
@@ -144,6 +144,18 @@
                                 <input type="text" class="form-control" id="email" placeholder="info@orderit.co.ke">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label">Quotation Date</label>
+                            <div class="col-lg-9">
+                                <div class="input-groupicon">
+                                    <input type="text" id="date" placeholder="DD-MM-YYYY" class="datetimepicker">
+                                    <div class="addonset">
+                                        <img src="<?=ASSETS?>/img/icons/calendars.svg" alt="img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 
@@ -155,7 +167,7 @@
                                     <th>Product Name</th>
                                     <th>Quantity</th>
                                     <th class="text-center">Description</th>
-                                    <th class="text-center">Tax %</th>
+                                    <th class="text-center">VAT %</th>
                                     <th class="text-center">Unit</th>
                                     <th class="text-end text-center">Unit Cost</th>
                                     <th class="text-end text-center">Total Cost</th>
@@ -169,17 +181,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-5">
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Order Tax</label>
-                            <select class="select" id="quoteTax">
-                                <option value="">Choose Tax</option>
-                                <option value="2">2%</option>
-                                <option value="0.5">0.5%</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="row mt-5"> 
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Shipping Cost</label>
@@ -316,7 +318,7 @@
             }
          }) 
 
-        ajax.open('POST', "<?=ROOT?>/AjaxRequests/searchProducts", true);
+        ajax.open('POST', "<?=ROOT?>/AjaxRequests/searchProducts/regular", true);
         ajax.send(JSON.stringify(data)); 
     }
 
@@ -341,7 +343,7 @@
 
         ajax.addEventListener('readystatechange', function () { 
             if(ajax.readyState == 4 && ajax.status == 200){
-                handle_new_quote(ajax.responseText);
+                console.log(ajax.responseText);
             }
          }) 
 
@@ -369,7 +371,7 @@
 
             addQuoteBtn.addEventListener('click', function(){
                 let companyName = document.querySelector('#companyName').value
-                let quoteTax = document.querySelector('#quoteTax').value
+                let date = document.querySelector('#date').value
                 let shippingCost = document.querySelector('#shippingCost').value
                 let status = document.querySelector('#status').value
                 let address = document.querySelector('#address').value
@@ -377,17 +379,17 @@
                 let lastname = document.querySelector('#lastname').value
                 let phone = document.querySelector('#phone').value
                 let email = document.querySelector('#email').value
-                let city = document.querySelector('#city').value
+                let city = document.querySelector('#city').value 
                 let zipCode = document.querySelector('#zipCode').value
 
-                if(companyName == "" || quoteTax == "" || shippingCost == "" || status == "" || address == ""){
+                if(companyName == "" || date == "" || shippingCost == "" || status == "" || address == ""){
                     errorAlert.style.display = "block";
                     console.log('error empty')
                 }else{
                     errorAlert.style.display = "none";
                     let input = {
                         company_name: companyName,
-                        tax: quoteTax,
+                        date: date,
                         shipping_cost: shippingCost,
                         status: status,
                         address: address,
@@ -395,7 +397,7 @@
                         lastname: lastname,
                         phone_number: phone,
                         email: email,
-                        city: city,
+                        city: city, 
                         zipcode: zipCode
                     }
 
