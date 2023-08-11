@@ -336,12 +336,7 @@
                     }
 
 
-                    let products = selected_data(obj.selected, input)
-                    customersale.value = ""
-                    salediscount.value = ""
-                    saleshipping.value = ""
-                    salestatus.value = ""
-                    
+                    let products = selected_data(obj.selected, input)                    
                 }
 
                 
