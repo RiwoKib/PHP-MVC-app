@@ -45,9 +45,7 @@ $controller = $urlSegments[count($urlSegments) - 2] . "/". $active_nav;
                         <li><a <?= $active_nav == 'sales' ? 'class="active"' : ''?> href="<?=ROOT?>/sales">Sales List</a></li>
                         <li><a href="<?=ROOT?>/pos">POS</a></li>
                         <li><a href="<?=ROOT?>/sales/add" <?= $controller == 'sales/add' ? 'class="active"' : ''?>>New Sales</a></li>
-                        <li><a href="<?=ROOT?>/salesreturn" <?= $active_nav == 'salesreturn' ? 'class="active"' : ''?>>Sales Return List</a></li>
-                        <li><a href="<?=ROOT?>/salesreturn/add" <?= $controller == 'salesreturn/add' ? 'class="active"' : ''?>>New Sales Return</a></li>
-                    </ul>
+                       </ul>
                 </li>
 
                 <li class="submenu">
@@ -102,6 +100,8 @@ $controller = $urlSegments[count($urlSegments) - 2] . "/". $active_nav;
                         <span class="menu-arrow"></span>
                     </a>
                     <ul> 
+                        <li><a href="<?=ROOT?>/salesreturn" <?= $active_nav == 'salesreturn' ? 'class="active"' : ''?>>Sales Return List</a></li>
+                        <li><a href="<?=ROOT?>/salesreturn/add" <?= $controller == 'salesreturn/add' ? 'class="active"' : ''?>>New Sales Return</a></li>
                         <li><a href="<?=ROOT?>/purchasereturns" <?= $active_nav == 'purchasereturns' ? 'class="active"' : ''?>>Purchase Return List</a></li>
                         <li><a href="<?=ROOT?>/purchasereturns/add" <?= $controller == 'purchasereturns/add' ? 'class="active"' : ''?>>Add Purchase Return </a></li>
                     </ul>
