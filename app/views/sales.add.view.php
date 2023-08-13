@@ -191,7 +191,7 @@
 
         ajax.addEventListener('readystatechange', function () { 
             if(ajax.readyState == 4 && ajax.status == 200){
-                console.log(ajax.responseText);
+                handle_new_sale(ajax.responseText);
             }
          }) 
 
