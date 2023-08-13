@@ -37,7 +37,8 @@ class Model extends DBConnection
 
 
 
-	public function findAll($orderby = 'desc')
+	
+    public function findAll($orderby = 'desc')
 	{
 
 		$query = "SELECT * FROM $this->table ORDER BY id $orderby";
