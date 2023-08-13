@@ -344,19 +344,18 @@ class AjaxRequests extends Controller
         if($addP->insert($insertPurchase)){
 
         	$counter = 0;
-        foreach($productInsert as $product)
-        {
-        		if($Pitems->insert($product))
-        		{
-        			$counter += 1;
-        		}else{
-        			echo $Pitems->getErrorMessage();
-        		}
-        }
+            foreach($productInsert as $product)
+            {
+                    if($Pitems->insert($product))
+                    {
+                        $counter += 1;
+                    }else{
+                        echo $Pitems->getErrorMessage();
+                    }
+            }
         }else{
         	echo $addP->getErrorMessage();
         }
-        $counter = 1;
 
         if($counter > 0)
         {
@@ -366,5 +365,73 @@ class AjaxRequests extends Controller
             echo json_encode($dataInsert);
             
         }
+    }
+
+    function addTransfer()
+    {
+        $data = file_get_contents("php://input");
+        $data = json_decode($data);
+
+        $transferInput = $data->input;
+        $prodTransfered = $data->products;
+
+        $addT = new Transfer();
+
+
+        $date = get_date($transferInput->date);
+
+        $Transfer_ID = makeCode('transfers');
+
+        if(is_array($prodTransfered))
+        {
+            $Transferitems = new TransferItems();
+            $Grand_total_price = 0;
+
+            foreach($prodTransfered as $product)
+            {
+                $insertProducts = array(
+                    'transfer_ID' => $Transfer_ID,
+                    'product_ID' => $product->product_ID,
+                    'product_quantity' => $product->amount,
+                    'price' => $product->total_price,
+                );
+                $Grand_total_price += $product->total_price;
+
+                $productInsert[] = $insertProducts;
+            }
+        }
+
+        $insertTransfer = array(
+            'transfer_ID' => $Transfer_ID,
+            'from_store' => $transferInput->from_store,
+            'status' => $transferInput->status,
+            'shipping_cost' => $transferInput->shipping_cost,
+            'to_store' => $transferInput->to_store,
+            'created_on' => $date
+        );
+
+        if($addT->insert($insertTransfer)){
+
+        	$counter = 0;
+            foreach($productInsert as $product)
+            {
+                if($Transferitems->insert($product))
+                {
+                    $counter += 1;
+                }else{
+                    echo "something went wrong";
+                }
+            }
+        }else{
+        	echo "something went wrong";
+        }
+
+        if($counter > 0)
+        {
+            $dataInsert['insertTransfer'] = $insertTransfer;
+            $dataInsert['productsInsert'] = $productInsert;
+
+            echo json_encode($dataInsert);
+        }        
     }
 }
