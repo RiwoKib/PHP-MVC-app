@@ -87,6 +87,9 @@ function makeCode($table)
 			case 'quotation':
 				return "QT_".rand(0001,4444);
 				break;
+			case 'transfers':
+				return "TR_".rand(0001,4444);
+				break;
 			default:
 				return false;
 		} 	
