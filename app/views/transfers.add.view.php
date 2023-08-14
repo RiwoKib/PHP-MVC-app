@@ -91,7 +91,7 @@
                             <label>From</label>
                             <select id="from" class="select">
                                 <option value="">Choose</option>
-                                <option value="langata park2">Langata Park2</option> 
+                                <option value="langata park2" selected>Langata Park2</option> 
                             </select>
                         </div>
                     </div>
@@ -143,12 +143,12 @@
                     </div>
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Status</label>
+                            <label>Status <span class="text-info" style="font-size: 11px;">Sent by Default</span></label>
                             <select class="select" id="status">
                                 <option value="">Choose Status</option>
                                 <option value="1">Completed</option>
                                 <option value="2">Pending</option>
-                                <option value="0">Sent</option>
+                                <option value="0" selected>Sent</option>
                             </select>
                         </div>
                     </div>
