@@ -407,6 +407,7 @@ class AjaxRequests extends Controller
             'status' => $transferInput->status,
             'shipping_cost' => $transferInput->shipping_cost,
             'to_store' => $transferInput->to_store,
+            'goods_total'=> $Grand_total_price,
             'created_on' => $date
         );
 
