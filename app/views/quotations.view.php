@@ -91,11 +91,10 @@
                                     <span class="checkmarks"></span>
                                     </label>
                                 </th>
-                                <th>Product Name</th>
                                 <th>Reference</th>
                                 <th>Customer Name</th>
                                 <th>Status</th>
-                                <th>Grand Total ($)</th>
+                                <th>Grand Total</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -109,25 +108,19 @@
                                                 <span class="checkmarks"></span>
                                             </label>
                                         </td>
-                                        <td class="productimgname">
-                                            <a href="javascript:void(0);" class="product-img">
-                                                <img src="<?=UPLOADED?>/<?=$quote['image']?>" alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);"><?=$quote['product_name']?></a>
-                                        </td>
-                                        <td><?=$quote['quote_ID']?></td>
-                                        <td><?=$quote['company_name']?></td>
+                                        <td><?=$quote->quote_ID?></td>
+                                        <td><?=$quote->company_name?></td>
                                         <td>
                                             <?php 
-                                                $status = $quote['status'] == 1 ? 'Sent' : ($quote['status'] == 2 ? 'Pending' : 'Ordered'); 
-                                                $Qclass = $quote['status'] == 1 ? 'bg-lightgreen' : ($quote['status'] == 2 ? 'bg-lightyellow' : 'bg-lightred')
+                                                $status = $quote->status == 1 ? 'Sent' : ($quote->status == 2 ? 'Pending' : 'Ordered'); 
+                                                $Qclass = $quote->status == 1 ? 'bg-lightgreen' : ($quote->status == 2 ? 'bg-lightyellow' : 'bg-lightred')
                                             ?>
                                             <span class="badges <?=$Qclass?>"><?=$status?></span>
                                         </td>
-                                        <td><?=$quote['total']?></td>
+                                        <td class="text-green"><?=$quote->total?></td>
                                         <td>
-                                            <a class="me-3" href="editquotation.html">
-                                                <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
+                                            <a class="me-3" href="product-details.html">
+                                                <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
                                             </a>
                                             <a class="me-3 confirm-text" href="javascript:void(0);">
                                                 <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
