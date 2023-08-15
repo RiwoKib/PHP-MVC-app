@@ -128,9 +128,9 @@
                                                 ?> 
                                                 <span class="badges <?=$class?>"><?=$status?></span>
                                             </td>
-                                            <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->total?></td>
-                                            <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->paid?></td>
-                                            <td><span class="text-success" style="font-size: 9px">KSh</span> <?=$purchase->due?></td>
+                                            <td class="text-green"><span style="font-size: 9px">KSh</span> <?=$purchase->total?></td>
+                                            <td class="text-green"><span style="font-size: 9px">KSh</span> <?=$purchase->paid?></td>
+                                            <td class="text-green"><span style="font-size: 9px">KSh</span> <?=$purchase->due?></td>
                                             <td>
                                                 <?php 
                                                     $paymentStatus = $purchase->payment_status == 'paid' ? 'Paid' : ($purchase->payment_status == 'partial' ? 'Partial' : 'Unpaid');

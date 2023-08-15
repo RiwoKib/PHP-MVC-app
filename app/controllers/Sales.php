@@ -18,6 +18,11 @@ class Sales extends Controller
 
 		$data = $sales->findAll();
 
+		foreach($data as $quote)
+		{
+			$quote->total = number_format($quote->total);
+		}
+
 		$this->view('sales', ['rows' => $data]);
 	}
 

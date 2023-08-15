@@ -18,8 +18,12 @@ class Purchases extends Controller
 		$supplier = new Supplier();
 
 		// $supplier_name = $supplier->where('supplier_name', '')
-
 		$data = $purchase->findAll();
+
+		foreach($data as $quote)
+		{
+			$quote->total = number_format($quote->total);
+		}
 
 		$this->view('purchases', ['rows' => $data]);
 	}

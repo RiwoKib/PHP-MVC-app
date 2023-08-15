@@ -117,7 +117,7 @@
                                             ?>
                                             <span class="badges <?=$Qclass?>"><?=$status?></span>
                                         </td>
-                                        <td class="text-green"><?=$quote->total?></td>
+                                        <td class="text-green"><span style="font-size: 9px">KSh</span> <?=$quote->total?></td>
                                         <td>
                                             <a class="me-3" href="product-details.html">
                                                 <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">

@@ -121,7 +121,7 @@
                                             ?>
                                             <span class="badges <?=$buttonClass?>"><?=$buttonText?></span>
                                         </td>
-                                        <td><?=$expense->amount?></td>
+                                        <td class="text-green"><span style="font-size: 9px">KSh</span> <?=$expense->amount?></td>
                                         <td><?=$expense->description?></td>
                                         <td>
                                             <a class="me-3" href="<?=ROOT?>/expenses/edit/<?=$expense->id?>">

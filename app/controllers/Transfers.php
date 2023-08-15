@@ -19,6 +19,11 @@ class Transfers extends Controller
 
 		$data = $transfers->findAll();
 
+		foreach($data as $quote)
+		{
+			$quote->goods_total = number_format($quote->goods_total);
+		}
+
 		$this->view('transfers', ['rows' => $data]);
 	}
 

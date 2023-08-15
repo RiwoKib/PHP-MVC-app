@@ -115,7 +115,7 @@
                                         ?>
                                         <span class="badges <?=$classPayment?>"><?=$paymentStatus?></span>
                                     </td>
-                                    <td><?=$sale->total?></td>
+                                    <td class="text-green"><span style="font-size: 9px;">KSh</span> <?=$sale->total?></td>
                                     <td class="text-green"><?=$sale->paid?></td>
                                     <td><?=$sale->amount_due?></td>
                                     <td>Admin</td>

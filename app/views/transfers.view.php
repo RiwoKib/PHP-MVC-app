@@ -107,7 +107,7 @@
                                         <td><?=$transfer->transfer_ID?></td>
                                         <td><?=$transfer->from_store?></td>
                                         <td><?=$transfer->to_store?></td>
-                                        <td class="text-green"><?=$transfer->goods_total?></td>
+                                        <td class="text-green"><span style="font-size: 9px;">KSh</span> <?=$transfer->goods_total?></td>
                                         <td>
                                             <?php 
                                                 $statusT = $transfer->status == 1 ? 'Completed' : ($transfer->status == 2 ? 'Pending' : 'Sent');

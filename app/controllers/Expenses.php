@@ -19,6 +19,11 @@ class Expenses extends Controller
 
 		$data = $expenses->findAll();
 
+		foreach($data as $quote)
+		{
+			$quote->amount = number_format($quote->amount);
+		}
+
 		$this->view('expenses', ['rows' => $data]);
 	}
 
