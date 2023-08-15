@@ -78,4 +78,17 @@ class Quotations extends Controller
 											]);
     }
 
+	function quote_details($id = null)
+	{
+		if(!Authenticate::logged_in())
+		{
+			$this->redirect('login');
+		}
+
+		$data = new Quotation();
+
+
+		$this->view('quotedetails', ['rows' => $data]);
+	}
+
 }
