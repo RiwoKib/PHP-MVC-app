@@ -110,8 +110,8 @@
                                     </td>
                                     <td>
                                         <?php 
-                                            $paymentStatus = $sale->payment_status == 'paid' ? 'Paid' : ($sale->payment_status == 'partial' ? 'Partial' : 'Unpaid');
-                                            $classPayment = $sale->payment_status == 'paid' ? 'bg-lightgreen' : ($sale->payment_status == 'partial' ? 'bg-lightyellow' : 'bg-lightred');
+                                            $paymentStatus = $sale->payment_status == 1 ? 'Paid' : ($sale->payment_status == 2 ? 'Partial' : 'Unpaid');
+                                            $classPayment = $sale->payment_status == 1 ? 'bg-lightgreen' : ($sale->payment_status == 2 ? 'bg-lightyellow' : 'bg-lightred');
                                         ?>
                                         <span class="badges <?=$classPayment?>"><?=$paymentStatus?></span>
                                     </td>
@@ -124,7 +124,7 @@
                                             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="sales-details.html" class="dropdown-item"><img src="<?=ASSETS?>/img/icons/eye1.svg" class="me-2" alt="img">Sale Detail</a>
+                                            <li><a href="<?=ROOT?>/sales/sale_details/<?=$sale->id?>" class="dropdown-item"><img src="<?=ASSETS?>/img/icons/eye1.svg" class="me-2" alt="img">Sale Detail</a>
                                             </li>
                                             <li><a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editpayment"><img src="<?=ASSETS?>/img/icons/edit.svg" class="me-2" alt="img">Edit Payment</a>
                                             </li>
