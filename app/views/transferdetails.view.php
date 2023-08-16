@@ -6,8 +6,8 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Sale Details</h4>
-                <h6>View sale details</h6>
+                <h4>Transfer Details</h4>
+                <h6>View transfer details</h6>
             </div>
         </div>
 
@@ -15,7 +15,7 @@
         <div class="card">
         <div class="card-body"> 
                 <div class="table-top">
-                    <h5 class="card-title">Sale Details: <span style="color:#7367F0"><?=$sale_ID?></span></h5>
+                    <h5 class="card-title">Transfer Details: <span style="color:#7367F0"><?=$transfer_ID?></span></h5>
                     <div class="wordset">
                         <ul>
                             <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="<?=ASSETS?>/img/icons/edit.svg" alt="img"></a>
@@ -35,16 +35,10 @@
                     <tbody>
                         <tr>
                             <td style="padding:5px;vertical-align:top;text-align:left;padding-bottom:20px">
-                                <font style="vertical-align: inherit;margin-bottom:25px;"><font style="vertical-align: inherit;font-size:14px;color:#7367F0;font-weight:600;line-height: 35px; ">Customer Info</font></font><br>
-                               <?php if(isset($customer_info['firstname']) && $customer_info){?>
-                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;"> <?=$customer_info['firstname']?> <?=$customer_info['lastname']?></font></font><br>
-                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;"> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a4d5b565117535417594f494e55575f487a5f425b574a565f14595557">[email&#160;protected]</a></font></font><br>
-                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">0<?=$customer_info['phone_number']?></font></font><br>
-                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;"><?=$customer_info['city']?></font></font><br>
-                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;"><?=$customer_info['address']?></font></font><br>
-                                <?php }else{?>
-                                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">Walk-in-Customer</font></font><br>
-                                <?php }?>
+                                <font style="vertical-align: inherit;margin-bottom:25px;"><font style="vertical-align: inherit;font-size:14px;color:#7367F0;font-weight:600;line-height: 35px; ">Transfer Info</font></font><br>
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">From: <?=$transfer_info['from']?></font></font><br>
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">To: <?=$transfer_info['to']?></font></font><br>
+                                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;font-size: 14px;color:green;font-weight: 400;">Goods Worth: <?=$transfer_info['total']?></font></font><br>
                             </td>
                             <td style="padding:5px;vertical-align:top;text-align:left;padding-bottom:20px">
                                 <font style="vertical-align: inherit;margin-bottom:25px;"><font style="vertical-align: inherit;font-size:14px;color:#7367F0;font-weight:600;line-height: 35px; ">Invoice Info</font></font><br>
@@ -58,17 +52,17 @@
                                     </font>
                                 </font><br>
                                 <font style="vertical-align: inherit;">
-                                    <font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;"><?=$sale_ID?> 
+                                    <font style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;"><?=$transfer_ID?> 
                                     </font>
                                 </font><br>
                                 <?php 
-                                    $colorQ = $customer_info['status'] == 1 ? 'green' : 'red';
-                                    $paymentColor = $customer_info['payment_status'] == 1 ? 'green' : ($customer_info['payment_status'] == '2' ? 'orange' : 'red');
+                                    $colorQ = $transfer_info['status'] == 1 ? 'green' : ($transfer_info['status'] == '2' ? 'orange' : 'red');
+                                    $paymentColor = $transfer_info['payment_status'] == 1 ? 'green' : ($transfer_info['payment_status'] == '2' ? 'orange' : 'red');
                                 ?>
                                 <font style="vertical-align: inherit;">
                                     <font style="vertical-align: inherit;font-size: 14px;color:<?=$paymentColor?>;font-weight: 400;"> 
                                         <?php 
-                                            $paymentQ = $customer_info['payment_status'] == 1 ? 'Paid' : ($customer_info['payment_status'] == '2' ? 'Partial' : 'Unpaid');
+                                            $paymentQ = $transfer_info['payment_status'] == 1 ? 'Paid' : ($transfer_info['payment_status'] == '2' ? 'Partial' : 'Unpaid');
                                         ?>
                                         <?=$paymentQ?>
                                     </font>
@@ -76,7 +70,7 @@
                                 <font style="vertical-align: inherit;">
                                     <font style="vertical-align: inherit;font-size: 14px;color:<?=$colorQ?>;font-weight: 400;">  
                                         <?php 
-                                            $statusQ = $customer_info['status'] == 1 ? 'Completed' : 'Pending';
+                                            $statusQ = $transfer_info['status'] == 1 ? 'Completed' : ($transfer_info['status'] == '2' ? 'Pending' : 'Sent');
                                         ?>
                                         <?=$statusQ?>
                                     </font>
@@ -90,14 +84,14 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr> 
+                                <tr>
                                     <th>Product Name</th>
-                                    <th class="text-center">Quantity</th>
-                                    <th class="text-center">Unit</th>
-                                    <th class="text-center">Price</th>
-                                    <th class="text-center">Total</th>
-                                    <th class="text-center">Discount %</th>
+                                    <th>Quantity</th>
+                                    <th class="text-center">Description</th>
                                     <th class="text-center">VAT %</th>
+                                    <th class="text-center">Unit</th>
+                                    <th class="text-end text-center">Unit Cost</th>
+                                    <th class="text-end text-center">Total Price</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -105,26 +99,26 @@
                                 <?php if(isset($rows) && $rows){?>
                                     <?php foreach($rows as $product){?>
                                         <tr>
-                                        <td class="productimgname">
-                                            <a class="product-img">
-                                                <img src="<?=UPLOADED?>/<?=$product['image']?>" alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);"><?=$product['product_name']?></a>
-                                        </td>
-                                        <td class="text-center"><?=$product['amount']?></td>
-                                        <td class="text-center"><?=$product['unit']?></td>
-                                        <td class="text-center"><?=$product['price']?></td>
-                                        <td class="text-center"><?=$product['total_price']?></td>
-                                        <td class="text-center"><?=$product['tax']?></td>
-                                        <td class="text-center"><?=$product['discount']* 100?></td>
-                                        <td>
-                                            <a href="javascript:void(0);" class="delete-set"><img src="<?=ASSETS?>/img/icons/delete.svg" alt="svg"></a>
-                                        </td>      
+                                            <td class="productimgname">
+                                                <a class="product-img">
+                                                    <img src="<?=UPLOADED?>/<?=$product['image']?>" alt="product">
+                                                </a>
+                                                <a href="javascript:void(0);"><?=$product['product_name']?></a>
+                                            </td>
+                                            <td class="text-center"><?=$product['amount']?></td>
+                                            <td class="text-center"><?=$product['quote_description']?></td>
+                                            <td class="text-center"><?=$product['tax']?></td>
+                                            <td class="text-center"><?=$product['unit']?></td>
+                                            <td class="text-center"><?=$product['price']?></td>
+                                            <td class="text-center"><?=$product['total_price']?></td>
+                                            <td>
+                                                <a href="javascript:void(0);" class="delete-set"><img src="<?=ASSETS?>/img/icons/delete.svg" alt="svg"></a>
+                                            </td>
                                         </tr>
                                     <?php }?>
                                 <?php }else{?>
                                     <div>
-                                        <p class="text-info">** No Sold Items for This Sale **</p>
+                                        <p class="text-info">** No Transfer Items for This Transfer **</p>
                                     </div>
                                 <?php }?>
                             </tbody>
@@ -137,20 +131,12 @@
                         <div class="total-order">
                             <ul>
                                 <li>
-                                    <h4>Subtotal</h4>
-                                    <h5 class="text-success"><span style="font-size: 9px;">KSh</span> <?=$customer_info['subtotal']?></h5>
-                                </li>
-                                <li>
-                                    <h4>Discount</h4>
-                                    <h5 class="text-success"><span style="font-size: 9px;">KSh</span> <?=$customer_info['discount']?></h5>
-                                </li>
-                                <li>
                                     <h4>Shipping</h4>
-                                    <h5 class="text-success"><span style="font-size: 9px;">KSh</span> <?=$customer_info['shipping_cost']?></h5>
+                                    <h5 class="text-success"><span style="font-size: 9px;">KSh</span> <?=$transfer_info['shipping_cost']?></h5>
                                 </li>
                                 <li class="total">
                                     <h4>Grand Total</h4>
-                                    <h5 class="text-success"><span style="font-size: 9px;">KSh</span> <?=$customer_info['grand_total']?></h5>
+                                    <h5 class="text-success"><span style="font-size: 9px;">KSh</span> <?=$transfer_info['grand_total']?></h5>
                                 </li>
                             </ul>
                         </div>  
