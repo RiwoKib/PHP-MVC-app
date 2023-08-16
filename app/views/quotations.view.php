@@ -119,7 +119,7 @@
                                         </td>
                                         <td class="text-green"><span style="font-size: 9px">KSh</span> <?=$quote->total?></td>
                                         <td>
-                                            <a class="me-3" title="details" href="<?=ROOT?>/quotations/quote_details">
+                                            <a class="me-3" title="details" href="<?=ROOT?>/quotations/quote_details/<?=$quote->id?>">
                                                 <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
                                             </a>
                                             <a class="me-3" title="delete" href="javascript:void(0);">
