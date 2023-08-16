@@ -133,15 +133,15 @@
                                             <td class="text-green"><span style="font-size: 9px">KSh</span> <?=$purchase->due?></td>
                                             <td>
                                                 <?php 
-                                                    $paymentStatus = $purchase->payment_status == 'paid' ? 'Paid' : ($purchase->payment_status == 'partial' ? 'Partial' : 'Unpaid');
+                                                    $paymentStatus = $purchase->payment_status == 1 ? 'Paid' : ($purchase->payment_status == 2 ? 'Partial' : 'Unpaid');
                                                     
-                                                    $paymentClass = $purchase->payment_status == 'paid' ? 'bg-lightgreen' : ($purchase->payment_status == 'unpaid' ? 'bg-lightred' : 'bg-lightyellow') 
+                                                    $paymentClass = $purchase->payment_status == 1 ? 'bg-lightgreen' : ($purchase->payment_status == 2 ? 'bg-lightyellow' : 'bg-lightred') 
                                                 ?> 
                                                 <span class="badges <?=$paymentClass?>"><?=$paymentStatus?></span>
                                             </td>
                                             <td>
-                                                <a class="me-3" href="editpurchase.html">
-                                                    <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
+                                                <a class="me-3" href="<?=ROOT?>/purchases/purchase_details/<?=$purchase->id?>">
+                                                    <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
                                                 </a>
                                                 <a class="me-3 confirm-text" href="javascript:void(0);">
                                                     <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">

@@ -116,8 +116,8 @@
                                             <span class="badges <?=$classT?>"><?=$statusT?></span>
                                         </td>
                                         <td>
-                                            <a class="me-3" href="edittransfer.html">
-                                                <img src="<?=ASSETS?>/img/icons/edit.svg" alt="img">
+                                            <a class="me-3" href="<?=ROOT?>/transfers/transfer_details/<?=$transfer->id?>">
+                                                <img src="<?=ASSETS?>/img/icons/eye.svg" alt="img">
                                             </a>
                                             <a class="me-3 confirm-text" href="javascript:void(0);">
                                                 <img src="<?=ASSETS?>/img/icons/delete.svg" alt="img">
