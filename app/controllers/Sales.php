@@ -66,7 +66,6 @@ class Sales extends Controller
 			{	
 				$prod_ID = $product->product_ID;
 				$product_info = $Product->where('product_ID', $prod_ID);
-				$subtotal = 0;
 
 				$prepareSoldItems = array(
 					'product_name' => $product_info[0]->product_name,
@@ -77,7 +76,6 @@ class Sales extends Controller
 					'total_price' => $product->price,
 					'price' => $product_info[0]->selling_price,
 					'amount' => $product->product_quantity,
-					'subtotal' => $subtotal
 				);
 
 				$showSoldItems[] = $prepareSoldItems;
@@ -87,13 +85,14 @@ class Sales extends Controller
 		$discount = $sale_data[0]->discount * $grand_total;
 		$total = ($grand_total + $shipping_cost) - $discount;
 
-		$prepareCustomerInfo = array(
+		$info = $prepareCustomerInfo = array(
 			'customer_code' => $sale_data[0]->customer_code,
 			'status' => $sale_data[0]->status,
 			'payment_status' => $sale_data[0]->payment_status,
 			'shipping_cost' => number_format($shipping_cost),
 			'grand_total' => number_format($total),
 			'discount' => number_format($discount),
+			'subtotal' =>number_format($grand_total)
 		);
 
 		$customer = new Customer();
@@ -107,15 +106,7 @@ class Sales extends Controller
 			$prepareCustomerInfo['address'] = $customer_info[0]->address;
 			$prepareCustomerInfo['phone_number'] = $customer_info[0]->phone_number;
 		}else{
-			$prepareCustomerInfo = array(
-				'customer_code' => $sale_data[0]->customer_code,
-				'status' => $sale_data[0]->status,
-				'payment_status' => $sale_data[0]->payment_status,
-				'shipping_cost' => number_format($shipping_cost),
-				'grand_total' => number_format($total),
-				'discount' => number_format($discount),
-			);
-			
+			$info;			
 		}
 
 		$this->view('saledetails', ['rows' => $showSoldItems, 
