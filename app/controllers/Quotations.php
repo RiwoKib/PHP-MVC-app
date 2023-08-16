@@ -67,6 +67,8 @@ class Quotations extends Controller
 		$QuoteItems = new QuoteItems();
 		$quoteProducts = $QuoteItems->findAll();
 		$Product = new Product();
+		$grand_total = $quote_data[0]->total;
+		$shipping_cost = $quote_data[0]->shipping_cost;
 
 		foreach($quoteProducts as $product)
 		{
@@ -92,11 +94,15 @@ class Quotations extends Controller
 			}
 		} 
 
+		$grand_total += $shipping_cost;
+
 		$prepareCompanyInfo = array(
 			'company_name' => $quote_data[0]->company_name,
 			'address' => $quote_data[0]->address,
 			'city' => $quote_data[0]->city,
 			'zipcode' =>  $quote_data[0]->zipcode,
+			'shipping_cost' => number_format($shipping_cost),
+			'grand_total' => number_format($grand_total)
 		);
 
 		$prepareCustomerInfo = array(
