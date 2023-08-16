@@ -27,30 +27,6 @@ class Quotations extends Controller
 			$quote->total = number_format($quote->total);
 		}
 
-		// foreach($quoteProducts as $product)
-		// {
-		// 	$quote_ID = $product->quote_ID;
-		// 	foreach($data as $quote)
-		// 	{
-		// 		if($quote_ID == $quote->quote_ID)
-		// 		{
-		// 			$prod_ID = $product->product_ID;
-		// 			$productInfo = $Product->where('product_ID', $prod_ID);
-
-		// 			$prepareQuoteItems = array(
-		// 				'product_name' => $productInfo[0]->product_name,
-		// 				'image' => $productInfo[0]->image,
-		// 				'quote_ID' => $product->quote_ID,
-		// 				'total' => $quote->total,
-		// 				'company_name' => $quote->company_name,
-		// 				'status' => $quote->status,
-		// 			);
-
-		// 			$showQuoteItems[] = $prepareQuoteItems;
-		// 		}
-		// 	}
-		// }
-
 		// print_r($showQuoteItems);
 
 		$this->view('quotations', ['rows' => $data]);
@@ -85,10 +61,56 @@ class Quotations extends Controller
 			$this->redirect('login');
 		}
 
-		$data = new Quotation();
+		$quote = new Quotation();
+		$quote_data = $quote->where('id' , $id);
+		$ID = $quote_data[0]->quote_ID;
+		$QuoteItems = new QuoteItems();
+		$quoteProducts = $QuoteItems->findAll();
+		$Product = new Product();
 
+		foreach($quoteProducts as $product)
+		{
+			$quote_ID = $product->quote_ID;
 
-		$this->view('quotedetails', ['rows' => $data]);
+			if($quote_ID == $quote_data[0]->quote_ID)
+			{	
+				$prod_ID = $product->product_ID;
+				$product_info = $Product->where('product_ID', $prod_ID);
+
+				$prepareQuoteItems = array(
+					'product_name' => $product_info[0]->product_name,
+					'image' => $product_info[0]->image,
+					'unit'=> $product_info[0]->unit,
+					'quote_description' => $product_info[0]->quote_description,
+					'tax' => $product_info[0]->tax * 100,
+					'total_price' => $product->price,
+					'price' => $product_info[0]->selling_price,
+					'amount' => $product->product_quantity
+				);
+
+				$showQuoteItems[] = $prepareQuoteItems;
+			}
+		} 
+
+		$prepareCompanyInfo = array(
+			'company_name' => $quote_data[0]->company_name,
+			'address' => $quote_data[0]->address,
+			'city' => $quote_data[0]->city,
+			'zipcode' =>  $quote_data[0]->zipcode,
+		);
+
+		$prepareCustomerInfo = array(
+			'firstname' => $quote_data[0]->firstname,
+			'lastname' => $quote_data[0]->lastname,
+			'phone_number' => $quote_data[0]->phone_number,
+			'status' => $quote_data[0]->status,
+			'payment_status' => $quote_data[0]->payment_status
+		);
+
+		$this->view('quotedetails', [	'rows' => $showQuoteItems, 
+										'quote_ID' => $ID,
+										'company_info' => $prepareCompanyInfo,
+										'customer_info' => $prepareCustomerInfo]);
 	}
 
 }
