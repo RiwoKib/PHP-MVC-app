@@ -45,6 +45,75 @@ class Purchases extends Controller
 								  		'suppliers' => $suppliers,	]);
     }
 
+	function purchase_details($id=null)
+	{	
+		if(!Authenticate::logged_in())
+		{
+			$this->redirect('login');
+		}
+
+		$purchase = new Purchase();
+		$purchase_data = $purchase->where('id' , $id);
+		$ID = $purchase_data[0]->purchase_code;
+		$PurchaseItems = new PurchaseItems();
+		$purchasedProducts = $PurchaseItems->findAll();
+		$Product = new Product();
+		$grand_total = $purchase_data[0]->total;
+		$shipping_cost = $purchase_data[0]->shipping_cost;
+
+		foreach($purchasedProducts as $product)	
+		{
+			$purchase_ID = $product->purchase_ID;
+
+			if($purchase_ID == $ID)
+			{	
+				$prod_ID = $product->product_ID;
+				$product_info = $Product->where('product_ID', $prod_ID);
+
+				$preparePurchaseItems = array(
+					'product_name' => $product_info[0]->product_name,
+					'image' => $product_info[0]->image,
+					'unit'=> $product_info[0]->unit,
+					'quote_description' => $product_info[0]->quote_description,
+					'tax' => $product_info[0]->tax * 100,
+					'total_price' => $product->price,
+					'price' => $product_info[0]->selling_price,
+					'amount' => $product->product_quantity
+				);
+
+				$showPurchaseItems[] = $preparePurchaseItems;
+			}
+		}
+		
+		$discount = $purchase_data[0]->discount * $grand_total;
+		$revenue_tax = $purchase_data[0]->tax * $grand_total;
+		$total = ($grand_total + $shipping_cost + $revenue_tax) - $discount;
+
+		$prepareSupplierInfo = array(
+			'supplier_code' => $purchase_data[0]->supplier_code,
+			'status' => $purchase_data[0]->status,
+			'payment_status' => $purchase_data[0]->payment_status,
+			'shipping_cost' => number_format($shipping_cost),
+			'grand_total' => number_format($total),
+			'discount' => number_format($discount),
+			'tax'=> number_format($revenue_tax),
+			'subtotal' =>number_format($grand_total)
+		);
+
+		$supplier = new Supplier();
+		$supplier_info = $supplier->where('supplier_code', $prepareSupplierInfo['supplier_code']);
+
+		$prepareSupplierInfo['supplier_name'] = $supplier_info[0]->supplier_name;
+		$prepareSupplierInfo['country'] = $supplier_info[0]->country;
+		$prepareSupplierInfo['city'] = $supplier_info[0]->city;
+		$prepareSupplierInfo['address'] = $supplier_info[0]->address;
+		$prepareSupplierInfo['phone_number'] = $supplier_info[0]->phone_number;
+
+		$this->view('purchasedetails', ['rows' => $showPurchaseItems, 
+										'purchase_ID' => $ID,
+										'supplier_info' => $prepareSupplierInfo]);
+	}
+
 	function import()
 	{
 		$errors = array();
