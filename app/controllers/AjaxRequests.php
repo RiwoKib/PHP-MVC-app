@@ -435,4 +435,68 @@ class AjaxRequests extends Controller
             echo json_encode($dataInsert);
         }        
     }
+
+    function QuotePDF($id=null)
+    {    
+        $quote = new Quotation();
+		$quote_data = $quote->where('quote_ID' , $id);
+		$ID = $quote_data[0]->quote_ID;
+		$QuoteItems = new QuoteItems();
+		$quoteProducts = $QuoteItems->findAll();
+		$Product = new Product();
+		$grand_total = $quote_data[0]->total;
+		$shipping_cost = $quote_data[0]->shipping_cost;
+
+		foreach($quoteProducts as $product)
+		{
+			$quote_ID = $product->quote_ID;
+
+			if($quote_ID == $ID)
+			{	
+				$prod_ID = $product->product_ID;
+				$product_info = $Product->where('product_ID', $prod_ID);
+
+				$prepareQuoteItems = array(
+					$product_info[0]->product_name,
+					$product_info[0]->quote_description,
+					$product->product_quantity,
+					number_format($product_info[0]->selling_price),
+					number_format($product->price),
+				);
+
+				$showQuoteItems[] = $prepareQuoteItems;
+			}
+		} 
+
+        $prepareCompanyInfo = array(
+            'quote_ID' => $ID,
+            'entry' =>$quote_data[0]->created_on,
+            'expiry' =>$quote_data[0]->expiry_date,
+			'company_name' => $quote_data[0]->company_name,
+			'address' => $quote_data[0]->address,
+			'city' => $quote_data[0]->city,
+			'zipcode' =>  $quote_data[0]->zipcode,
+			'shipping_cost' => number_format($shipping_cost),
+			'total' => number_format($grand_total)
+		);
+        $grand_total += $shipping_cost;
+		$prepareCustomerInfo = array(
+			'firstname' => $quote_data[0]->firstname,
+			'lastname' => $quote_data[0]->lastname,
+            'email' =>$quote_data[0]->email,
+			'phone_number' => $quote_data[0]->phone_number,
+			'status' => $quote_data[0]->status,
+			'payment_status' => $quote_data[0]->payment_status,
+			'grand_total' => number_format($grand_total)
+		);
+
+        $data[] = $showQuoteItems;
+        $data[] = $prepareCompanyInfo;
+        $data[] = $prepareCustomerInfo;
+
+        generatePdf($data);
+
+        print_r($showQuoteItems);
+
+    }
 }
