@@ -16,18 +16,12 @@ class Quotations extends Controller
 		}
 
 		$quotes = new Quotation();
-		$quote_items = new QuoteItems();
-		$Product = new Product();
-
-		// $quoteProducts = $quote_items->findAll();
 		$data = $quotes->findAll();
 
 		foreach($data as $quote)
 		{
 			$quote->total = number_format($quote->total);
 		}
-
-		// print_r($showQuoteItems);
 
 		$this->view('quotations', ['rows' => $data]);
 	}
@@ -74,7 +68,7 @@ class Quotations extends Controller
 		{
 			$quote_ID = $product->quote_ID;
 
-			if($quote_ID == $quote_data[0]->quote_ID)
+			if($quote_ID == $ID)
 			{	
 				$prod_ID = $product->product_ID;
 				$product_info = $Product->where('product_ID', $prod_ID);
