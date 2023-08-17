@@ -16,7 +16,7 @@ class Quotr {
   // (C) QUOTATION DATA
   // (C1) COMPANY HEADER - CHANGE TO YOUR OWN!
   private $company = [
-    UPLOADED . "/bilkensQuoteLogo .png",
+    UPLOADED . "/bilkensQuoteLogo.png",
     '',
     "Bilkens Enterprises",
     "Langata Park 2",
