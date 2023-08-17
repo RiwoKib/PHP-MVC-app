@@ -8,9 +8,14 @@ class ComposerStaticInit75cfe99a7c84adfcea5c77fe8b58c77e
 {
     public static $files = array (
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        's' => 
+        array (
+            'setasign\\Fpdi\\' => 14,
+        ),
         'Z' => 
         array (
             'ZipStream\\' => 10,
@@ -18,6 +23,7 @@ class ComposerStaticInit75cfe99a7c84adfcea5c77fe8b58c77e
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
@@ -25,11 +31,17 @@ class ComposerStaticInit75cfe99a7c84adfcea5c77fe8b58c77e
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
+            'Mpdf\\PsrLogAwareTrait\\' => 22,
+            'Mpdf\\' => 5,
             'Matrix\\' => 7,
         ),
         'L' => 
         array (
             'Legion\\PhpMvc\\' => 14,
+        ),
+        'D' => 
+        array (
+            'DeepCopy\\' => 9,
         ),
         'C' => 
         array (
@@ -38,6 +50,10 @@ class ComposerStaticInit75cfe99a7c84adfcea5c77fe8b58c77e
     );
 
     public static $prefixDirsPsr4 = array (
+        'setasign\\Fpdi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/setasign/fpdi/src',
+        ),
         'ZipStream\\' => 
         array (
             0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
@@ -45,6 +61,10 @@ class ComposerStaticInit75cfe99a7c84adfcea5c77fe8b58c77e
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -63,6 +83,14 @@ class ComposerStaticInit75cfe99a7c84adfcea5c77fe8b58c77e
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
+        'Mpdf\\PsrLogAwareTrait\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mpdf/psr-log-aware-trait/src',
+        ),
+        'Mpdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mpdf/mpdf/src',
+        ),
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
@@ -70,6 +98,10 @@ class ComposerStaticInit75cfe99a7c84adfcea5c77fe8b58c77e
         'Legion\\PhpMvc\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'DeepCopy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
         'Complex\\' => 
         array (
