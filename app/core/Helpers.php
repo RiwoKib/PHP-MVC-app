@@ -1,6 +1,7 @@
 <?php
 
 require '../vendor/autoload.php';
+require "../app/core/quotr.php";
 
 
 function get_val($key,$default = "")
@@ -150,5 +151,82 @@ function extractDataFromExcel($file)
         return $data;
     }
 
+function generatePdf($DATA)
+{
+	// (B) SET QUOTATION DATA
+	
+	// (J) "START" QUOTR
+	$quotr = new Quotr();
+
+	// (B2) QUOTATION HEADER
+	$quotr->set("head", [
+		["QUOTATION #", $DATA[1]['quote_ID']],
+		["Valid From", $DATA[1]['entry']],
+		["Valid Till", $DATA[1]['expiry']]
+	]);
+
+	// (B3) CUSTOMER
+	$quotr->set("customer", [
+		$DATA[2]['firstname'] ." ".$DATA[2]['lastname'],
+		$DATA[1]['city'] ." ". $DATA[1]['zipcode'],
+		$DATA[1]['address'],
+		0 ."".$DATA[2]['phone_number'],
+		$DATA[2]['email']
+	]);
+
+	// // (B4) ITEMS - ADD ONE-BY-ONE
+	// $items = [
+	// 	["Rubber Hose", "5m long rubber hose", 3, "$5.50", "$16.50"],
+	// 	["Rubber Duck", "Good bathtub companion", 8, "$4.20", "$33.60"],
+	// 	["Rubber Band", "", 10, "$0.10", "$1.00"],
+	// 	["Rubber Stamp", "", 3, "$12.30", "$36.90"],
+	// 	["Rubber Shoe", "For slipping, not for running", 1, "$20.00", "$20.00"]
+	// ];
+
+	// show($DATA[0]);
+	foreach ($DATA[0] as $key => $i) { $quotr->add("items", $i); }
+
+	// show($i);
+
+	// // (B5) ITEMS - OR SET ALL AT ONCE
+	// $quotr->set("items", $items);
+
+	// (B6) TOTALS
+	$quotr->set("totals", [
+		["SUB-TOTAL", "KSh" . $DATA[1]['total']],
+		["Shipping", "KSh" . $DATA[1]['shipping_cost']],
+		["GRAND TOTAL", "KSh" . $DATA[2]['grand_total']]
+	]);
+
+	// (B7) NOTES, IF ANY
+	$quotr->set("notes", [
+		"This quotation is not an invoice and it is non-contractual.",
+		"YOUR TERMS AND CONDITIONS HERE."
+	]);
+
+	// (B8) INCLUDE SIGN-OFF ACCEPTANCE
+	//$quotr->set("accept", true);
+
+	// (C) OUTPUT
+	// (C1) CHOOSE A TEMPLATE
+	$quotr->template("blueberry");
+	// $quotr->template("banana");
+	// $quotr->template("blueberry");
+	// $quotr->template("lime");
+	// $quotr->template("simple");
+	// $quotr->template("strawberry");
+
+	// (C3) OUTPUT IN PDF
+	// 1 : DISPLAY IN BROWSER (DEFAULT)
+	// 2 : FORCE DOWNLOAD
+	// 3 : SAVE ON SERVER
+	$quotr->outputPDF(3, EXPORTED . "/quote.pdf");
+	// $quotr->outputPDF(1);
+	// $quotr->outputPDF(2, "QUOTATION.pdf");
+	// $quotr->outputPDF(3, __DIR__ . DIRECTORY_SEPARATOR . "QUOTATION.pdf");
+
+	// (D) USE RESET() IF YOU WANT TO CREATE ANOTHER ONE AFFTER THIS
+	// $quotr->reset();
+}
 
 	
