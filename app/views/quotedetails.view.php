@@ -13,14 +13,14 @@
 
 
         <div class="card">
-        <div class="card-body"> 
+            <div class="card-body"> 
                 <div class="table-top">
                     <h5 class="card-title">Quote Details: <span style="color:#7367F0"><?=$quote_ID?></span></h5>
                     <div class="wordset">
                         <ul>
-                            <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="<?=ASSETS?>/img/icons/edit.svg" alt="img"></a>
+                            <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="edit"><img src="<?=ASSETS?>/img/icons/edit.svg" alt="img"></a>
                             </li>
-                            <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
+                            <li><a id="pdf-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
                             </li>
                             <li> <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img src="<?=ASSETS?>/img/icons/excel.svg" alt="img"></a>
                             </li>
@@ -155,5 +155,22 @@
     </div>
 </div>
 
+
+<script>
+    const pdfBtn = document.querySelector("#pdf-icon")
+
+    pdfBtn.addEventListener('click', function(){
+        // alert('<?=$quote_ID?>')
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "<?=ROOT?>/AjaxRequests/QuotePDF/<?=$quote_ID?>", true); 
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        };
+        xhr.send();
+    });
+</script>
 
 <?php $this->view('includes/footer'); ?> 

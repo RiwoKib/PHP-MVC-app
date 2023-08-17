@@ -18,7 +18,7 @@
                     <h5 class="card-title">Sale Details: <span style="color:#7367F0"><?=$sale_ID?></span></h5>
                     <div class="wordset">
                         <ul>
-                            <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="<?=ASSETS?>/img/icons/edit.svg" alt="img"></a>
+                            <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="edit"><img src="<?=ASSETS?>/img/icons/edit.svg" alt="img"></a>
                             </li>
                             <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
                             </li>
