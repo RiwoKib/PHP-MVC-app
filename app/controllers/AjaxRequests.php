@@ -436,7 +436,7 @@ class AjaxRequests extends Controller
         }        
     }
 
-    function QuotePDF($id=null)
+    function QuotePDF($id=null, $table)
     {    
         $quote = new Quotation();
 		$quote_data = $quote->where('quote_ID' , $id);
@@ -470,6 +470,7 @@ class AjaxRequests extends Controller
 
         $prepareCompanyInfo = array(
             'quote_ID' => $ID,
+            'invoice_ID' => $quote_data[0]->invoice_ID,
             'entry' =>$quote_data[0]->created_on,
             'expiry' =>$quote_data[0]->expiry_date,
 			'company_name' => $quote_data[0]->company_name,
@@ -479,13 +480,17 @@ class AjaxRequests extends Controller
 			'shipping_cost' => number_format($shipping_cost),
 			'total' => number_format($grand_total)
 		);
+
         $grand_total += $shipping_cost;
+
 		$prepareCustomerInfo = array(
 			'firstname' => $quote_data[0]->firstname,
 			'lastname' => $quote_data[0]->lastname,
             'email' =>$quote_data[0]->email,
 			'phone_number' => $quote_data[0]->phone_number,
 			'status' => $quote_data[0]->status,
+            'due' => number_format($quote_data[0]->due),
+            'paid' => number_format($quote_data[0]->paid),
 			'payment_status' => $quote_data[0]->payment_status,
 			'grand_total' => number_format($grand_total)
 		);
@@ -494,7 +499,7 @@ class AjaxRequests extends Controller
         $data[] = $prepareCompanyInfo;
         $data[] = $prepareCustomerInfo;
 
-        generatePdf($data);
+        generatePdf($data, $table);
 
         print_r($showQuoteItems);
 
