@@ -20,9 +20,11 @@
                         <ul>
                             <li><a data-bs-toggle="tooltip" data-bs-placement="top" title="edit"><img src="<?=ASSETS?>/img/icons/edit.svg" alt="img"></a>
                             </li>
-                            <li><a id="pdf-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
+                            <li><a id="quotation-pdf" data-bs-toggle="tooltip" data-bs-placement="top" title="quotation"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
                             </li>
-                            <li> <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img src="<?=ASSETS?>/img/icons/excel.svg" alt="img"></a>
+                            <li> <a id="invoice-pdf" data-bs-toggle="tooltip" data-bs-placement="top" title="invoice"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
+                            </li>
+                            <li> <a id="delivery-pdf" data-bs-toggle="tooltip" data-bs-placement="top" title="delivery_note"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
                             </li>
                             <li> <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img src="<?=ASSETS?>/img/icons/printer.svg" alt="img"></a>
                             </li>
@@ -157,13 +159,41 @@
 
 
 <script>
-    const pdfBtn = document.querySelector("#pdf-icon")
+    const quoteBtn = document.querySelector("#quotation-pdf")
+    const invoiceBtn = document.querySelector("#invoice-pdf")
+    const deliveryBtn = document.querySelector("#delivery-pdf")
 
-    pdfBtn.addEventListener('click', function(){
+    quoteBtn.addEventListener('click', function(){
         // alert('<?=$quote_ID?>')
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "<?=ROOT?>/AjaxRequests/QuotePDF/<?=$quote_ID?>", true); 
+        xhr.open("POST", "<?=ROOT?>/AjaxRequests/QuotePDF/<?=$quote_ID?>/quotation", true); 
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        };
+        xhr.send();
+    });
+
+    deliveryBtn.addEventListener('click', function(){
+        // alert('<?=$quote_ID?>')
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "<?=ROOT?>/AjaxRequests/QuotePDF/<?=$quote_ID?>/delivery", true); 
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        };
+        xhr.send();
+    });
+
+    invoiceBtn.addEventListener('click', function(){
+        // alert('<?=$quote_ID?>')
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "<?=ROOT?>/AjaxRequests/QuotePDF/<?=$quote_ID?>/invoice", true); 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 console.log(xhr.responseText)
