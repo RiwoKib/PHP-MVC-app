@@ -24,11 +24,25 @@ class Quotr {
     "Email: bilkense@gmail.com"
   ];
 
+  // BANK DETAILS 
+  private $bankDetails = [
+    "",
+    "Bilkens Enterprises Limited",
+    "KES Account: 0100007932442",
+    "USD Account: 0100007932469",
+    "STANBIC BANK",
+    "Chiromo Branch",
+    "SBICKENX"
+  ];
+
   // (C2) HEADERS - QUOTATION #, DATE OF PURCHASE, DUE DATE
   private $head = [];
 
   // (C3) CUSTOMER
   private $customer = [];
+
+  // () PAYMENT
+  private $payment = [];
 
   // (C4) ITEMS - NAME, DESCRIPTION, QTY, PRICE EACH, SUB-TOTAL
   private $items = [];
@@ -36,6 +50,8 @@ class Quotr {
   // (C5) TOTALS - NAME, AMOUNT
   private $totals = [];
 
+  private $shipping = [];
+  
   // (C6) EXTRA FOOTER NOTES, IF ANY
   private $notes = [];
 
@@ -70,9 +86,12 @@ class Quotr {
   function reset () {
     $this->company = [];
     $this->head = [];
+    $this->payment = [];
+    $this->shipping = [];
     $this->customer = [];
     $this->items = [];
     $this->totals = [];
+    $this->bankDetails = [];
     $this->notes = [];
     $this->template = "simple";
     $this->data = null;
@@ -102,7 +121,7 @@ class Quotr {
   //         2 = force download (provide the file name in $save)
   //         3 = save on server (provide the absolute path and file name in $save)
   // $save : output filename
-  function outputPDF ($mode=1, $save = "quotation.pdf") {
+  function outputPDF ($mode=1, $save = "sample_quotation.pdf") {
     // (H1) LOAD LIBRARY
     $mpdf = new \Mpdf\Mpdf();
 
