@@ -252,9 +252,9 @@ function generatePdf($DATA, $table)
 
 			// () SHIPPING HEADER
 			$quotr->set("shipping", [
-				"Southlands Park",
-				'North Airport Road',
-				'15083-00100 Emba'
+				$DATA[1]['company_name'],
+				$DATA[1]['city'] ." ". $DATA[1]['zipcode'],
+				$DATA[1]['address'],
 			]);
 			$quotr->template('simple');
 			

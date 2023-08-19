@@ -79,7 +79,7 @@ $this->data .= "</td></tr></table>";
 $this->data .= "<div id='bigi'>DELIVERY NOTE</div>";
 
 // (C) CUSTOMER
-$this->data .= "<table id='quoinfo'><tr><td><strong>DELIVERY TO:</strong><br>";
+$this->data .= "<table id='quoinfo'><tr><td><strong>DELIVERY FOR:</strong><br>";
 foreach ($this->customer as $c) { $this->data .= $c."<br>"; }
 $this->data .= "</td><td><strong>SHIPPING TO:</strong><br>";
 
