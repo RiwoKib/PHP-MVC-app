@@ -51,7 +51,7 @@ class Quotr {
   private $totals = [];
 
   private $shipping = [];
-  
+  private $companyInfo = [];
   // (C6) EXTRA FOOTER NOTES, IF ANY
   private $notes = [];
 
@@ -90,6 +90,7 @@ class Quotr {
     $this->shipping = [];
     $this->customer = [];
     $this->items = [];
+    $this->companyInfo = [];
     $this->totals = [];
     $this->bankDetails = [];
     $this->notes = [];
