@@ -160,10 +160,15 @@ function generatePdf($DATA, $table)
 	// (B3) CUSTOMER
 	$quotr->set("customer", [
 		$DATA[2]['firstname'] ." ".$DATA[2]['lastname'],
-		$DATA[1]['city'] ." ". $DATA[1]['zipcode'],
-		$DATA[1]['address'],
 		0 ."".$DATA[2]['phone_number'],
 		$DATA[2]['email']
+	]);
+
+	// () COMPANY
+	$quotr->set("companyInfo", [
+		$DATA[1]['company_name'],
+		$DATA[1]['city'] ." ". $DATA[1]['zipcode'],
+		$DATA[1]['address'],
 	]);
 	
 	// show($DATA[0]);
