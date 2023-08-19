@@ -42,7 +42,7 @@ $this->data = "<!DOCTYPE html><html><head>
 		margin-top:10px
 	}
 	#customer td{
-		font-size: 12px;
+		font-size: 1.2rem;
 		width:50%;
 		background:#d0ec0e
 	}
@@ -95,8 +95,11 @@ foreach ($this->head as $i) {
 }
 $this->data .= "</div></td></tr></table>";
 
-// (D) CUSTOMER
-$this->data .= "<table id='customer'><tr><td><strong>CUSTOMER</strong><br>";
+// (C) CUSTOMER
+$this->data .= "<table id='customer'><tr><td><strong>COMPANY</strong><br>";
+foreach ($this->companyInfo as $c) { $this->data .= $c."<br>"; }
+$this->data .= "</td><td><strong>INVOICE TO:</strong><br>";
+
 foreach ($this->customer as $c) { $this->data .= $c."<br>"; }
 $this->data .= "</td><td>";
 

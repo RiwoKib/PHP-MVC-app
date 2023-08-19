@@ -63,6 +63,7 @@ $this->data = "<!DOCTYPE html><html><head>
 		margin-top:30px
 	}
 	#notes{
+		font-size: 0.75em;
 		background:#e4eff5;
 		padding:10px
 	}
@@ -87,7 +88,10 @@ for ($i=2;$i<count($this->company);$i++) {
 $this->data .= "</div></td><td id='co-right' class='right'><img src='".$this->company[0]."'/></td></table>";
 
 // (C) CUSTOMER
-$this->data .= "<table id='quoinfo'><tr><td><strong>CUSTOMER</strong><br>";
+$this->data .= "<table id='quoinfo'><tr><td><strong>COMPANY</strong><br>";
+foreach ($this->companyInfo as $c) { $this->data .= $c."<br>"; }
+$this->data .= "</td><td><strong>QUOTE TO:</strong><br>";
+
 foreach ($this->customer as $c) { $this->data .= $c."<br>"; }
 $this->data .= "</td><td>";
 
