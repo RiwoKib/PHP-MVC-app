@@ -42,7 +42,7 @@ $this->data = "<!DOCTYPE html><html><head>
 	#items th{
 		text-align:left;
 		background:#98c5dc;
-		padding:20px 10px
+		padding:10px 10px
 	}
 	#items td{
 		background:#e4eff5;
