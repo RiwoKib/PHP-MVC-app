@@ -26,8 +26,6 @@
                             </li>
                             <li> <a id="delivery-pdf" data-bs-toggle="tooltip" data-bs-placement="top" title="delivery_note"><img src="<?=ASSETS?>/img/icons/pdf.svg" alt="img"></a>
                             </li>
-                            <li> <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img src="<?=ASSETS?>/img/icons/printer.svg" alt="img"></a>
-                            </li>
                         </ul>
                     </div>
                 </div>
