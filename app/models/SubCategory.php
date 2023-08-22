@@ -24,17 +24,9 @@
             $this->errors['name'] = "Only letters are allowed in category name";
         }
         
-        if(empty($DATA['category_name']))
+        if(empty($DATA['category_name']) || empty($DATA['parent_category']))
         {
-            $this->errors['name'] = "Fill category name";
-        }
-        if(!preg_match('/^[a-zA-Z0-9]+$/', $DATA['sku']))
-        {
-            $this->errors['sku'] = "Letters followed by numbers in sku";
-        }
-        if(empty($DATA['sku']))
-        {
-            $this->errors['sku'] = "Fill SKU (category code) e.g CT002";
+            $this->errors['name'] = "Fill Both categories";
         }
 
         if(empty($DATA['description']))
