@@ -90,6 +90,9 @@ function makeCode($table)
 			case 'transfers':
 				return "TR_".rand(0001,4444);
 				break;
+			case 'subcategories':
+				return "ct_".rand(0001,4444);
+				break;
 			default:
 				return false;
 		} 	
