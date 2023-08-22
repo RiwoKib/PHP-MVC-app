@@ -19,25 +19,61 @@
         $this->errors = array();    
 
         //check input fields 
-        if(empty($DATA['tax']) || empty($DATA['status']) || empty($DATA['sub_category']) || empty($DATA['unit']) || empty($DATA['brand']) || empty($DATA['product_name']) || empty($DATA['category_ID']) || empty($DATA['product_quantity']) || empty($DATA['discount']) || empty($DATA['selling_price']) || empty($DATA['buying_price'])  || empty($DATA['description']))
-        {
-            $this->errors['fields'] = "ALL field must be filled!!!";
+        if(empty($DATA['product_name'])){
+            $this->errors['product_name'] = "** Fill Product Name **";
+        }else if(!preg_match('/^[a-zA-Z0-9 ]+$/', $DATA['product_name'])){
+            $this->errors['product_name'] = "** Only letters/numbers are allowed in product name **";
         }
-        if (!preg_match('/^[a-zA-Z0-9 ]+$/', $DATA['product_name'])) {
-            $this->errors['name'] = "Only letters/numbers are allowed in product name";
+        
+        if(empty($DATA['brand'])){
+            $this->errors['brand'] = "** Fill Brand Name **";
         }
 
-        
-        // if(!preg_match('/^[a-zA-Z0-9]+$/', $DATA['sku']))
-        // {
-        //     $this->errors['sku'] = "Letters followed by numbers in sku";
-        // } 
+        if(empty($DATA['product_quantity'])){
+            $this->errors['product_quantity'] = "** How many in stock now??";
+        }
 
+        if(empty($DATA['selling_price'])){
+            $this->errors['selling_price'] = "** Sell for how much??";
+        }
+
+        if(empty($DATA['buying_price'])){
+            $this->errors['buying_price'] = "** How much did you buy??";
+        }
+
+        if(empty($DATA['quote_description'])){
+            $this->errors['quote_description'] = "** Write a short description of the product (20 words minimum)";
+        }
+
+        if(empty($DATA['category_ID'])){
+            $this->errors['category_ID'] = "** Select Category **";
+        }
+
+        if(empty($DATA['sub_category'])){
+            $this->errors['sub_category'] = "** Select Sub Category **";
+        }
         
-         
+        if(empty($DATA['brand'])){
+            $this->errors['brand'] = "** Select Brand **";
+        }
+
+        if(empty($DATA['unit'])){
+            $this->errors['unit'] = "** Select Unit Type **";
+        }
+
+        if(empty($DATA['tax'])){
+            $this->errors['tax'] = "** Select Tax **";
+        }
+        
+        if(empty($DATA['discount'])){
+            $this->errors['discount'] = "** Select Discount **";
+        }  
+        
+        if(empty($DATA['image'])) {
+            $this->errors['image'] = "** Upload Product Image **";
+        }     
  
-        if(count($this->errors) == 0)
-        {
+        if(count($this->errors) == 0){
             return true;
         }
 
