@@ -37,7 +37,6 @@ class Subcategories extends Controller
 			$data = array(
 				'parent_category' => $_POST['parent'],
                 'category_name' => $_POST['name'], 
-                'sku' => $_POST['sku'],
                 'description' => $_POST['desc'], 
             );
 
@@ -45,6 +44,8 @@ class Subcategories extends Controller
 		
 			if($add->validate($data)) 
 			{
+				$data['subcategory_ID'] = makeCode('subcategories');
+
 				if($add->insert($data))
 				{
 					$this->redirect('subcategories');
