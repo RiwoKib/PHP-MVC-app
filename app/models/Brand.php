@@ -26,17 +26,16 @@
         
         if(empty($DATA['brand_name']))
         {
-            $this->errors['name'] = "Fill brand name";
+            $this->errors['brand_name'] = "** Fill brand name **";
         } 
 
         if(empty($DATA['description']))
         {
-            $this->errors['desc'] = "Description field must be filled";
+            $this->errors['description'] = "** Description field must be filled **";
         }
-         
-        if(empty($DATA['image']))
-        {
-            $this->errors['image'] = "upload image";
+
+        if(empty($DATA['image'])){
+            $this->errors['image'] = "** Upload Brand Image **";
         }
  
         if(count($this->errors) == 0)

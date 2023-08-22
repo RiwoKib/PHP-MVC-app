@@ -25,8 +25,7 @@ class Brands extends Controller
 
     function add()
     {
-		if(!Authenticate::logged_in())
-		{
+		if(!Authenticate::logged_in()){
 			$this->redirect('login');
 		}
 
@@ -34,9 +33,15 @@ class Brands extends Controller
 
 		if(isset($_POST['addBrand']))
 		{	  
+			$imagePath = 0;
+
+			if(isset($_FILES['image'])){
+				$imagePath = handleImageUpload();
+			}
 			$data = array(
 				'brand_name' => $_POST['name'],
                 'description' => $_POST['desc'], 
+				'image' => $imagePath
             );
 			
 			
@@ -44,11 +49,6 @@ class Brands extends Controller
 
 			if($add->validate($data)) 
 			{
-				
-				$imagePath = handleImageUpload();
- 
-               	$data['image'] = $imagePath;
-
 				if($add->insert($data))
 				{
 					$this->redirect('brands');
