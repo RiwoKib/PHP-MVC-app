@@ -33,23 +33,37 @@
                                 <input value="<?=get_val('name')?>" name="name" type="text">  
                             </div>
                         </div> 
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="desc" class="form-control"><?=get_val('desc')?></textarea>  
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea name="desc" class="form-control"><?=get_val('desc')?></textarea>  
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label> Product Image</label>
-                                <div class="image-upload">
-                                    <input name="image" required type="file">
-                                    <div class="image-uploads">
-                                        <img src="<?=ASSETS?>/img/icons/upload.svg" alt="img">
-                                        <h4>Drag and drop a file to upload</h4>  
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label> Product Image</label>
+                                    <div class="image-upload">
+                                        <input id="imgInp" name="image" required type="file">
+                                        <div class="image-uploads">
+                                            <img src="<?=ASSETS?>/img/icons/upload.svg" alt="img">
+                                            <h4>Drag and drop a file to upload</h4>  
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-2">
+                                <div class="productimgname">
+                                    <div class="form-group">
+                                        <label>Image Uploaded</label>
+                                        <a href="javascript:void(0);" class="product-img img-fluid">
+                                            <img src="<?=ASSETS?>/img/product/noimage.png" alt="product" id="blah">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-lg-12">
                             <button type="submit" name="addCategory" class="btn btn-submit me-2">Add Category</button>
