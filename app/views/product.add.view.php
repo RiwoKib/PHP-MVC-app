@@ -94,7 +94,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Quantity</label>
-                                    <input value="<?=get_val('qty')?>" class="price" name="qty" type="text">
+                                    <input value="<?=get_val('qty')?>" class="price"     name="qty" type="text">
                                     <?php if(isset($errors['product_quantity'])){?>
                                         <span class="text-danger"><?=$errors['product_quantity']?></span>
                                     <?php }?>
@@ -226,9 +226,9 @@
 </div>
 
 <script>
-    const priceInputs = document.querySelectorAll('.price');
+    const numberFormat = document.querySelectorAll('.price');
     
-    priceInputs.forEach(function(input) {
+    numberFormat.forEach(function(input) {
         input.addEventListener('blur', function() {
             formatNumberInput(this);
         });
