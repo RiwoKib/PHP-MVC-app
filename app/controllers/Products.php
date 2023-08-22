@@ -31,11 +31,22 @@ class Products extends Controller
 		}
 
 		if(isset($_POST['addProduct']))
-		{
+		{	
+			$status = 0;
+			$image = 0;
+
+			if(isset($_FILES['image'])){
+				$image = handleImageUpload();
+			}
+
+			if(isset($_POST['status'])){
+				$status = $_POST['status']; 
+			}
+
 			$data = array(
                 'product_name' => $_POST['name'],  
                 'tax' => $_POST['tax'], 
-                'status' => $_POST['status'], 
+                'status' => $status, 
                 'sub_category' => $_POST['sub'],
                 'unit' => $_POST['unit'], 
                 'category_ID' => $_POST['cat'], 
@@ -44,7 +55,8 @@ class Products extends Controller
                 'selling_price' => $_POST['price'],
                 'buying_price' => $_POST['bp'],
                 'brand' => $_POST['brand'],
-                'description' => $_POST['desc'],
+                'quote_description' => $_POST['desc'],
+				'image' => $image
             );
 
 			$add = new Product();
@@ -60,10 +72,6 @@ class Products extends Controller
 				$data['discount'] = floatval($data['discount']) / 100;
 
 				$data['product_ID'] = makeCode('products');
-
-				$imagePath = handleImageUpload();
- 
-               	$data['image'] = basename($imagePath);
 
 				if($add->insert($data))
 				{
