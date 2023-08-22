@@ -43,7 +43,7 @@ function show($data)
 function get_date($date)
 {
 
-	return date("d-m-Y", strtotime($date));
+	return date("Y-m-d", strtotime($date));
 }
 
 function get_expiryDate($date)
@@ -54,7 +54,7 @@ function get_expiryDate($date)
 	// Add 30 days
 	$initialDate->add(new DateInterval('P30D'));
 
-	$formattedDate = $initialDate->format('d-m-Y');
+	$formattedDate = $initialDate->format('Y-m-d');
 	return $formattedDate; 
 
 }
@@ -98,7 +98,7 @@ function makeCode($table)
 function handleImageUpload()
     {
         $uploadDir = UPLOADS . "/";
-        $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
+        $allowedExtensions = array('jpg', 'jpeg', 'jfif', 'png', 'gif');
 
 		if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 			$tmpName = $_FILES['image']['tmp_name'];
@@ -117,7 +117,7 @@ function handleImageUpload()
 	
 			// Move the uploaded file to the desired location
 			if (move_uploaded_file($tmpName, $destination)) {
-				echo "Uploaded image destination: " . $destination . "<br>";
+				//echo "Uploaded image destination: " . $destination . "<br>";
 				return basename($destination);
 			} else {
 				echo "Error: Unable to move uploaded file.";
