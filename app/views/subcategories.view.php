@@ -109,6 +109,7 @@
                                             <input type="checkbox">
                                             <span class="checkmarks"></span>
                                         </label>
+                                    </td>
                                     <!-- </td>
                                     <td>
                                         <a class="product-img">
@@ -117,7 +118,7 @@
                                     </td> -->
                                     <td><?=$row->category_name?></td>
                                     <td><?=$row->parent_category?></td>
-                                    <td><?=$row->sku?></td>
+                                    <td><?=$row->subcategory_ID?></td>
                                     <td><?=$row->description?></td> 
                                     <td>
                                         <a class="me-3" href="<?=ROOT?>/subcategories/edit/<?=$row->id?>">

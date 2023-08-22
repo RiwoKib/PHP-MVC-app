@@ -27,31 +27,29 @@
         <div class="card">
             <div class="card-body">
                 <form action="" method="post">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Parent Category</label>
+                                    <select class="select" name="parent">
+                                        <option>Choose Category</option>
+                                        <?php foreach ($rows as $row) {?>
+                                                <option value="<?=$row->category_name?>"><?=$row->category_name?></option>
+                                            <?php }?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label>Category Name</label>
+                                    <input name="name" type="text">
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
                     <div class="row">
-                        <div class="col-lg-4 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Parent Category</label>
-                                <select class="select" name="parent">
-                                    <option>Choose Category</option>
-                                    <?php foreach ($rows as $row) {?>
-                                            <option value="<?=$row->category_name?>"><?=$row->category_name?></option>
-                                        <?php }?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Category Name</label>
-                                <input name="name" type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Category Code</label>
-                                <input name="sku" type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea name="desc" class="form-control"></textarea>
