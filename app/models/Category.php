@@ -19,23 +19,21 @@
 
         //check input fields
 
-       
-        // if (!preg_match('/^[a-zA-Z0-9]+$/', $DATA['category_name'])) {
-        //     $this->errors['name'] = "Only letters/numbers are allowed in category name";
-        // }
-        
         if(empty($DATA['category_name']))
         {
-            $this->errors['name'] = "Fill category name";
+            $this->errors['category_name'] = "** Fill category name **";
+        }elseif(!preg_match('/^[a-zA-Z0-9 ]+$/', $DATA['category_name'])) {
+            $this->errors['category_name'] = "** No Special Characters allowed in category name **";
         }
-        // if(!preg_match('/^[a-zA-Z0-9]+$/', $DATA['category_ID']))
-        // {
-        //     $this->errors['category_ID'] = "Letters followed by numbers in category_ID";
-        // }
 
         if(empty($DATA['description']))
         {
-            $this->errors['desc'] = "Description field must be filled";
+            $this->errors['description'] = "** Description field must be filled **";
+        }
+
+        if(empty($DATA['image']))
+        {
+            $this->errors['image'] = "** Upload Category Image*";
         }
          
  

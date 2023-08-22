@@ -25,16 +25,22 @@ class Categories extends Controller
 	{	
 		$errors = array();
 
-		if(!Authenticate::logged_in())
-		{
+		if(!Authenticate::logged_in()){
 			$this->redirect('login');
 		}
 
 		if(isset($_POST['addCategory']))
 		{
+			$imagePath = 0;
+
+			if(isset($_FILES['image'])){
+				$imagePath = handleImageUpload();
+			}
+
 			$data = array(
                 'category_name' => $_POST['name'],  
                 'description' => $_POST['desc'], 
+				'image' => $imagePath
             );
 
 			$add = new Category();
@@ -43,9 +49,6 @@ class Categories extends Controller
 			{
 
 				$data['category_ID'] = makeCode('categories');
-				$imagePath = handleImageUpload();
- 
-               $data['image'] = $imagePath;
 
 				if($add->insert($data))
 				{
