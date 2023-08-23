@@ -567,7 +567,7 @@ class AjaxRequests extends Controller
             }
         } 
         
-        echo json_encode(array('success' => true, 'message' => 'Products imported successfully'));
+        echo json_encode(array('success' => true, 'message' => 'Products imported'));
     }
 
 
