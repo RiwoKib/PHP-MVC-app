@@ -183,67 +183,8 @@ class Products extends Controller
 	{
 		$errors = array();
 
-		if(!Authenticate::logged_in())
-		{
+		if(!Authenticate::logged_in()){
 			$this->redirect('login');
-		}
-
-		if(isset($_POST['addBulk']))
-		{
-			$file = $_FILES['products_import']['tmp_name'];
-
-			$data = extractDataFromExcel($file);
-
-			$product = new Product(); 
-			
-			// echo "<pre>";
-			// print_r( $data);
-
-			foreach ($data as $row)
-			{	
-				$insertData = array(
-				'product_name' => $row[0],
-				'image' => $row[1],
-				'category_ID' => $row[2],
-				'product_quantity' => $row[3],
-				'description' => $row[8],
-				'buying_price' => $row[4],
-				'selling_price' => $row[5],
-				'brand' => $row[6],
-				'unit' => $row[7],
-				'sub_category' => $row[12],
-				'tax' => $row[9],
-				'discount' => $row[10],
-				'status' => $row[11],
-				); 
-
-				if($product->validateImported($insertData))
-				{
-					$insertData['product_quantity'] = intval($insertData['product_quantity']);
-					$insertData['selling_price'] = intval($insertData['selling_price']);
-					$insertData['status'] = intval($insertData['status']);
-					$insertData['buying_price'] = intval($insertData['buying_price']);
-					$insertData['tax'] = floatval($insertData['tax']) / 100;
-					$insertData['discount'] = floatval($insertData['discount']) / 100;
-
-					$insertData['product_ID'] = makeCode('products');
-
-					if($product->insert($insertData))
-					{
-						
-						echo "inserted successfully";
-					}else{
-						echo $product->getErrorMessage();
-					}
-				}else{
-					$errors = $product->errors;
-				}
-
-
-			}
-
-			$this->redirect('products');
-			
 		}
 
 		$this->view('products.import', ['errors' => $errors]);
