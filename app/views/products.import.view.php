@@ -182,12 +182,14 @@
                     progressBar.style.display = "none";
                     successMessage.style.display = "block";
                     message.innerHTML = obj.message;
+                    addBulkBtn.disabled = false;
                     clearInterval(timer);
                 }
             }
 
             ajax.send(formData); 
             timer = setInterval(show_progress, 100);
+            addBulkBtn.disabled = true;
         }           
     })
 
