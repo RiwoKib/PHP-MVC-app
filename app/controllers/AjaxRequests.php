@@ -504,4 +504,77 @@ class AjaxRequests extends Controller
         print_r($showQuoteItems);
 
     }
+
+    function importProducts()
+    {
+        $file = $_FILES['excelFile']['tmp_name'];
+
+        $data = extractDataFromExcel($file);
+
+        $product = new Product(); 
+        $errors = array();
+        $totalRows = count($data);
+        $successCount = 0;
+        $file = 'progress.txt';
+        // print_r( $data);
+        
+        file_put_contents($file, 0);
+
+        foreach ($data as $row)
+        {	
+            $insertData = array(
+            'product_name' => $row[0],
+            'image' => $row[1],
+            'category_ID' => $row[2],
+            'product_quantity' => $row[3],
+            'quote_description' => $row[8],
+            'buying_price' => $row[4],
+            'selling_price' => $row[5],
+            'brand' => $row[6],
+            'unit' => $row[7],
+            'sub_category' => $row[12],
+            'tax' => $row[9],
+            'discount' => $row[10],
+            'status' => $row[11],
+            ); 
+            
+
+            if($product->validateImported($insertData))
+            {	
+                $insertData['product_quantity'] = intval($insertData['product_quantity']);
+                $insertData['selling_price'] = intval($insertData['selling_price']);
+                $insertData['status'] = intval($insertData['status']);
+                $insertData['buying_price'] = intval($insertData['buying_price']);
+                $insertData['tax'] = floatval($insertData['tax']) / 100;
+                $insertData['discount'] = floatval($insertData['discount']) / 100;
+
+                $insertData['product_ID'] = makeCode('products');
+                
+                if($product->insert($insertData)){
+                    $successCount ++;
+                    $progressPercentage = round(($successCount / $totalRows) * 100);
+
+                    sleep(1);
+                    // echo json_encode(array('success' => true, 'progress' => $progressPercentage));
+
+                    file_put_contents($file, $progressPercentage);
+                }else{
+                    echo $product->getErrorMessage();
+                }
+            }else{
+                $errors = $product->errors;
+                echo json_encode(array('errors' => $errors));
+            }
+        } 
+        
+        echo json_encode(array('success' => true, 'message' => 'Products imported successfully'));
+    }
+
+
+    function checkProgress()
+    {
+        $file = 'progress.txt';
+        $data = file_get_contents($file);
+        echo $data;
+    }
 }
