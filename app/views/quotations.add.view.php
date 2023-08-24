@@ -68,9 +68,66 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>New Quotation</h4>
-                <h6>Add Quotation</h6>
+                <h6>Select Company Information</h6>
             </div>
         </div> 
+
+        <div class="row mx-5 px-5">
+            <div class="col-lg-12 col-sm-12 tabs_wrapper">
+                <ul class=" tabs owl-carousel owl-theme owl-product  border-0 ">
+                    <li class="active" id="fruits">
+                        <div class="product-details ">
+                            <h6>Tatu City</h6>
+                        </div>
+                    </li>
+                    <li id="headphone">
+                        <div class="product-details "> 
+                            <h6>Richard's Camp</h6>
+                        </div>
+                    </li>
+                    <li id="Accessories">
+                        <div class="product-details"> 
+                            <h6>Garmin Kenya</h6>
+                        </div>
+                    </li>
+                    <li id="Shoes">
+                        <a class="product-details"> 
+                            <h6>Two Way Comms</h6>
+                        </a>
+                    </li>
+                    <li id="computer">
+                        <a class="product-details"> 
+                            <h6>Motorola US</h6>
+                        </a>
+                    </li>
+                    <li id="Snacks">
+                        <a class="product-details"> 
+                            <h6>Garmin International</h6>
+                        </a>
+                    </li>
+                    <li id="watch">
+                        <a class="product-details"> 
+                            <h6>GiveDirect</h6>
+                        </a>
+                    </li>
+                    <li id="cycle">
+                        <a class="product-details"> 
+                            <h6>MTN</h6>
+                        </a>
+                    </li>
+                    <li id="fruits1">
+                        <div class="product-details "> 
+                            <h6>TechnoBit</h6>
+                        </div>
+                    </li>
+                    <li id="headphone1">
+                        <div class="product-details "> 
+                            <h6>Huawei</h6>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
         <div class="card">
             <div class="card-body">
