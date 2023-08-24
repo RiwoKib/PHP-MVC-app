@@ -517,8 +517,6 @@ class AjaxRequests extends Controller
         $successCount = 0;
         $file = 'progress.txt';
         // print_r( $data);
-        
-        file_put_contents($file, 0);
 
         foreach ($data as $row)
         {	
@@ -568,6 +566,7 @@ class AjaxRequests extends Controller
         } 
         
         echo json_encode(array('success' => true, 'message' => 'Products imported'));
+        file_put_contents($file, 0);
     }
 
 
