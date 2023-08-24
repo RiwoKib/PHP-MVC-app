@@ -126,7 +126,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 py-5">
+                        <div class="col-12">
                             <div >
                                 <div id="progress" style="display: none;" class="progress-bar bg-info" aria-valuemin="0"  aria-valuemax="100"></div>
                             </div>
@@ -138,7 +138,7 @@
 
         <div id="successMessage" style="display: none" class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> <span id="message"></span>.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" id="hideMessage" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
 </div>
@@ -152,7 +152,7 @@
     const cancelBtn = document.querySelector('#cancelAjax')
     const message = document.querySelector('#message')
     const successMessage = document.querySelector('#successMessage')
-    
+    const hideMessage = document.querySelector('#hideMessage')
 
     addBulkBtn.addEventListener('click', function(e){
         e.preventDefault();
@@ -174,12 +174,11 @@
 
             ajax.onload = function(){
                 if(ajax.status === 200){
+                    progressBar.style.margin = '10px';
                     progressBar.style.width = '100%';
                     progressBar.innerHTML = '100%';
 
-                    // console.log(ajax.responseText)
                     let obj = JSON.parse(ajax.responseText);
-                    progressBar.style.display = "none";
                     successMessage.style.display = "block";
                     message.innerHTML = obj.message;
                     addBulkBtn.disabled = false;
@@ -200,8 +199,8 @@
 
         ajax2.onload = function(){
             if(ajax2.status === 200){
+                progressBar.style.margin = '10px';
                 progressBar.style.width = ajax2.responseText + '%';
-                progressBar.setAttribute('aria-valuenow', ajax2.responseText)
                 progressBar.innerHTML = ajax2.responseText + '%';
             }
         }
@@ -209,6 +208,10 @@
         ajax2.send(); 
     }
 
+    hideMessage.addEventListener('click', function (e) {
+        e.preventDefault();
+        progressBar.style.display = "none";
+    })
 </script>
 
 
