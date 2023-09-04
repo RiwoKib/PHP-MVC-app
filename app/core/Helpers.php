@@ -170,12 +170,13 @@ function generatePdf($DATA, $table)
 	// () COMPANY
 	$quotr->set("companyInfo", [
 		$DATA[1]['company_name'],
-		$DATA[1]['city'] ." ". $DATA[1]['zipcode'],
+		$DATA[1]['city'] ." 00".$DATA[1]['zipcode'],
 		$DATA[1]['address'],
 	]);
 	
 	// show($DATA[0]);
-	foreach ($DATA[0] as $key => $i) { $quotr->add("items", $i); }
+	foreach ($DATA[0] as $key => $value) { $quotr->add("items", $value); }
+
 
 	// show($i);
 
@@ -184,9 +185,9 @@ function generatePdf($DATA, $table)
 
 	// (B7) NOTES, IF ANY
 	$quotr->set("notes", [
-		"This quotation is not an invoice and it is non-contractual.",
-		"YOUR TERMS AND CONDITIONS HERE."
+		"This quotation is not an invoice and it is non-contractual."
 	]);
+
 
 	// (B8) INCLUDE SIGN-OFF ACCEPTANCE
 	//$quotr->set("accept", true);
@@ -203,6 +204,15 @@ function generatePdf($DATA, $table)
 				["Valid Till", $DATA[1]['expiry']]
 			]);
 
+			//SERVICES
+			$quotr->set("services", [
+				$DATA[3]['title'],
+				$DATA[3]['desc'],
+				$DATA[3]['quantity'],
+				$DATA[3]['unit_price'],
+				$DATA[3]['total_price']
+			]);
+
 			// (B6) TOTALS
 			$quotr->set("totals", [
 				["SUB-TOTAL", "KSh" . $DATA[1]['total']],
@@ -212,7 +222,7 @@ function generatePdf($DATA, $table)
 
 			$quotr->template("blueberry");
 			
-			$quotr->outputPDF(3, EXPORTED . "/quote.pdf");
+			$quotr->outputPDF(3, EXPORTED . "/".$DATA[1]['company_name']." Quote.pdf");
 			break;
 		case 'invoice':
 			// (B2) INVOICE HEADER

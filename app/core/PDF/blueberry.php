@@ -74,7 +74,7 @@ $this->data = "<!DOCTYPE html><html><head>
 	#accept td{
 		border:1px solid #fff;
 		background:#e4eff5;
-		padding:10px 10px 50px 10px;
+		padding:10px 10px 30px 10px;
 		color:#a1a1a1
 	}
 	". "</style>
@@ -106,6 +106,9 @@ $this->data .= "<table id='items'><tr><th>ITEM</th><th>QUANTITY</th><th>UNIT PRI
 foreach ($this->items as $i) {
 	$this->data .= "<tr><td><div>".$i[0]."</div>".($i[1]==""?"":"<small class='idesc'>$i[1]</small>")."</td><td>".$i[2]."</td><td>".$i[3]."</td><td>".$i[4]."</td></tr>";
 }
+
+//SERVICES
+$this->data .= "<tr><td><div>".$this->services[0]."</div>".($this->services[1]==""?"":"<small class='idesc'>".$this->services[1]."</small>")."</td><td>".$this->services[2]."</td><td>".$this->services[3]."</td><td>".$this->services[4]."</td></tr>";
 
 // (F) TOTALS
 if (count($this->totals)>0) { foreach ($this->totals as $t) {

@@ -44,6 +44,10 @@ class Quotr {
   // () PAYMENT
   private $payment = [];
 
+  // SERVICES
+
+  private $services = [];
+
   // (C4) ITEMS - NAME, DESCRIPTION, QTY, PRICE EACH, SUB-TOTAL
   private $items = [];
 
@@ -89,6 +93,7 @@ class Quotr {
     $this->payment = [];
     $this->shipping = [];
     $this->customer = [];
+    $this->services =[];
     $this->items = [];
     $this->companyInfo = [];
     $this->totals = [];
