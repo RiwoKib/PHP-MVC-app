@@ -481,7 +481,16 @@ class AjaxRequests extends Controller
 			'total' => number_format($grand_total)
 		);
 
-        $grand_total += $shipping_cost;
+        $prepareServies = [
+            'title' =>'Services',
+            'desc' =>'Installation, configuration and training',
+            'quantity' => 1,
+            'unit_price' => number_format(20000),
+            'total_price' => 20000
+        ];
+
+
+        $grand_total += $shipping_cost + $prepareServies['total_price'];
 
 		$prepareCustomerInfo = array(
 			'firstname' => $quote_data[0]->firstname,
@@ -495,13 +504,16 @@ class AjaxRequests extends Controller
 			'grand_total' => number_format($grand_total)
 		);
 
+
         $data[] = $showQuoteItems;
         $data[] = $prepareCompanyInfo;
         $data[] = $prepareCustomerInfo;
+        $prepareServies['total_price'] = number_format($prepareServies['total_price']);
+        $data[] = $prepareServies;
 
         generatePdf($data, $table);
 
-        print_r($showQuoteItems);
+        print_r($prepareServies);
 
     }
 
