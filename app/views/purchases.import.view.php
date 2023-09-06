@@ -26,14 +26,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label> Upload CSV File</label>
-                                <div class="image-upload">
-                                    <input name="purchases_import" type="file">
-                                    <div class="image-uploads">
-                                        <img src="<?=ASSETS?>/img/icons/upload.svg" alt="img">
-                                        <h4>Drag and drop a file to upload</h4>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label> Upload CSV File</label>
+                                    <div class="image-upload">
+                                        <input name="purchases_import" type="file">
+                                        <div class="image-uploads">
+                                            <img src="<?=ASSETS?>/img/icons/upload.svg" alt="img">
+                                            <h4>Drag and drop a file to upload</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -79,10 +81,6 @@
                                     <li>
                                         <h4>Payment Status</h4>
                                         <h6 class="manitorygreen">This Field is required</h6>
-                                    </li>
-                                    <li>
-                                        <h4>Description</h4>
-                                        <h6 class="manitoryblue">Field optional</h6>
                                     </li>
                                     <li>
                                         <h4>Shipping</h4>

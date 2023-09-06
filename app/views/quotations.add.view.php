@@ -244,7 +244,7 @@
                             <label>Shipping Cost</label>
                             <select class="select" id="shippingCost">
                                 <option value="">Choose Cost</option>
-                                <option value="150">Boda  (150/-)</option>
+                                <option value="0">Boda  (150/-)</option>
                                 <option value="300">Cargo Courier  (300/-)</option>
                             </select>
                         </div>
