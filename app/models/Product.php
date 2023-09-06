@@ -158,6 +158,35 @@
                         $result .= "</tr>";
                     }
                     break;
+
+                case "barcodeTable":
+                    foreach ($DATA as $product)
+                    {
+                        $result .= "<tr>";
+
+                        $result .= '
+                        <td>
+                            <label class="checkboxs">
+                                <input type="checkbox" name="selected[]" class="product-checkbox" value="'.$product->product_ID.'">
+                                <span class="checkmarks"></span>
+                            </label>
+                        </td>   
+                        <td class="productimgname">
+                            <a class="product-img">
+                                <img src="'.UPLOADED.'/'.$product->image.'" alt="product">
+                            </a>
+                            <a href="javascript:void(0);">'.$product->product_name.'</a>
+                        </td>
+                        <td class="text-center">'.($product->product_ID).'</td>
+                        <td class="text-center">'.($product->product_quantity).'</td> 
+                        <td>
+                            <a href="javascript:void(0);" class="delete-set"><img src="'.ASSETS.'/img/icons/delete.svg" alt="svg"></a>
+                        </td>            
+                        ';
+
+                        $result .= "</tr>";
+                    }
+                    break;
                 case "selectedProducts":
                     foreach ($DATA as $product)
                     {
