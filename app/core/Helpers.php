@@ -2,6 +2,7 @@
 
 require '../vendor/autoload.php';
 require "../app/core/quotr.php";
+require "../app/core/barcode.php";
 
 
 function get_val($key,$default = "")
@@ -295,4 +296,10 @@ function generatePdf($DATA, $table)
 	// $quotr->reset();
 }
 
+
+function generateBarcode($prod_ID, $file)
+{	
+	$barcode = new Barcode();
+	$barcode->generate($prod_ID, $file);
+}
 	
