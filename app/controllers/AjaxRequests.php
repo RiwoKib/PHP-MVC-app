@@ -18,16 +18,19 @@ class AjaxRequests extends Controller
         $searchData = $data->data; 
 
         if($search->findAll())
-        {
+        {   
+            
+            $resultData = $search->searchProducts($searchData);
             switch($table)
-            {
+            {   
                 case 'regular':
-                    $resultData = $search->searchProducts($searchData);
                     $resultData['tbl_rows'] = $search->make_tableRows('searchResults',$resultData);
                     break;
-                case 'purchase':
-                    $resultData = $search->searchProducts($searchData);
+                case 'purchase': 
                     $resultData['tbl_rows'] = $search->make_tableRows('purchaseTable',$resultData);
+                    break;
+                case 'barcodes':
+                    $resultData['tbl_rows'] = $search->make_tableRows('barcodeTable',$resultData);
                     break;
                 default;
                     return false;
@@ -587,5 +590,28 @@ class AjaxRequests extends Controller
         $file = 'progress.txt';
         $data = file_get_contents($file);
         echo $data;
+    }
+
+    function generateBarcodes()
+    {
+        $data = file_get_contents("php://input");
+        $data = json_decode($data);
+        $counter = 0;
+        $product = new Product();
+
+        foreach($data as $prod_ID)
+        {   
+            $product_info = $product->where('product_ID', $prod_ID->product_ID);
+            $prod_name = $product_info[0]->product_name;
+            generateBarcode($prod_ID->product_ID, $prod_name." Barcode.jpg");
+            $counter++;
+        }
+
+        if($counter > 0){
+            $data['message'] = "Product Barcodes Generated";
+            echo json_encode($data);
+        }else{
+            echo "Error";
+        }
     }
 }
