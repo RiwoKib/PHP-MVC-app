@@ -73,6 +73,7 @@ class Products extends Controller
 
 				$data['product_ID'] = makeCode('products');
 
+				// show($data);
 				if($add->insert($data))
 				{
 					$this->redirect('products');
@@ -112,14 +113,30 @@ class Products extends Controller
 		}
 		
 		$product = new Product();	 
-		$data = $product->where('id',$id);	 
+		$dataUpdate = $product->where('id',$id);	 
 		
 		if(isset($_POST['updateProduct']))
 		{
+
+			if($dataUpdate[0]->image)
+			{
+				$image = $dataUpdate[0]->image;
+			}else if(!isset($_FILES['image'])){
+				$image = 0;
+			}else{
+				$image = handleImageUpload();
+			}
+
+			if(isset($_POST['status'])){
+				$status = $_POST['status']; 
+			}else{
+				$status = 0;
+			}
+
 			$data = array(
                 'product_name' => $_POST['name'],  
                 'tax' => $_POST['tax'], 
-                'status' => $_POST['status'], 
+                'status' => $status, 
                 'sub_category' => $_POST['sub'],
                 'unit' => $_POST['unit'], 
                 'category_ID' => $_POST['cat'], 
@@ -128,7 +145,8 @@ class Products extends Controller
                 'selling_price' => $_POST['price'],
                 'buying_price' => $_POST['bp'],
                 'brand' => $_POST['brand'],
-                'description' => $_POST['desc'],
+				'image' => $image,
+                'quote_description' => $_POST['desc'],
             ); 	 
 			
 			if($product->validate($data))
@@ -142,10 +160,7 @@ class Products extends Controller
 				$data['tax'] = floatval($data['tax']) / 100;
 				$data['discount'] = floatval($data['discount']) / 100;
 				
-				$imagePath = handleImageUpload();
-
-				$data['image'] = $imagePath;
-				
+				// show($data);
 				if($product->update($id, $data))
 				{
 					$this->redirect('products');
@@ -169,7 +184,7 @@ class Products extends Controller
 		$brands = $brand->findAll();
 		$units = $unit->findAll(); 
 
-		$this->view('product.update',['row' =>$data,
+		$this->view('product.update',['row' =>$dataUpdate,
 									'errors' => $errors,
 									'categories' => $categories,
 									'subcategories' => $subcategories,
