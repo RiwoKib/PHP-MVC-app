@@ -33,7 +33,7 @@
 
         if(empty($DATA['image']))
         {
-            $this->errors['image'] = "** Upload Category Image*";
+            $this->errors['image'] = "** Upload Category Image **";
         }
          
  
