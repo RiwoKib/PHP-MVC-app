@@ -35,7 +35,7 @@
                                     <select name="cat" class="select">
                                         <option value="0">Choose Category</option>
                                         <?php foreach ($categories as $category){?>
-                                            <option value="<?=$category->category_name?>"><?=$category->category_name?></option>
+                                            <option value="<?=$category->category_ID?>"><?=$category->category_name?></option>
                                         <?php }?>
                                     </select>
                                     <?php if(isset($errors['category_ID'])){?>
@@ -52,7 +52,7 @@
                                     <select name="sub" class="select">
                                         <option value="0">Choose Sub Category</option>
                                         <?php foreach ($subcategories as $category){?>
-                                            <option value="<?=$category->category_name?>"><?=$category->category_name?></option>
+                                            <option value="<?=$category->subcategory_ID?>"><?=$category->category_name?></option>
                                         <?php }?>
                                     </select>
                                     <?php if(isset($errors['sub_category'])){?>
@@ -228,23 +228,23 @@
 <script>
     const numberFormat = document.querySelectorAll('.price');
     
-    numberFormat.forEach(function(input) {
-        input.addEventListener('blur', function() {
-            formatNumberInput(this);
-        });
-    });
+    // numberFormat.forEach(function(input) {
+    //     input.addEventListener('blur', function() {
+    //         formatNumberInput(this);
+    //     });
+    // });
 
-    function formatNumberInput(input) {
-        const inputValue = input.value.replace(/\D/g, ''); // Remove non-digit characters
+    // function formatNumberInput(input) {
+    //     const inputValue = input.value.replace(/\D/g, ''); // Remove non-digit characters
         
-        // Insert commas from the right
-        let formattedValue = inputValue;
-        if (inputValue.length > 3) {
-            formattedValue = inputValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
+    //     // Insert commas from the right
+    //     let formattedValue = inputValue;
+    //     if (inputValue.length > 3) {
+    //         formattedValue = inputValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //     }
         
-        input.value = formattedValue;
-    }
+    //     input.value = formattedValue;
+    // }
 
 </script>
 
