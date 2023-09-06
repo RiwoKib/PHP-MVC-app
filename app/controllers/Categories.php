@@ -31,10 +31,12 @@ class Categories extends Controller
 
 		if(isset($_POST['addCategory']))
 		{
-			$imagePath = 0;
 
 			if(isset($_FILES['image'])){
 				$imagePath = handleImageUpload();
+			}else{
+				
+				$imagePath = 0;
 			}
 
 			$data = array(
@@ -76,23 +78,28 @@ class Categories extends Controller
 		}
 		
 		$category = new Category();	 
-		$data = $category->where('id',$id);	 
+		$dataUpdate = $category->where('id',$id);	 
 		
 		if(isset($_POST['updateCategory']))
 		{
-			$data = array(
+
+			if($dataUpdate[0]->image)
+			{
+				$image = $dataUpdate[0]->image;
+			}else if(!isset($_FILES['image'])){
+				$image = 0;
+			}else{
+				$image = handleImageUpload();
+			}
+			
+			$data = [
                 'category_name' => $_POST['name'], 
-                'category_ID' => $_POST['sku'],
                 'description' => $_POST['desc'], 
-            );	  	 
+				'image' => $image
+			];	  	 
 			
 			if($category->validate($data))
-			{ 
-				
-				$imagePath = handleImageUpload();
-
-				$data['image'] = $imagePath;
-				
+			{ 				
 				if($category->update($id, $data))
 				{
 					$this->redirect('categories');
@@ -106,7 +113,7 @@ class Categories extends Controller
 			
 		} 
 		
-		$this->view('category.update', [	'row' => $data, 	
+		$this->view('category.update', [	'row' => $dataUpdate, 	
 											'errors' => $errors]);
 
 	}
