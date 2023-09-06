@@ -33,11 +33,13 @@ class Brands extends Controller
 
 		if(isset($_POST['addBrand']))
 		{	  
-			$imagePath = 0;
 
 			if(isset($_FILES['image'])){
 				$imagePath = handleImageUpload();
+			}else{
+				$imagePath = 0;
 			}
+
 			$data = array(
 				'brand_name' => $_POST['name'],
                 'description' => $_POST['desc'], 
@@ -68,21 +70,28 @@ class Brands extends Controller
 		$errors = array();
 		
 		$brand = new Brand();	 
-		$data = $brand->where('id',$id);	 
+		$dataUpdate = $brand->where('id',$id);	 
 		
 		if(isset($_POST['updateBrand']))
 		{
+
+			if($dataUpdate[0]->image)
+			{
+				$image = $dataUpdate[0]->image;
+			}else if(!isset($_FILES['image'])){
+				$image = 0;
+			}else{
+				$image = handleImageUpload();
+			}
+
 			$data = array(
 				'brand_name' => $_POST['name'],
                 'description' => $_POST['desc'], 
+				'image' => $image
             );  	 
 			
 			if($brand->validate($data))
 			{
-				$imagePath = handleImageUpload();
-
-				$data['image'] = $imagePath;
-
 				if($brand->update($id, $data))
 				{
 					$this->redirect('brands');
@@ -96,7 +105,7 @@ class Brands extends Controller
 			
 		}
 		
-		$this->view('brand.update', [	'row' => $data,	
+		$this->view('brand.update', [	'row' => $dataUpdate,	
 										'errors' => $errors]);
 
 	}
