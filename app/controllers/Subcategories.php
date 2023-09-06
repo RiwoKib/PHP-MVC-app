@@ -75,14 +75,13 @@ class Subcategories extends Controller
 		}
 		
 		$subcat = new SubCategory();	 
-		$data = $subcat->where('id',$id);	 
+		$dataUpdate = $subcat->where('id',$id);	 
 		
 		if(isset($_POST['updateSubCategory']))
 		{
 			$data = array(
 				'parent_category' => $_POST['parent'],
-                'category_name' => $_POST['name'], 
-                'sku' => $_POST['sku'],
+                'category_name' => $_POST['name'],
                 'description' => $_POST['desc'], 
             );	  	 
 			
@@ -101,11 +100,10 @@ class Subcategories extends Controller
 
 			
 		}
-		
 		$parent = new Category();	 
 		$parentCategory = $parent->findAll();
 		
-		$this->view('subcategory.update', [	'row' => $data,
+		$this->view('subcategory.update', [	'row' => $dataUpdate,
 											'categories' => $parentCategory,	
 											'errors' => $errors]);
 
