@@ -15,7 +15,7 @@
             <div class="card-body">
                 <form action="" method='post' enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-6 col-12">
+                        <div class="col-lg-5 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Category Name</label>
                                 <input value="<?=get_val('name')?>" name="name" type="text">  
@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label> Product Image</label>
+                                    <label> Category Image</label>
                                     <div class="image-upload">
                                         <input id="imgInp" name="image" type="file">
                                         <div class="image-uploads">
