@@ -208,6 +208,6 @@ class Products extends Controller
 
 	function barcode()
 	{
-		$this->view('products.barcode');
+		$this->view('product.barcodes');
 	}
 }
